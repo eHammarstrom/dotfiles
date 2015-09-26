@@ -13,3 +13,4 @@ compinit
 # End of lines added by compinstall
 
 . /usr/share/zsh/site-contrib/powerline.zsh
+PATH="$(ruby -e 'print Gem.user_dir')/bin:$PATH"
