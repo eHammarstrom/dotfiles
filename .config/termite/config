@@ -2,36 +2,36 @@
 font = hack 12
 
 [colors]
-# Base16 Default
-# Scheme: Chris Kempson (http://chriskempson.com)
+# Base16 Atelier Seaside
+# Scheme: Bram de Haan (http://atelierbram.github.io/syntax-highlighting/atelier-schemes/seaside/)
 
-foreground      = #d8d8d8
-foreground_bold = #d8d8d8
-cursor          = #d8d8d8
-background      = #181818
+foreground      = #8ca68c
+foreground_bold = #8ca68c
+cursor          = #8ca68c
+background      = #131513
 
 # 16 color space
-color0  = #181818
-color1  = #ab4642
-color2  = #a1b56c
-color3  = #f7ca88
-color4  = #7cafc2
-color5  = #ba8baf
-color6  = #86c1b9
-color7  = #d8d8d8
-color8  = #585858
-color9  = #ab4642
-color10 = #a1b56c
-color11 = #f7ca88
-color12 = #7cafc2
-color13 = #ba8baf
-color14 = #86c1b9
-color15 = #f8f8f8
+color0  = #131513
+color1  = #e6193c
+color2  = #29a329
+color3  = #c3c322
+color4  = #3d62f5
+color5  = #ad2bee
+color6  = #1999b3
+color7  = #8ca68c
+color8  = #687d68
+color9  = #e6193c
+color10 = #29a329
+color11 = #c3c322
+color12 = #3d62f5
+color13 = #ad2bee
+color14 = #1999b3
+color15 = #f0fff0
 
 # 256 color space
-color16 = #dc9656
-color17 = #a16946
-color18 = #282828
-color19 = #383838
-color20 = #b8b8b8
-color21 = #e8e8e8
+color16 = #87711d
+color17 = #e619c3
+color18 = #242924
+color19 = #5e6e5e
+color20 = #809980
+color21 = #cfe8cf
