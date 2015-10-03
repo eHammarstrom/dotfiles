@@ -48,10 +48,6 @@ map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
 =======
-map <C-l> :wincmd l<CR>
-map <C-h> :wincmd h<CR>
-map <C-j> :wincmd j<CR>
-map <C-k> :wincmd k<CR>
 >>>>>>> 05306397b86cdb0b3a24f9a2b993236a4d086e49
 
 "" Here comes NERDTree specifics
