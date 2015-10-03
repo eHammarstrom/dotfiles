@@ -42,13 +42,10 @@ set vb
 
 "" VIMRC Specifics
 " Window movement keybinds
-<<<<<<< HEAD
 map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
-=======
->>>>>>> 05306397b86cdb0b3a24f9a2b993236a4d086e49
 
 "" Here comes NERDTree specifics
 " Close nerdtree if it's the only window left open in vim
