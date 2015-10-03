@@ -52,7 +52,7 @@ map <silent> <C-k> :wincmd k<CR>
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
 " Keybindings
-map <C-p> :NERDTreeToggle<CR>
+map <silent> <C-p> :NERDTreeToggle<CR>
 
 " NERDTree symbols
 let g:NERDTreeDirArrows = 1
