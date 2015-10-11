@@ -1,4 +1,4 @@
-" VimRC iniShip
+" NVimRC iniShip
 
 filetype off
 
@@ -22,26 +22,15 @@ call plug#end()
 
 filetype plugin indent on
 
-set encoding=utf-8
-
-" This enables powerline
-set laststatus=2
-
-set autoindent
 set shiftwidth=2
 set softtabstop=2
-
 set number
-
 set ignorecase
 set smartcase
-
-set mouse=a
-set scrolloff=15
-
+set scrolloff=10
 set vb
 
-"" VIMRC Specifics
+"" NVIMRC Specifics
 " Window movement keybinds
 map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-h> :wincmd h<CR>

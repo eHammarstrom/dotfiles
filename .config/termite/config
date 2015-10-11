@@ -8,7 +8,7 @@ font = hack 12
 foreground      = #8ca68c
 foreground_bold = #8ca68c
 cursor          = #8ca68c
-background      = #131513
+background      = rgba(19, 21, 19, 0.8)
 
 # 16 color space
 color0  = #131513
