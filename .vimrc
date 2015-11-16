@@ -15,6 +15,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
 
 " Language specifics
+Plug 'vim-ruby/vim-ruby'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-rails'
 
@@ -32,6 +33,17 @@ set shiftwidth=2
 set softtabstop=2
 
 set number
+
+" line wrapping
+" set tw=80
+" set fo=cqt
+" set wm=0
+
+" line wrapping test
+" augroup vimrc_autocmds
+    " autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+    " autocmd BufEnter * match OverLength /\%74v.*/
+" augroup END
 
 set ignorecase
 set smartcase

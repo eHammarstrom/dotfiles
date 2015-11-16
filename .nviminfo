@@ -12,9 +12,24 @@ $
 
 # Command Line History (newest to oldest):
 :q
+:Tutor
+:tutor
+:help msgpack-rpc
+:help nvim
+:help nvim-from-vim
+:!sudo pip3 install neovim
+:!sudo pip2 install neovim
+:help nvim-python
+:help nvim-plugins
+:e .nvimrc
+:!sudo pip install neovim
+:!pip install neovim
+:buffer close
+:buffer merge
+:merge
+:help vim-differences
 :w
 :q!
-:help vim-differences
 :PlugInstall
 :e rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/
 
@@ -28,7 +43,7 @@ $
 
 # Registers:
 ""1	LINE	0
-	
+	syntax=on
 "2	LINE	0
 	
 "3	LINE	0
@@ -50,14 +65,18 @@ $
 # global variables:
 
 # File marks:
-'0  3  3  ~/.nvimrc
-'1  1  0  ~/.nvimrc
-'2  24  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
-'3  1  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/helpers/store_helper.rb
-'4  8  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v
+'0  27  29  /usr/share/nvim/runtime/tutor/en/vim-01-beginner.tutor
+'1  30  0  ~/.nvimrc
+'2  1  0  ~/.nvimrc
+'3  24  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
+'4  1  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/helpers/store_helper.rb
+'5  8  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v
+'6  8  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v
 
 # Jumplist (newest first):
--'  3  3  ~/.nvimrc
+-'  27  29  /usr/share/nvim/runtime/tutor/en/vim-01-beginner.tutor
+-'  1  0  /usr/share/nvim/runtime/tutor/en/vim-01-beginner.tutor
+-'  30  0  ~/.nvimrc
 -'  1  0  ~/.nvimrc
 -'  24  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
 -'  1  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
@@ -154,12 +173,34 @@ $
 -'  8  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v
 -'  1  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/helpers/store_helper.rb
 -'  8  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v
--'  24  0  ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
 
 # History of marks within files (newest to oldest):
 
+> /usr/share/nvim/runtime/tutor/en/vim-01-beginner.tutor
+	"	27	29
+	.	28	0
+	+	27	28
+	+	27	29
+	+	28	0
+
+> /usr/share/nvim/runtime/doc/autocmd.txt
+	"	886	28
+
+> /usr/share/nvim/runtime/doc/nvim_python.txt
+	"	85	0
+
+> /usr/share/nvim/runtime/doc/nvim.txt
+	"	19	34
+	m	4	28
+
+> /usr/share/nvim/runtime/doc/nvim_from_vim.txt
+	"	45	48
+
+> /usr/share/nvim/runtime/doc/msgpack_rpc.txt
+	"	254	65
+
 > ~/.nvimrc
-	"	3	3
+	"	30	0
 	^	33	4
 	.	33	3
 	+	1	12
@@ -175,7 +216,13 @@ $
 	+	33	3
 
 > /usr/share/nvim/runtime/doc/vim_diff.txt
-	"	7	42
+	"	202	0
+
+> ~/NERD_tree_1
+	"	4	0
+	.	1	0
+	+	1	0
+	+	1	0
 
 > ~/rails_workspace/agile_webdev_rails_4/code/rails40/depot_v/app/controllers/orders_controller.rb
 	"	24	0
