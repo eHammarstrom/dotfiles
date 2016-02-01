@@ -32,6 +32,8 @@ font pango:monospace 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+bindsym $mod+space exec $HOME/scripts/.swap_us_se.sh
+
 # This is where we execute shizz
 bindsym $mod+d exec rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 bindsym $mod+Return exec termite
@@ -86,10 +88,10 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+space floating toggle
 
 # change focus between tiling / floating windows
-bindsym $mod+space focus mode_toggle
+# bindsym $mod+space focus mode_toggle
 
 # focus the parent container
 bindsym $mod+a focus parent
@@ -168,7 +170,7 @@ bar {
 	    urgent_workspace #89816D #900000 #FFFFFF
 	    inactive_workspace #282828 #282828 #89816D
 	}
-        status_command i3status
         tray_output primary
 	position top
+	status_command $HOME/scripts/.i3bar.sh
 }
