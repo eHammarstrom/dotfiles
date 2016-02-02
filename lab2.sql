@@ -1,8 +1,8 @@
+DROP TABLE IF EXISTS performances;
+DROP TABLE IF EXISTS reservations;
 DROP TABLE IF EXISTS users;
 DROP TABLE IF EXISTS movies;
 DROP TABLE IF EXISTS theaters;
-DROP TABLE IF EXISTS performances;
-DROP TABLE IF EXISTS reservations;
 
 CREATE TABLE users (
   username VARCHAR(25) NOT NULL UNIQUE,
