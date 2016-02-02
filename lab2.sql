@@ -1,8 +1,4 @@
-DROP TABLE IF EXISTS reservations;
-DROP TABLE IF EXISTS performances;
-DROP TABLE IF EXISTS users;
-DROP TABLE IF EXISTS movies;
-DROP TABLE IF EXISTS theaters;
+DROP TABLE IF EXISTS reservations, performances, users, movies, theaters;
 
 CREATE TABLE users (
   username VARCHAR(25) NOT NULL UNIQUE,
@@ -41,9 +37,3 @@ CREATE TABLE reservations (
   FOREIGN KEY(moviename, date) REFERENCES performances(moviename, date) ON DELETE CASCADE,
   FOREIGN KEY(username) REFERENCES users(username) ON DELETE CASCADE
 );
-
-DESCRIBE users;
-DESCRIBE movies;
-DESCRIBE theaters;
-DESCRIBE performances;
-DESCRIBE reservations;
