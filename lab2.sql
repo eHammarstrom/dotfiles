@@ -27,9 +27,8 @@ CREATE TABLE performances (
   moviename VARCHAR(25),
   pdate DATE,
   theatername VARCHAR(25),
-  PRIMARY KEY(moviename),
+  PRIMARY KEY(moviename, theatername),
   FOREIGN KEY(moviename) REFERENCES movies(name) ON DELETE CASCADE,
-  PRIMARY KEY(pdate),
   FOREIGN KEY(theatername) REFERENCES theaters(name) ON DELETE CASCADE
 );
 
