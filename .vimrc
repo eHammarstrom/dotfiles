@@ -29,8 +29,8 @@ set encoding=utf-8
 set laststatus=2
 
 set autoindent
-set shiftwidth=2
-set softtabstop=2
+set shiftwidth=8
+set softtabstop=8
 
 set number
 
@@ -78,3 +78,5 @@ set background=dark
 colorscheme base16-atelierseaside
 " Command below enables transparent backgrounds, which I didn't like.
 " hi Normal ctermbg=none
+set colorcolumn=80
+highlight ColorColumn ctermbg=DarkCyan

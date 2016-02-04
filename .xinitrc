@@ -48,4 +48,8 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
  unset f
 fi
 
+BG=$HOME/Pictures/bg.png
+
+feh --bg-fill $BG
+
 exec i3
