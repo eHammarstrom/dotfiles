@@ -13,11 +13,14 @@ Plug 'chriskempson/base16-vim'
 " Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
+Plug 'jiangmiao/auto-pairs'
 
 " Language specifics
 Plug 'vim-ruby/vim-ruby'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-rails'
+" Plug 'hynek/vim-python-pep8-indent'
+Plug 'klen/python-mode'
 
 call plug#end()
 
@@ -28,9 +31,10 @@ set encoding=utf-8
 " This enables powerline
 set laststatus=2
 
-set autoindent
-set shiftwidth=8
+set tabstop=8
 set softtabstop=8
+set shiftwidth=8
+set noexpandtab
 
 set number
 
