@@ -8,29 +8,16 @@ call plug#begin('~/.vim/plugged')
 Plug 'chriskempson/base16-vim'
 
 " Utilities
-" Plug 'powerline/powerline'
-" Plug 'bling/vim-airline'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'ervandew/supertab'
-" Plug 'jiangmiao/auto-pairs'
+Plug 'jiangmiao/auto-pairs'
 
 " Language specifics
 Plug 'vim-ruby/vim-ruby'
-" Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-rails'
-" Plug 'hynek/vim-python-pep8-indent'
 Plug 'klen/python-mode'
-
-" C/C++ Suite
-Plug 'LucHermitte/lh-vim-lib'
-Plug 'LucHermitte/lh-tags'
-Plug 'LucHermitte/lh-dev'
-Plug 'LucHermitte/lh-brackets'
-Plug 'LucHermitte/searchInRuntime'
-Plug 'LucHermitte/mu-template'
-Plug 'tomtom/stakeholders_vim'
-Plug 'LucHermitte/lh-cpp'
 
 call plug#end()
 
@@ -86,11 +73,11 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-syntax enable
+syntax on
 let base16colorspace=256
 set background=dark
-colorscheme base16-atelierseaside
-" Command below enables transparent backgrounds, which I didn't like.
+colorscheme base16-pop
+" Enables transparent background
 " hi Normal ctermbg=none
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
