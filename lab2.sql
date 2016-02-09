@@ -23,6 +23,7 @@ CREATE TABLE performances (
   moviename VARCHAR(25),
   date DATE,
   theatername VARCHAR(25),
+  seatsleft INTEGER,
   PRIMARY KEY(moviename, date),
   FOREIGN KEY(moviename) REFERENCES movies(name) ON DELETE CASCADE,
   FOREIGN KEY(theatername) REFERENCES theaters(name) ON DELETE CASCADE
@@ -45,11 +46,15 @@ INSERT INTO theaters VALUES("SF 1", 72);
 INSERT INTO theaters VALUES("SF 2", 201);
 INSERT INTO movies VALUES("The Revenant");
 INSERT INTO movies VALUES("Star Wars");
-INSERT INTO performances VALUES("The Revenant", "1984-01-01", "SF 2");
-# INSERT INTO performances VALUES("The Revenant", "1984-01-01", "SF 2");
+INSERT INTO performances VALUES("The Revenant", "1984-01-01", "SF 2", NULL);
+INSERT INTO performances VALUES("Star Wars", "1942-02-28", "SF 1", NULL);
+# INSERT INTO performances VALUES("The Revenant", "1984-01-01", "SF 2", NULL);
 INSERT INTO reservations VALUES(NULL, "1984-01-01", "The Revenant", "per123");
 # INSERT INTO reservations VALUES(NULL, "1984-01-01", "The Revenant", "per12");
+
+UPDATE performances, theaters SET seatsleft=seats WHERE theatername=name;
 
 SELECT * FROM reservations;
 SELECT * FROM movies;
 SELECT * FROM theaters;
+SELECT * FROM performances;
