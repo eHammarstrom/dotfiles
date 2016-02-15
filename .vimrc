@@ -76,7 +76,7 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 syntax on
 let base16colorspace=256
 set background=dark
-colorscheme base16-pop
+colorscheme base16-solarized
 " Enables transparent background
 " hi Normal ctermbg=none
 set colorcolumn=80
