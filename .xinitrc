@@ -51,5 +51,6 @@ fi
 BG=$HOME/Pictures/bg.png
 
 feh --bg-fill $BG
+xset s off -dpms
 
 exec i3

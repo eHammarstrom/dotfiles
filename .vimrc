@@ -18,6 +18,9 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-rails'
 Plug 'klen/python-mode'
+" Plug 'StanAngeloff/php.vim'
+Plug 'maksimr/vim-jsbeautify'
+Plug '2072/vim-syntax-for-PHP'
 
 call plug#end()
 
@@ -60,6 +63,17 @@ map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
+
+"" SCRUB Formatting
+autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
+" for json
+autocmd FileType json noremap <buffer> <C-f> :call JsonBeautify()<CR>
+" for jsx
+autocmd FileType jsx noremap <buffer> <C-f> :call JsxBeautify()<CR>
+" for html
+autocmd FileType html noremap <buffer> <C-f> :call HtmlBeautify()<CR>
+" for css or scss
+autocmd FileType css noremap <buffer> <C-f> :call CSSBeautify()<CR>
 
 "" Here comes NERDTree specifics
 " Close nerdtree if it's the only window left open in vim
