@@ -160,6 +160,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 bar {
 	font pango:Hack, Bold 12
+
 	colors {
 	    background #282828
 	    statusline #DDDDDD
@@ -170,7 +171,11 @@ bar {
 	    urgent_workspace #89816D #900000 #FFFFFF
 	    inactive_workspace #282828 #282828 #89816D
 	}
+
         tray_output primary
 	position top
-	status_command $HOME/scripts/.i3bar.sh
+
+	# status_command $HOME/scripts/.i3bar.sh
+	# separator_symbol "#"
+	status_command i3blocks
 }
