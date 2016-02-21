@@ -88,8 +88,8 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 syntax on
-let base16colorspace=256
 set background=dark
+let base16colorspace=256
 colorscheme base16-solarized
 " Enables transparent background
 " hi Normal ctermbg=none
