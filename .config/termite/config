@@ -1,5 +1,6 @@
 [options]
 font = hack 12
+scrollback_lines = 100000
 
 [colors]
 # Base16 Solarized

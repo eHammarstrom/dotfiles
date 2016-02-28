@@ -6,6 +6,7 @@ call plug#begin('~/.vim/plugged')
 
 " Theme
 Plug 'chriskempson/base16-vim'
+Plug 'junegunn/goyo.vim'
 
 " Utilities
 Plug 'scrooloose/syntastic'
@@ -63,6 +64,8 @@ map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
+
+map <silent> <C-g> :Goyo <CR>
 
 "" SCRUB Formatting
 autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
