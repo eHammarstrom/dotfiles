@@ -11,7 +11,6 @@ Plug 'junegunn/goyo.vim'
 " Utilities
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
-Plug 'ervandew/supertab'
 Plug 'jiangmiao/auto-pairs'
 
 " Language specifics
@@ -19,9 +18,10 @@ Plug 'vim-ruby/vim-ruby'
 Plug 'octol/vim-cpp-enhanced-highlight'
 Plug 'tpope/vim-rails'
 Plug 'klen/python-mode'
-" Plug 'StanAngeloff/php.vim'
+Plug 'StanAngeloff/php.vim'
 Plug 'maksimr/vim-jsbeautify'
-Plug '2072/vim-syntax-for-PHP'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
 call plug#end()
 
@@ -39,6 +39,10 @@ set noexpandtab
 
 set number
 
+" Enable folding
+set foldmethod=indent
+set foldlevel=99
+
 " line wrapping
 " set tw=80
 " set fo=cqt
@@ -46,8 +50,8 @@ set number
 
 " line wrapping test
 " augroup vimrc_autocmds
-    " autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
-    " autocmd BufEnter * match OverLength /\%74v.*/
+" autocmd BufEnter * highlight OverLength ctermbg=darkgrey guibg=#592929
+" autocmd BufEnter * match OverLength /\%74v.*/
 " augroup END
 
 set ignorecase
@@ -65,18 +69,23 @@ map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
 
+map <silent> <C-left> :vertical res +5<CR>
+map <silent> <C-right> :vertical res -5<CR>
+map <silent> <C-up> :res -5<CR>
+map <silent> <C-down> :res +5<CR>
+
 map <silent> <C-g> :Goyo <CR>
 
 "" SCRUB Formatting
-autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
+" autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
 " for json
-autocmd FileType json noremap <buffer> <C-f> :call JsonBeautify()<CR>
+" autocmd FileType json noremap <buffer> <C-f> :call JsonBeautify()<CR>
 " for jsx
-autocmd FileType jsx noremap <buffer> <C-f> :call JsxBeautify()<CR>
+" autocmd FileType jsx noremap <buffer> <C-f> :call JsxBeautify()<CR>
 " for html
-autocmd FileType html noremap <buffer> <C-f> :call HtmlBeautify()<CR>
+" autocmd FileType html noremap <buffer> <C-f> :call HtmlBeautify()<CR>
 " for css or scss
-autocmd FileType css noremap <buffer> <C-f> :call CSSBeautify()<CR>
+" autocmd FileType css noremap <buffer> <C-f> :call CSSBeautify()<CR>
 
 "" Here comes NERDTree specifics
 " Close nerdtree if it's the only window left open in vim
@@ -98,3 +107,17 @@ colorscheme base16-solarized
 " hi Normal ctermbg=none
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
+
+let g:airline_powerline_fonts = 1
+let g:airline_theme= 'light'
+
+" Put at the very end of your .vimrc file.
+function! PhpSyntaxOverride()
+	hi! def link phpDocTags  phpDefine
+	hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+	autocmd!
+	autocmd FileType php call PhpSyntaxOverride()
+augroup END
