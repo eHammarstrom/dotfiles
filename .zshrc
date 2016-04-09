@@ -12,8 +12,7 @@ export EDITOR=/usr/bin/vim
 export TERM=xterm-termite
 
 alias tmux="tmux -2"
-alias tmuxdev="tmux -2 attach-session -t development"
-alias tmuxgen="tmux -2 attach-session -t general"
+alias td="$HOME/scripts/tmux_dev.sh"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
