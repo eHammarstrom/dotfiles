@@ -1,3 +1,5 @@
+fortune | cowsay -pn
+
 # Path to your oh-my-zsh installation.
 ZSH=/usr/share/oh-my-zsh/
 
@@ -10,6 +12,12 @@ ZSH_THEME="bullet-train"
 # My stuff
 export EDITOR=/usr/bin/vim
 export TERM=xterm-termite
+export ANDROID_HOME=/opt/android-sdk
+export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
+export SWT_GTK3=0
+export GDK_BACKEND=wayland
+export GTK_THEME=Arc
+
 
 alias tmux="tmux -2"
 alias td="$HOME/scripts/tmux_dev.sh"

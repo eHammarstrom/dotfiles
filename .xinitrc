@@ -52,5 +52,6 @@ BG=$HOME/Pictures/bg.png
 
 feh --bg-fill $BG
 xset s off -dpms
+redshift &
 
 exec i3

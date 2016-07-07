@@ -8,7 +8,7 @@ exec Irish.sh
 
 focus_follows_mouse no
 for_window [class="^.*"] border pixel 5
-gaps inner 50
+gaps inner 0
 
 # i3 config file (v4)
 #
@@ -93,7 +93,7 @@ bindsym $mod+w layout tabbed
 bindsym $mod+e layout toggle split
 
 # toggle tiling / floating
-# bindsym $mod+Shift+space floating toggle
+# bindsym $mod+Shift+Space floating toggle
 
 # change focus between tiling / floating windows
 # bindsym $mod+space focus mode_toggle

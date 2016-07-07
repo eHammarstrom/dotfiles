@@ -22,19 +22,23 @@ Plug 'StanAngeloff/php.vim'
 Plug 'maksimr/vim-jsbeautify'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+Plug 'derekwyatt/vim-scala'
 
 call plug#end()
 
 filetype plugin indent on
+
+" The boss of all productivity
+let mapleader = "\<Space>"
 
 set encoding=utf-8
 
 " This enables powerline
 set laststatus=2
 
-set tabstop=8
-set softtabstop=8
-set shiftwidth=8
+set tabstop=2
+set softtabstop=2
+set shiftwidth=2
 set noexpandtab
 
 set number
@@ -75,6 +79,21 @@ map <silent> <C-up> :res -5<CR>
 map <silent> <C-down> :res +5<CR>
 
 map <silent> <C-g> :Goyo <CR>
+
+" Go to tab by number
+noremap <leader>1 1gt
+noremap <leader>2 2gt
+noremap <leader>3 3gt
+noremap <leader>4 4gt
+noremap <leader>5 5gt
+noremap <leader>6 6gt
+noremap <leader>7 7gt
+noremap <leader>8 8gt
+noremap <leader>9 9gt
+noremap <leader>0 :tablast<cr>
+
+" Go to previous tab
+nnoremap <leader>l :tabprevious<CR>
 
 "" SCRUB Formatting
 " autocmd FileType javascript noremap <buffer> <C-f> :call JsBeautify()<CR>
