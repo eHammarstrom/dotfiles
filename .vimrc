@@ -90,6 +90,6 @@ let g:airline_theme= 'light'
 syntax on
 set background=dark
 let base16colorspace=256
-colorscheme base16-solarized-dark
+colorscheme base16-tomorrow-night
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
