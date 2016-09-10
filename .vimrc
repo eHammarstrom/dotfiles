@@ -5,15 +5,19 @@ filetype off
 call plug#begin('~/.vim/plugged')
 
 " Theme
-Plug 'chriskempson/base16-vim'
+"Plug 'chriskempson/base16-vim'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-
 
 " Utilities
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+
+" Fatih tips n tricks
+Plug 'fatih/vim-go'
+Plug 'fatih/molokai'
+Plug 'SirVer/ultisnips'
 
 call plug#end()
 
@@ -46,7 +50,24 @@ set scrolloff=15
 
 set vb
 
+"" Language specifics
+autocmd BufNewFile,BufRead *.go setlocal softtabstop=4 shiftwidth=4 tabstop=4 shiftwidth=4
+autocmd BufNewFile,BufRead *.java setlocal softtabstop=4 shiftwidth=4 tabstop=4 shiftwidth=4
+
+autocmd FileType go nmap <leader>b  <Plug>(go-build)
+autocmd FileType go nmap <leader>r  <Plug>(go-run)
+autocmd FileType go nmap <leader>d  <Plug>(go-doc)
+
+let g:go_auto_sameids = 1
+
+setlocal omnifunc=go#complete#Complete
+
 "" VIMRC Specifics
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L g_
+
 " Window movement keybinds
 map <silent> <C-l> :wincmd l<CR>
 map <silent> <C-h> :wincmd h<CR>
@@ -85,11 +106,17 @@ let g:NERDTreeDirArrows = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 let g:airline_powerline_fonts = 1
-let g:airline_theme= 'light'
+let g:airline_theme = 'light'
 
 syntax on
-set background=dark
-let base16colorspace=256
-colorscheme base16-tomorrow-night
+set t_Co=256
+"set background=dark
+"let base16colorspace=256
+"colorscheme base16-tomorrow-night
+" FATIH Theme
+let g:rehash256 = 1
+let g:molokai_original = 1
+colorscheme molokai
+
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
