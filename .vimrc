@@ -18,6 +18,7 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'fatih/vim-go'
 Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
+Plug 'Valloric/YouCompleteMe'
 
 call plug#end()
 
