@@ -11,3 +11,12 @@ optional: [install mono-complete](http://www.mono-project.com/docs/getting-start
 &nbsp;&nbsp;`git submodule --init --recursive`
 
 &nbsp;&nbsp;`./install.py --all`
+
+#### random notes
+( -x extract, -v verbose, -f file )
+`tar -zxvf` //gzip
+`tar -xvJf` //xzip
+`tar -xvjf` //bzip2
+
+( -H Human )
+`df -H` //check disk space
