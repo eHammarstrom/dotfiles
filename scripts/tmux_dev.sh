@@ -1,6 +1,4 @@
 #!/bin/sh
-cd ~/git
-
 dev=development
 
 tmux has-session -t $dev 2>/dev/null
