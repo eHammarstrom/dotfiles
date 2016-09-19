@@ -20,6 +20,12 @@ Plug 'fatih/molokai'
 Plug 'SirVer/ultisnips'
 Plug 'Valloric/YouCompleteMe'
 
+" Solid language pack
+Plug 'sheerun/vim-polyglot'
+
+" HTML
+Plug 'mattn/emmet-vim'
+
 call plug#end()
 
 filetype plugin indent on
@@ -52,8 +58,8 @@ set scrolloff=15
 set vb
 
 "" Language specifics
-autocmd BufNewFile,BufRead *.go setlocal softtabstop=4 shiftwidth=4 tabstop=4 shiftwidth=4
-autocmd BufNewFile,BufRead *.java setlocal softtabstop=4 shiftwidth=4 tabstop=4 shiftwidth=4
+let g:polyglot_disabled = ['go']
+autocmd BufNewFile,BufRead *.go setlocal softtabstop=8 shiftwidth=8 tabstop=8 shiftwidth=8
 
 autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
