@@ -1,4 +1,4 @@
-" VimRc ubu
+" VimRC iniShip
 
 filetype off
 

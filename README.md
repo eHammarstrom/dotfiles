@@ -20,3 +20,7 @@ optional: [install mono-complete](http://www.mono-project.com/docs/getting-start
 
 ( -H Human )
 `df -H` //check disk space
+
+`grep -rnw '/path/to/somewhere/' -e "pattern"`
+
+`find dir -iname "pattern"`
