@@ -4,3 +4,4 @@ set -x EDITOR $VISUAL
 
 alias mysqlwebshop 'mysql -p -h localhost -D webshop'
 alias td "$HOME/scripts/tmux_dev.sh"
+alias vim "nvim"
