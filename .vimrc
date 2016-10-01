@@ -127,3 +127,4 @@ colorscheme molokai
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
+highlight Pmenu ctermbg=Black ctermfg=White
