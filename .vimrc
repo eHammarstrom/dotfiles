@@ -65,7 +65,8 @@ autocmd FileType go nmap <leader>b  <Plug>(go-build)
 autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>d  <Plug>(go-doc)
 
-let g:go_auto_sameids = 1
+"let g:go_auto_sameids = 1 " The latency on this is insane..
+let g:go_fmt_command = "goimports"
 
 setlocal omnifunc=go#complete#Complete
 
