@@ -13,6 +13,7 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'scrooloose/syntastic'
 Plug 'scrooloose/nerdtree'
 Plug 'jiangmiao/auto-pairs'
+Plug 'valloric/MatchTagAlways'
 
 " Fatih tips n tricks
 Plug 'fatih/vim-go'
@@ -43,7 +44,7 @@ set softtabstop=2
 set shiftwidth=2
 set noexpandtab
 
-set number
+set relativenumber
 
 " Enable folding
 set foldmethod=indent
@@ -66,7 +67,6 @@ autocmd FileType go nmap <leader>r  <Plug>(go-run)
 autocmd FileType go nmap <leader>d  <Plug>(go-doc)
 
 "let g:go_auto_sameids = 1 " The latency on this is insane..
-let g:go_fmt_command = "goimports"
 
 setlocal omnifunc=go#complete#Complete
 
