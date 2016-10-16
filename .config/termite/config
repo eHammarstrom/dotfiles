@@ -1,5 +1,6 @@
 [options]
-font = Hack 14
+font = Operator Mono Medium 14
+allow_bold = false
 scrollback_lines = 100000
 
 [colors]
