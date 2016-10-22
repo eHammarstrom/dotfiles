@@ -59,6 +59,7 @@ values."
      markdown
      spotify
      react
+     git
      )
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
@@ -295,6 +296,7 @@ values."
    ))
 
 (defun dotspacemacs/user-init ()
+  (add-to-list 'default-frame-alist '(fullscreen . maximized))
   (setq-default
    js2-basic-offset 2
    js-indent-level 2
@@ -313,17 +315,17 @@ values."
                                :powerline-scale 1.1)
    ;; dotspacemacs-default-font '("Operator Mono" :size 16 :weight light :width normal :slant normal :powerline-scale 1.1)
    dotspacemacs-line-numbers 'relative
+
    ))
 
 (defun dotspacemacs/user-config ()
-  (go :variables go-use-gometalinter t)
-  (define-key evil-insert-state-map (kbd "Shift-L") 'beginning-of-line)
-  (define-key evil-insert-state-map (kbd "Shift-H") 'end-of-line)
+  (unbind-key "Shift-S")
+  (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
+  (define-key evil-motion-state-map (kbd "H") 'evil-digit-argument-or-evil-beginning-of-line)
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
-    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil)))
-  )
+    (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))))
 
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
