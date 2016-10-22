@@ -315,11 +315,9 @@ values."
                                :powerline-scale 1.1)
    ;; dotspacemacs-default-font '("Operator Mono" :size 16 :weight light :width normal :slant normal :powerline-scale 1.1)
    dotspacemacs-line-numbers 'relative
-
    ))
 
 (defun dotspacemacs/user-config ()
-  (unbind-key "Shift-S")
   (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
   (define-key evil-motion-state-map (kbd "H") 'evil-digit-argument-or-evil-beginning-of-line)
   (with-eval-after-load 'web-mode
