@@ -318,8 +318,8 @@ values."
    ))
 
 (defun dotspacemacs/user-config ()
-  (define-key evil-motion-state-map (kbd "L") 'evil-first-non-blank)
-  (define-key evil-motion-state-map (kbd "H") 'evil-digit-argument-or-evil-beginning-of-line)
+  (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
+  (define-key evil-motion-state-map (kbd "H") 'evil-first-non-blank)
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
