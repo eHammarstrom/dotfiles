@@ -31,7 +31,7 @@ values."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
-     php
+     ;;php
      javascript
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
@@ -320,10 +320,13 @@ values."
 (defun dotspacemacs/user-config ()
   (define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
   (define-key evil-motion-state-map (kbd "H") 'evil-first-non-blank)
+  (evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
+  (evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
+
   (with-eval-after-load 'web-mode
     (add-to-list 'web-mode-indentation-params '("lineup-args" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-concats" . nil))
     (add-to-list 'web-mode-indentation-params '("lineup-calls" . nil))))
-
+;;(defalias 'display-buffer-in-major-side-window 'window--make-major-side-window) ;; This is here because emacs 26 broke which-key (workaround)
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
