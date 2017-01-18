@@ -27,6 +27,9 @@ Plug 'sheerun/vim-polyglot'
 " HTML
 Plug 'mattn/emmet-vim'
 
+" Haskell
+Plug 'neovimhaskell/haskell-vim'
+
 call plug#end()
 
 filetype plugin indent on
