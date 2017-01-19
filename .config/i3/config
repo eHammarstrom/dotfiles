@@ -2,7 +2,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-exec feh --bg-scale $HOME/Pictures/bg.jpg
+exec xrandr --output DVI-0 --mode 1920x1080 --rate 144.00
+exec feh --bg-center $HOME/Pictures/bg.jpg
 exec setxkbmap us -option caps:swapescape
 
 focus_follows_mouse no

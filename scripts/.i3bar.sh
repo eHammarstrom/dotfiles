@@ -8,6 +8,7 @@ do
   disk=$(df -hl | grep -w "/" | awk '{print $4}')
   time=$(date)
   packages=$(pacman -Qu | wc -l)
+	volume=$(amixer get Master | grep -o -m 1 -E '([0-9]*\%)')
 
-  echo "  Layout: ${layout^^}  |  Pkgs: $packages  |  Down: $dataDown  |  Up: $dataUp  | ${disk}B  | $time  " || exit 1
+  echo "  Layout: ${layout^^} | Volume: $volume  |  Pkgs: $packages  |  Down: $dataDown  |  Up: $dataUp  | ${disk}B  | $time  " || exit 1
 done
