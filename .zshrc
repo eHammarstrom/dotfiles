@@ -18,7 +18,7 @@ ZSH_THEME="bullet-train"
 # export GDK_BACKEND=wayland
 # export GTK_THEME=Arc
 
-
+alias vim="nvim"
 alias tmux="tmux -2"
 alias tmux-dev="tmux -S dev"
 # alias td="$HOME/scripts/tmux_dev.sh"
@@ -104,3 +104,5 @@ if [[ ! -d $ZSH_CACHE_DIR ]]; then
 fi
 
 source $ZSH/oh-my-zsh.sh
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
