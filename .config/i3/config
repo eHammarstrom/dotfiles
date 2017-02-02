@@ -70,7 +70,7 @@ bindsym $mod+a focus parent
 bindsym $mod+1 workspace intranet
 bindsym $mod+2 workspace work
 bindsym $mod+3 workspace music
-bindsym $mod+4 workspace qbittorrent
+bindsym $mod+4 workspace comms
 bindsym $mod+5 workspace services
 bindsym $mod+6 workspace 6
 bindsym $mod+7 workspace 7
@@ -82,7 +82,7 @@ bindsym $mod+0 workspace 10
 bindsym $mod+Shift+1 move container to workspace intranet
 bindsym $mod+Shift+2 move container to workspace work
 bindsym $mod+Shift+3 move container to workspace music
-bindsym $mod+Shift+4 move container to workspace qbittorrent
+bindsym $mod+Shift+4 move container to workspace comms
 bindsym $mod+Shift+5 move container to workspace services
 bindsym $mod+Shift+6 move container to workspace 6
 bindsym $mod+Shift+7 move container to workspace 7
