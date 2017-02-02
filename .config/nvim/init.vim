@@ -25,6 +25,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
     call dein#add('plasticboy/vim-markdown')
     call dein#add('jiangmiao/auto-pairs')
+    call dein#add('justinmk/vim-syntax-extra')
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
