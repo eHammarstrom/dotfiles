@@ -85,6 +85,8 @@ set mouse=a
 set history=10000
 
 " C settings
+set tags=~/.tags/stdtags
+
 autocmd FileType c call CInitialize()
 
 function CInitialize()
