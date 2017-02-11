@@ -106,10 +106,6 @@ map <C-n> :FZF ~<CR>
 " Supertab reverse completion
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" YCM arch fixes
-let g:ycm_path_to_python_interpreter = '/usr/bin/python2'
-let g:ycm_global_ycm_extra_conf = '/usr/share/vim/vimfiles/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
-
 " racer config
 let g:deoplete#sources#rust#racer_binary = '/home/initiumdoeslinux/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '/home/initiumdoeslinux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
