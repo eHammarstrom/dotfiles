@@ -60,6 +60,15 @@ map <silent> <C-h> :wincmd h<CR>
 map <silent> <C-j> :wincmd j<CR>
 map <silent> <C-k> :wincmd k<CR>
 
+map <silent> <C-left> :vertical res +2<CR>
+map <silent> <C-right> :vertical res -2<CR>
+map <silent> <C-up> :res -2<CR>
+map <silent> <C-down> :res +2<CR>
+
+map <F4> :split term://zsh<CR>
+map <F5> :vsplit term://zsh<CR>
+tnoremap <Esc> <C-\><C-n>
+
 set relativenumber
 set nowrap
 set smartcase
@@ -72,6 +81,9 @@ set expandtab
 set incsearch
 set mouse=a
 set history=10000
+set scrolloff=7
+
+highlight Pmenu ctermbg=20 ctermfg=173 gui=bold
 
 autocmd FileType c call CInitialize()
 
@@ -109,6 +121,7 @@ let g:SuperTabDefaultCompletionType = '<C-n>'
 " racer config
 let g:deoplete#sources#rust#racer_binary = '/home/initiumdoeslinux/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '/home/initiumdoeslinux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
+let g:deoplete#sources#rust#documentation_max_height=20
 
 " syntastic
 set statusline+=%#warningmsg#
@@ -119,5 +132,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-let g:syntastic_rust_checkers = ['rustc']
-
+" let g:syntastic_rust_checkers = ['rustc'] " whines about unstable libraries
+" even though they're stable
