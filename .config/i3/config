@@ -2,8 +2,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-exec xrandr --output DVI-0 --mode 1920x1080 --rate 144.00
-exec feh --bg-center $HOME/Pictures/bg.jpg
+exec xrandr --output DVI-0 --mode 1920x1080 --rate 144.00 --primary
+exec feh --bg-fill $HOME/Pictures/bg.jpg
 exec setxkbmap us -option caps:swapescape
 
 focus_follows_mouse no
@@ -67,8 +67,8 @@ bindsym $mod+a focus parent
 #bindsym $mod+d focus child
 
 # switch to workspace
-bindsym $mod+1 workspace intranet
-bindsym $mod+2 workspace work
+bindsym $mod+1 workspace work
+bindsym $mod+2 workspace intranät
 bindsym $mod+3 workspace music
 bindsym $mod+4 workspace comms
 bindsym $mod+5 workspace services
@@ -79,8 +79,8 @@ bindsym $mod+9 workspace 9
 bindsym $mod+0 workspace 10
 
 # move focused container to workspace
-bindsym $mod+Shift+1 move container to workspace intranet
-bindsym $mod+Shift+2 move container to workspace work
+bindsym $mod+Shift+1 move container to workspace work
+bindsym $mod+Shift+2 move container to workspace intranät
 bindsym $mod+Shift+3 move container to workspace music
 bindsym $mod+Shift+4 move container to workspace comms
 bindsym $mod+Shift+5 move container to workspace services

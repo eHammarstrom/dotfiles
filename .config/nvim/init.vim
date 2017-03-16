@@ -29,6 +29,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('vim-syntastic/syntastic')
     call dein#add('rust-lang/rust.vim')
     call dein#add('mattn/webapi-vim')
+    call dein#add('chriskempson/base16-vim')
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -103,6 +104,10 @@ endfunction
 
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
+
+" THEME
+let base16colorspace=256
+colorscheme base16-bright
 
 " NERD TREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
