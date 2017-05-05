@@ -21,7 +21,7 @@ ZSH_THEME="bullet-train"
 alias vim="nvim"
 alias tmux="tmux -2"
 alias tmux-dev="tmux -S dev"
-# alias td="$HOME/scripts/tmux_dev.sh"
+alias scrns="scrot -s | mv *_scrot.png ~/Pictures/scrns"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

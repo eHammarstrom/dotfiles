@@ -127,7 +127,7 @@ set t_Co=256
 " FATIH Theme
 let g:rehash256 = 1
 let g:molokai_original = 1
-colorscheme molokai
+" colorscheme base16-bright
 
 set colorcolumn=80
 highlight ColorColumn ctermbg=DarkCyan
