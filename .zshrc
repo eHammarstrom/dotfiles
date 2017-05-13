@@ -19,11 +19,15 @@ ZSH_THEME="random-emoji"
 # export GTK_THEME=Arc
 export PKG_CONFIG_PATH="/usr/lib64/pkconfig"
 export PATH=$PATH:$HOME/.cargo/bin
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export EDITOR=/bin/nvim
 
 alias vim="nvim"
 alias tmux="tmux -2"
 alias tmux-dev="tmux -S dev"
-# alias td="$HOME/scripts/tmux_dev.sh"
+alias scrns="scrot -s | mv *_scrot.png ~/Pictures/scrns"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

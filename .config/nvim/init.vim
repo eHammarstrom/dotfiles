@@ -30,6 +30,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('rust-lang/rust.vim')
     call dein#add('mattn/webapi-vim')
     call dein#add('chriskempson/base16-vim')
+    call dein#add('davidhalter/jedi-vim')
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -139,3 +140,5 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 " let g:syntastic_rust_checkers = ['rustc'] " whines about unstable libraries
 " even though they're stable
+
+let g:syntastic_c_compiler_options = '-D_FILE_OFFSET_BITS=64'

@@ -2,7 +2,8 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
-exec xrandr --output DVI-0 --mode 1920x1080 --rate 144.00 --primary
+exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --output DisplayPort-1 --dpi 140 --primary
+# exec xrandr --output DVI-0 --mode 1920x1080 --rate 144.00 --primary
 exec feh --bg-fill $HOME/Pictures/bg.jpg
 exec setxkbmap us -option caps:swapescape
 
@@ -26,7 +27,7 @@ bindsym Mod4+L exec amixer set Master 5%+
 # This is where we execute shizz
 bindsym $mod+d exec rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
 bindsym $mod+Return exec termite
-bindsym $mod+g exec google-chrome-stable
+bindsym $mod+g exec firefox-beta
 bindsym $mod+Ctrl+l exec i3lock -dtfi $HOME/Pictures/bg.jpg
 bindsym $mod+Ctrl+p exec scrot -u
 bindsym $mod+Shift+p exec scrot -s
