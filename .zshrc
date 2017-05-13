@@ -1,13 +1,13 @@
 # fortune | cowsay -pn
 
 # Path to your oh-my-zsh installation.
-ZSH=/usr/share/oh-my-zsh/
+ZSH=/home/initiumdoeslinux/.oh-my-zsh
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bullet-train"
+ZSH_THEME="random-emoji"
 
 # My stuff
 # export EDITOR=/usr/bin/vim
@@ -17,6 +17,8 @@ ZSH_THEME="bullet-train"
 # export SWT_GTK3=0
 # export GDK_BACKEND=wayland
 # export GTK_THEME=Arc
+export PKG_CONFIG_PATH="/usr/lib64/pkconfig"
+export PATH=$PATH:$HOME/.cargo/bin
 
 alias vim="nvim"
 alias tmux="tmux -2"
