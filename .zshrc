@@ -7,7 +7,7 @@ ZSH=/usr/share/oh-my-zsh/
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="bullet-train"
+ZSH_THEME="wild-cherry"
 
 # My stuff
 # export EDITOR=/usr/bin/vim
@@ -17,6 +17,12 @@ ZSH_THEME="bullet-train"
 # export SWT_GTK3=0
 # export GDK_BACKEND=wayland
 # export GTK_THEME=Arc
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export EDITOR=/bin/nvim
+
+
 
 alias vim="nvim"
 alias tmux="tmux -2"
