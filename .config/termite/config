@@ -1,5 +1,5 @@
 [options]
-font = Hack 14
+font = Hack 16
 allow_bold = false
 scrollback_lines = 100000
 
