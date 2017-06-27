@@ -1,28 +1,5 @@
-# fortune | cowsay -pn
-
-# Path to your oh-my-zsh installation.
-ZSH=/home/initiumdoeslinux/.oh-my-zsh
-
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-ZSH_THEME="random-emoji"
-
-# My stuff
-# export EDITOR=/usr/bin/vim
-# export TERM=xterm-termite
-# export ANDROID_HOME=/opt/android-sdk
-# export PATH=$PATH:$ANDROID_HOME/tools:$ANDROID_HOME/platform-tools
-# export SWT_GTK3=0
-# export GDK_BACKEND=wayland
-# export GTK_THEME=Arc
-export PKG_CONFIG_PATH="/usr/lib64/pkconfig"
-export PATH=$PATH:$HOME/.cargo/bin
-export ANDROID_HOME=$HOME/Android/Sdk
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export EDITOR=/bin/nvim
+ZSH=$(whereis oh-my-zsh | ~/scripts/split_at_char_return_arg_n/split_at_char_return_arg_n.py ' ' 1)
+ZSH_THEME="pure"
 
 alias vim="nvim"
 alias tmux="tmux -2"

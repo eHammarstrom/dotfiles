@@ -1,0 +1,7 @@
+import sys
+
+c = sys.argv[1]
+n = sys.argv[2] |> int
+s = sys.stdin.readline()
+
+s.split(c)[n] |> print
