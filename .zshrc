@@ -1,8 +1,5 @@
 ZSH=$(whereis oh-my-zsh | ~/scripts/split_at_char_return_arg_n/split_at_char_return_arg_n.py ' ' 1)
-ZSH_THEME="pure"
-
-BASE16_SHELL=$HOME/.config/base16-shell/
-[ -n "$PS1" ] && [ -s $BASE16_SHELL/profile_helper.sh ] && eval "$($BASE16_SHELL/profile_helper.sh)"
+ZSH_THEME="refined"
 
 alias vim="nvim"
 alias tmux="tmux -2"
