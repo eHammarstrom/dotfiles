@@ -25,14 +25,28 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
-    call dein#add('sebastianmarkow/deoplete-rust')
     call dein#add('vim-syntastic/syntastic')
-    call dein#add('rust-lang/rust.vim')
     call dein#add('mattn/webapi-vim')
-    call dein#add('chriskempson/base16-vim')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
+
+    " call dein#add('morhetz/gruvbox')
+    " call dein#add('chriskempson/base16-vim')
+    call dein#add('dkasak/gruvbox') " better haskell / purescript support
+    
+    " Coconut
     call dein#add('manicmaniac/coconut.vim')
+    
+    " Haskell
+    call dein#add('neovimhaskell/haskell-vim')
+
+    " Rust
+    call dein#add('sebastianmarkow/deoplete-rust')
+    call dein#add('rust-lang/rust.vim')
+
+    " JavaScript
+    call dein#add('mxw/vim-jsx')
+    call dein#add('pangloss/vim-javascript')
 
     " You can specify revision/branch/tag.
     call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
@@ -43,8 +57,8 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
 endif
 
 " Required:
+syntax on
 filetype plugin indent on
-syntax enable
 
 " If you want to install not installed plugins on startup.
 if dein#check_install()
@@ -87,7 +101,7 @@ set mouse=a
 set history=10000
 set scrolloff=7
 
-highlight Pmenu ctermbg=20 ctermfg=173 gui=bold
+highlight Pmenu ctermbg=235 ctermfg=207 gui=bold
 
 autocmd FileType c call CInitialize()
 
@@ -105,12 +119,14 @@ function CQuickCompile()
     execute '!gcc ' . curBufFileName . ' -o ' . outName
 endfunction
 
+" THEME
+set termguicolors
+set t_Co=256
+set background=dark
+colorscheme gruvbox
+
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
-
-" THEME
-let base16colorspace=256
-colorscheme base16-woodland
 
 " NERD TREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
@@ -126,7 +142,7 @@ map <C-n> :FZF ~<CR>
 " Supertab reverse completion
 let g:SuperTabDefaultCompletionType = '<C-n>'
 
-" racer config
+" rust racer
 let g:deoplete#sources#rust#racer_binary = '/home/initiumdoeslinux/.cargo/bin/racer'
 let g:deoplete#sources#rust#rust_source_path = '/home/initiumdoeslinux/.rustup/toolchains/stable-x86_64-unknown-linux-gnu/lib/rustlib/src/rust/src'
 let g:deoplete#sources#rust#documentation_max_height=20
@@ -144,3 +160,12 @@ let g:syntastic_check_on_wq = 0
 " even though they're stable
 
 let g:syntastic_c_compiler_options = '-D_FILE_OFFSET_BITS=64'
+
+" haskell
+let g:haskell_classic_highlighting = 1
+let g:haskell_enable_arrowsyntax = 1
+let g:haskell_enable_typeroles = 1
+let g:haskell_enable_pattern_synonyms = 1
+
+" javascript
+let g:jsx_ext_required = 0
