@@ -25,7 +25,7 @@ bindsym Mod4+H exec amixer set Master 5%-
 bindsym Mod4+L exec amixer set Master 5%+
 
 # This is where we execute shizz
-bindsym $mod+d exec rofi -show run -font "snap 10" -fg "#505050" -bg "#000000" -hlfg "#ffb964" -hlbg "#000000" -o 85
+bindsym $mod+d exec rofi -show run
 bindsym $mod+Return exec termite
 bindsym $mod+g exec google-chrome-beta
 # bindsym $mod+Ctrl+l exec i3lock -dtfi $HOME/Pictures/bg.jpg
