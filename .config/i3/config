@@ -1,8 +1,33 @@
+set_from_resource $darkred     color1  #000000
+set_from_resource $red         color9  #000000
+set_from_resource $darkgreen   color2  #000000
+set_from_resource $green       color10 #000000
+set_from_resource $darkyellow  color3  #000000
+set_from_resource $yellow      color11 #000000
+set_from_resource $darkblue    color4  #000000
+set_from_resource $blue        color12 #000000
+set_from_resource $darkmagenta color5  #000000
+set_from_resource $magenta     color13 #000000
+set_from_resource $darkcyan    color6  #000000
+set_from_resource $cyan        color14 #000000
+set_from_resource $darkwhite   color7  #000000
+set_from_resource $white       color15 #000000
+
+set_from_resource $black       color0  #000000
+
+#                       BORDER      BACKGROUND  TEXT        INDICATOR   CHILD_BORDER
+client.focused          $green      $green      $black      $blue       $green
+client.unfocused        $black      $black      $white      $black      $black
+client.focused_inactive $black      $black      $white      $black      $black
+client.urgent           $darkred    $darkred    $black      $darkred    $darkred
+client.background       $black
+
 exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --output DisplayPort-1 --primary
 
 exec setxkbmap us -option caps:swapescape
 
-exec feh --bg-fill $HOME/Pictures/bg.jpg
+# exec feh --bg-center $HOME/Pictures/bg.jpg
+exec exec --no-startup-id nitrogen --restore
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
