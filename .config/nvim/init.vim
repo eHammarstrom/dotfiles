@@ -39,6 +39,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     
     " Haskell
     call dein#add('neovimhaskell/haskell-vim')
+    call dein#add('alx741/vim-hindent')
 
     " Rust
     call dein#add('sebastianmarkow/deoplete-rust')
@@ -156,6 +157,7 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+let g:syntastic_javascript_checkers = ['eslint']
 " let g:syntastic_rust_checkers = ['rustc'] " whines about unstable libraries
 " even though they're stable
 
@@ -167,5 +169,22 @@ let g:haskell_enable_arrowsyntax = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_pattern_synonyms = 1
 
+let g:haskell_indent_disable = 1 " disables vim-haskell indent in favor of hindent
+let g:hindent_on_save = 1
+let g:hindent_indent_size = 2
+let g:hindent_line_length = 80
+
+autocmd FileType haskell call JSInitialize()
+
 " javascript
 let g:jsx_ext_required = 0
+
+autocmd FileType javascript call JSInitialize()
+autocmd FileType jsx        call JSInitialize()
+
+function JSInitialize()
+    setlocal softtabstop=2
+    setlocal shiftwidth=2
+    setlocal colorcolumn=80
+endfunction
+

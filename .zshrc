@@ -1,6 +1,7 @@
 ZSH=$(whereis oh-my-zsh | ~/scripts/split_at_char_return_arg_n/split_at_char_return_arg_n.py ' ' 1)
 ZSH_THEME="refined"
 
+alias gs="git status"
 alias vim="nvim"
 alias tmux="tmux -2"
 alias tmux-dev="tmux -S dev"
