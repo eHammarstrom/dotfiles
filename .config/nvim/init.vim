@@ -30,6 +30,9 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
+    " EditorConfig
+    call dein#add('editorconfig/editorconfig-vim')
+
     " call dein#add('morhetz/gruvbox')
     " call dein#add('chriskempson/base16-vim')
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
@@ -39,7 +42,8 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     
     " Haskell
     call dein#add('neovimhaskell/haskell-vim')
-    call dein#add('alx741/vim-hindent')
+    call dein#add('itchyny/vim-haskell-indent')
+    " call dein#add('alx741/vim-hindent')
 
     " Rust
     call dein#add('sebastianmarkow/deoplete-rust')
@@ -100,7 +104,7 @@ set expandtab
 set incsearch
 set mouse=a
 set history=10000
-set scrolloff=7
+set scrolloff=10
 
 highlight Pmenu ctermbg=235 ctermfg=207 gui=bold
 
@@ -168,11 +172,7 @@ let g:haskell_classic_highlighting = 1
 let g:haskell_enable_arrowsyntax = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_pattern_synonyms = 1
-
-let g:haskell_indent_disable = 1 " disables vim-haskell indent in favor of hindent
-let g:hindent_on_save = 1
-let g:hindent_indent_size = 2
-let g:hindent_line_length = 80
+let g:haskell_indent_disable = 1 " in favor of vim-haskell-indent
 
 autocmd FileType haskell call JSInitialize()
 
