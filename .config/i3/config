@@ -26,7 +26,10 @@ exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.0
 
 exec setxkbmap us -option caps:swapescape
 
-exec feh --bg-fill $HOME/Pictures/bg.jpg
+# exec feh --bg-center $HOME/Pictures/bg.jpg
+exec --no-startup-id nitrogen --restore
+
+exec --no-startup-id redshift
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 

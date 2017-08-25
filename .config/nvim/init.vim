@@ -3,6 +3,9 @@ if &compatible
     set nocompatible               " Be iMproved
 endif
 
+" Set python path
+let g:python_host_prog='/usr/bin/python'
+
 " Required:
 set runtimepath+=/home/initiumdoeslinux/.nvim/bundles/./repos/github.com/Shougo/dein.vim
 
@@ -15,8 +18,8 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('/home/initiumdoeslinux/.nvim/bundles/./repos/github.com/Shougo/dein.vim')
 
     " Add or remove your plugins here:
+    call dein#add('neomake/neomake')
     call dein#add('Shougo/deoplete.nvim')
-    call dein#add('eagletmt/ghcmod-vim')
     call dein#add('eagletmt/neco-ghc')
     call dein#add('scrooloose/nerdtree')
     call dein#add('ervandew/supertab')
@@ -30,16 +33,29 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
+    " EditorConfig
+    call dein#add('editorconfig/editorconfig-vim')
+
     " call dein#add('morhetz/gruvbox')
     " call dein#add('chriskempson/base16-vim')
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
+
+    " Elm
+    call dein#add('ElmCast/elm-vim')
+
+    " Elixir
+    call dein#add('elixir-lang/vim-elixir')
+    call dein#add('slashmili/alchemist.vim')
     
     " Coconut
     call dein#add('manicmaniac/coconut.vim')
     
     " Haskell
     call dein#add('neovimhaskell/haskell-vim')
+    " call dein#add('itchyny/vim-haskell-indent')
     call dein#add('alx741/vim-hindent')
+    " call dein#add('eagletmt/ghcmod-vim')
+    call dein#add('parsonsmatt/intero-neovim')
 
     " Rust
     call dein#add('sebastianmarkow/deoplete-rust')
@@ -58,7 +74,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
 endif
 
 " Required:
-syntax on
+syntax enable
 filetype plugin indent on
 
 " If you want to install not installed plugins on startup.
@@ -100,7 +116,7 @@ set expandtab
 set incsearch
 set mouse=a
 set history=10000
-set scrolloff=7
+set scrolloff=10
 
 highlight Pmenu ctermbg=235 ctermfg=207 gui=bold
 
@@ -137,6 +153,7 @@ let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
 " FZF
+let $FZF_DEFAULT_COMMAND = 'ag -g ""'
 map <C-p> :FZF<CR>
 map <C-n> :FZF ~<CR>
 
@@ -168,6 +185,13 @@ let g:haskell_classic_highlighting = 1
 let g:haskell_enable_arrowsyntax = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_pattern_synonyms = 1
+let g:haskell_indent_disable = 1 " in favor of other flavor
+
+" elm
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+
+let g:elm_syntastic_show_warnings = 1
 
 let g:haskell_indent_disable = 1 " disables vim-haskell indent in favor of hindent
 let g:hindent_on_save = 1
