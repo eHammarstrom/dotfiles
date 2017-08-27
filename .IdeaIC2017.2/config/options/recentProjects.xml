@@ -1,0 +1,43 @@
+<application>
+  <component name="RecentProjectsManager">
+    <option name="recentPaths">
+      <list>
+        <option value="$USER_HOME$/git/scala-js-react" />
+        <option value="$USER_HOME$/git/scala-js-test" />
+      </list>
+    </option>
+    <option name="openPaths">
+      <list>
+        <option value="$USER_HOME$/git/scala-js-react" />
+      </list>
+    </option>
+    <option name="lastPath" value="$USER_HOME$/git/scala-js-react" />
+    <option name="additionalInfo">
+      <map>
+        <entry key="$USER_HOME$/git/scala-js-react">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IC-172.3757.52" />
+              <option name="productionCode" value="IC" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1503851040517" />
+              <option name="buildTimestamp" value="1502782845103" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+        <entry key="$USER_HOME$/git/scala-js-test">
+          <value>
+            <RecentProjectMetaInfo>
+              <option name="build" value="IC-172.3757.52" />
+              <option name="productionCode" value="IC" />
+              <option name="binFolder" value="$APPLICATION_HOME_DIR$/bin" />
+              <option name="projectOpenTimestamp" value="1503850427990" />
+              <option name="buildTimestamp" value="1502782845103" />
+            </RecentProjectMetaInfo>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="lastProjectLocation" value="$USER_HOME$/git" />
+  </component>
+</application>
