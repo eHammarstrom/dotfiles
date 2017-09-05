@@ -1,0 +1,30 @@
+let mapleader = "\<Space>"
+
+nnoremap H ^
+nnoremap L $
+vnoremap H ^
+vnoremap L g_
+
+map <silent> <C-l> :wincmd l<CR>
+map <silent> <C-h> :wincmd h<CR>
+map <silent> <C-j> :wincmd j<CR>
+map <silent> <C-k> :wincmd k<CR>
+
+map <silent> <C-left> :vertical res +2<CR>
+map <silent> <C-right> :vertical res -2<CR>
+map <silent> <C-up> :res -2<CR>
+map <silent> <C-down> :res +2<CR>
+
+set relativenumber
+set nowrap
+set smartcase
+set smarttab
+set smartindent
+set autoindent
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+set incsearch
+set mouse=a
+set history=10000
+set scrolloff=10
