@@ -22,7 +22,7 @@ client.focused_inactive $black      $black      $white      $black      $black
 client.urgent           $darkred    $darkred    $black      $darkred    $darkred
 client.background       $black
 
-exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --output DisplayPort-1 --primary
+# exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --output DisplayPort-1 --primary
 
 exec setxkbmap us -option caps:swapescape
 
@@ -48,6 +48,8 @@ floating_modifier $mod
 
 bindsym Mod4+space exec $HOME/scripts/.swap_us_se.sh
 
+bindsym Mod4+J exec xbacklight -inc 3
+bindsym Mod4+K exec xbacklight -dec 3
 bindsym Mod4+H exec amixer set Master 5%-
 bindsym Mod4+L exec amixer set Master 5%+
 
