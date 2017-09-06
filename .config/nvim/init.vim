@@ -141,14 +141,6 @@ set colorcolumn=120
 
 au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80 
 
-highlight Pmenu ctermbg=235 ctermfg=207 gui=bold
-
-function CQuickCompile()
-    let curBufFileName = expand('%:t')
-    let outName = expand('%:r')
-    execute '!gcc ' . curBufFileName . ' -o ' . outName
-endfunction
-
 " THEME
 set termguicolors
 set t_Co=256
@@ -165,9 +157,9 @@ map <F3> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-" CTRLSPACE
-set hidden
-nnoremap <silent><C-p> :CtrlSpace O<CR>
+" CtrlP
+" law abiding citizen, .gitignore
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
 
 " Supertab reverse completion
 let g:SuperTabDefaultCompletionType = '<C-n>'
