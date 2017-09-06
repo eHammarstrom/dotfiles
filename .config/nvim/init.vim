@@ -23,8 +23,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('eagletmt/neco-ghc')
     call dein#add('scrooloose/nerdtree')
     call dein#add('ervandew/supertab')
-    call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
-    call dein#add('plasticboy/vim-markdown')
+    " call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
@@ -33,12 +32,25 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
+		" Git - vim magit
+		call dein#add('jreybert/vimagit')
+
+		" Projectile for VIM
+		call dein#add('ctrlpvim/ctrlp.vim')
+
     " EditorConfig
     call dein#add('editorconfig/editorconfig-vim')
 
     " call dein#add('morhetz/gruvbox')
     " call dein#add('chriskempson/base16-vim')
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
+
+		" Scala
+		call dein#add('ensime/ensime-vim')
+
+		" Markdown
+		call dein#add('godlygeek/tabular')
+    call dein#add('plasticboy/vim-markdown')
 
     " Elm
     call dein#add('ElmCast/elm-vim')
@@ -83,8 +95,13 @@ if dein#check_install()
 endif
 
 "End dein Scripts-------------------------
-let mapleader = "\<Space>"
+let mapleader = ","
 
+" Tab handling
+map <silent><Leader>a :tabp<CR>
+map <silent><Leader>d :tabn<CR>
+
+" Motions
 nnoremap H ^
 nnoremap L $
 vnoremap H ^
@@ -104,31 +121,27 @@ map <F4> :split term://zsh<CR>
 map <F5> :vsplit term://zsh<CR>
 tnoremap <Esc> <C-\><C-n>
 
+" Use system clipboard (X Window clipboard)
+set clipboard=unnamedplus
+
 set relativenumber
 set nowrap
 set smartcase
-set smarttab
-set smartindent
-set autoindent
-set softtabstop=4
-set shiftwidth=4
-set expandtab
 set incsearch
 set mouse=a
 set history=10000
 set scrolloff=10
 
+" global tabstuff, personal preference
+set autoindent
+set noexpandtab
+set tabstop=2
+set shiftwidth=2
+set colorcolumn=120
+
+au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80 
+
 highlight Pmenu ctermbg=235 ctermfg=207 gui=bold
-
-autocmd FileType c call CInitialize()
-
-function CInitialize()
-    setlocal softtabstop=8
-    setlocal shiftwidth=8
-    setlocal colorcolumn=80
-    map <buffer> <leader>c :call CQuickCompile()<CR>
-    map <buffer> <leader>e :execute '!./' . expand('%:r')<CR>
-endfunction
 
 function CQuickCompile()
     let curBufFileName = expand('%:t')
@@ -152,10 +165,9 @@ map <F3> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
 
-" FZF
-let $FZF_DEFAULT_COMMAND = 'ag -g ""'
-map <C-p> :FZF<CR>
-map <C-n> :FZF ~<CR>
+" CTRLSPACE
+set hidden
+nnoremap <silent><C-p> :CtrlSpace O<CR>
 
 " Supertab reverse completion
 let g:SuperTabDefaultCompletionType = '<C-n>'
