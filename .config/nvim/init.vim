@@ -46,6 +46,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
 
 		" Scala
+		call dein#add('derekwyatt/vim-scala')
 		call dein#add('ensime/ensime-vim')
 
 		" Markdown
@@ -98,8 +99,8 @@ endif
 let mapleader = ","
 
 " Tab handling
-map <silent><Leader>a :tabp<CR>
-map <silent><Leader>d :tabn<CR>
+map <silent><Leader>q :tabp<CR>
+map <silent><Leader>w :tabn<CR>
 
 " Motions
 nnoremap H ^
@@ -229,17 +230,13 @@ let g:hindent_on_save = 1
 let g:hindent_indent_size = 2
 let g:hindent_line_length = 80
 
-autocmd FileType haskell call JSInitialize()
-
 " javascript
 let g:jsx_ext_required = 0
 
-autocmd FileType javascript call JSInitialize()
-autocmd FileType jsx        call JSInitialize()
-
-function JSInitialize()
-    setlocal softtabstop=2
-    setlocal shiftwidth=2
-    setlocal colorcolumn=80
-endfunction
+" scala ensime
+au FileType scala nnoremap <silent> <leader>d :EnDeclaration<CR>
+au FileType scala nnoremap <silent> <leader>r :EnRename<CR>
+au FileType scala nnoremap <silent> <leader>t :EnType<CR>
+au FileType scala nnoremap <silent> <leader>i :EnDocBrowse<CR>
+autocmd BufWritePost *.scala silent :EnTypeCheck
 
