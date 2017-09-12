@@ -23,17 +23,22 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('eagletmt/neco-ghc')
     call dein#add('scrooloose/nerdtree')
     call dein#add('ervandew/supertab')
-    " call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
-    " call dein#add('vim-syntastic/syntastic')
     call dein#add('mattn/webapi-vim')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
+		" powerline
+		call dein#add('vim-airline/vim-airline')
+
+		" rainbow parens
+		call dein#add('luochen1990/rainbow')
+
 		" Git - vim magit
 		call dein#add('jreybert/vimagit')
+		call dein#add('airblade/vim-gitgutter') " show diff lines in vim
 
 		" Projectile for VIM
 		call dein#add('ctrlpvim/ctrlp.vim')
@@ -147,6 +152,7 @@ set termguicolors
 set t_Co=256
 set background=dark
 colorscheme gruvbox
+let g:gruvbox_contrast='soft'
 
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
@@ -240,3 +246,8 @@ au FileType scala nnoremap <silent> <leader>t :EnType<CR>
 au FileType scala nnoremap <silent> <leader>i :EnDocBrowse<CR>
 autocmd BufWritePost *.scala silent :EnTypeCheck
 
+" rainbow parens
+let g:rainbow_active = 1
+
+" powerline
+let g:airline#extensions#tabline#enabled = 1
