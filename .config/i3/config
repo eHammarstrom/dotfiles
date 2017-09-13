@@ -22,6 +22,7 @@ client.focused_inactive $black      $black      $white      $black      $black
 client.urgent           $darkred    $darkred    $black      $darkred    $darkred
 client.background       $black
 
+# exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --rotate left --output DisplayPort-1 --primary
 exec xrandr --output DVI-0 --left-of DisplayPort-1 --mode 1920x1080 --rate 144.00 --output DisplayPort-1 --primary
 
 exec setxkbmap us -option caps:swapescape
@@ -53,7 +54,7 @@ bindsym Mod4+L exec amixer set Master 5%+
 
 # This is where we execute shizz
 bindsym $mod+d exec rofi -show run
-bindsym $mod+Return exec termite
+bindsym $mod+Return exec alacritty
 bindsym $mod+g exec google-chrome-beta
 # bindsym $mod+Ctrl+l exec i3lock -dtfi $HOME/Pictures/bg.jpg
 bindsym $mod+Ctrl+p exec scrot -u

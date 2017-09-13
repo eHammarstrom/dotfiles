@@ -10,6 +10,7 @@ alias tmux="tmux -2"
 alias tmux-dev="tmux -S dev"
 alias scrns="scrot -s | mv *_scrot.png ~/Pictures/scrns"
 alias pglogin="sudo -u postgres -i"
+alias open="xdg-open"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"

@@ -6,3 +6,4 @@ export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export EDITOR=/bin/nvim
 export BROWSER=/usr/bin/google-chrome-beta
+export TERM=xterm-256color

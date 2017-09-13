@@ -27,7 +27,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
-    call dein#add('vim-syntastic/syntastic')
+    " call dein#add('vim-syntastic/syntastic')
     call dein#add('mattn/webapi-vim')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
@@ -41,11 +41,15 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     " EditorConfig
     call dein#add('editorconfig/editorconfig-vim')
 
+		" Folding
+		call dein#add('pseewald/vim-anyfold')
+
     " call dein#add('morhetz/gruvbox')
     " call dein#add('chriskempson/base16-vim')
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
 
 		" Scala
+		call dein#add('derekwyatt/vim-scala')
 		call dein#add('ensime/ensime-vim')
 
 		" Markdown
@@ -98,8 +102,8 @@ endif
 let mapleader = ","
 
 " Tab handling
-map <silent><Leader>a :tabp<CR>
-map <silent><Leader>d :tabn<CR>
+map <silent><Leader>q :tabp<CR>
+map <silent><Leader>w :tabn<CR>
 
 " Motions
 nnoremap H ^
@@ -138,6 +142,13 @@ set noexpandtab
 set tabstop=2
 set shiftwidth=2
 set colorcolumn=120
+
+" Folding (Plugin for better fold)
+let anyfold_activate=1
+let anyfold_fold_comments=1
+set foldlevel=0
+" disable markdown shitfold
+let g:vim_markdown_folding_disabled = 1
 
 au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80 
 
@@ -224,5 +235,17 @@ let g:syntastic_auto_loc_list = 1
 
 let g:elm_syntastic_show_warnings = 1
 
+let g:haskell_indent_disable = 1 " disables vim-haskell indent in favor of hindent
+let g:hindent_on_save = 1
+let g:hindent_indent_size = 2
+let g:hindent_line_length = 80
+
 " javascript
 let g:jsx_ext_required = 0
+
+" scala ensime
+au FileType scala nnoremap <silent> <leader>d :EnDeclaration<CR>
+au FileType scala nnoremap <silent> <leader>r :EnRename<CR>
+au FileType scala nnoremap <silent> <leader>t :EnType<CR>
+au FileType scala nnoremap <silent> <leader>i :EnDocBrowse<CR>
+autocmd BufWritePost *.scala silent :EnTypeCheck
