@@ -27,7 +27,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
-    " call dein#add('vim-syntastic/syntastic')
+    call dein#add('vim-syntastic/syntastic')
     call dein#add('mattn/webapi-vim')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
@@ -194,6 +194,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 " even though they're stable
 
 let g:syntastic_c_compiler_options = '-D_FILE_OFFSET_BITS=64'
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['scala', 'tex'] }
 
 " haskell
 let g:haskell_classic_highlighting = 1

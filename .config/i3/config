@@ -32,6 +32,8 @@ exec --no-startup-id nitrogen --restore
 
 exec --no-startup-id redshift
 
+exec --no-startup-id compton
+
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 
 focus_follows_mouse no
