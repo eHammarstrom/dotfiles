@@ -152,7 +152,7 @@ set colorcolumn=120
 " Folding (Plugin for better fold)
 let anyfold_activate=1
 let anyfold_fold_comments=1
-set foldlevel=0
+set foldlevel=99
 " disable markdown shitfold
 let g:vim_markdown_folding_disabled = 1
 
@@ -201,6 +201,8 @@ let g:syntastic_javascript_checkers = ['eslint']
 " even though they're stable
 
 let g:syntastic_c_compiler_options = '-D_FILE_OFFSET_BITS=64'
+
+let g:syntastic_mode_map = { 'passive_filetypes': ['scala'] }
 
 " haskell
 let g:haskell_classic_highlighting = 1

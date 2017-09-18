@@ -29,6 +29,8 @@ exec --no-startup-id nitrogen --restore
 
 exec --no-startup-id redshift
 
+exec --no-startup-id compton
+
 exec --no-startup-id i3-battery-popup-git
 
 exec_always --no-startup-id $HOME/.config/polybar/launch.sh
