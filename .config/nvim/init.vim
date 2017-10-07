@@ -75,7 +75,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     " Haskell
     call dein#add('neovimhaskell/haskell-vim')
     " call dein#add('itchyny/vim-haskell-indent')
-    call dein#add('alx741/vim-hindent')
+    " call dein#add('alx741/vim-hindent')
     " call dein#add('eagletmt/ghcmod-vim')
     call dein#add('parsonsmatt/intero-neovim')
 
@@ -134,7 +134,10 @@ tnoremap <Esc> <C-\><C-n>
 " Use system clipboard (X Window clipboard)
 set clipboard=unnamedplus
 
+" using both will show abs instead of 0
 set relativenumber
+set number
+
 set nowrap
 set smartcase
 set incsearch
@@ -152,7 +155,7 @@ set colorcolumn=120
 " Folding (Plugin for better fold)
 let anyfold_activate=1
 let anyfold_fold_comments=1
-set foldlevel=99
+set foldlevel=999
 " disable markdown shitfold
 let g:vim_markdown_folding_disabled = 1
 
@@ -202,14 +205,14 @@ let g:syntastic_javascript_checkers = ['eslint']
 
 let g:syntastic_c_compiler_options = '-D_FILE_OFFSET_BITS=64'
 
-let g:syntastic_mode_map = { 'passive_filetypes': ['scala'] }
+let g:syntastic_mode_map = { 'passive_filetypes': ['scala', 'tex'] }
 
 " haskell
 let g:haskell_classic_highlighting = 1
 let g:haskell_enable_arrowsyntax = 1
 let g:haskell_enable_typeroles = 1
 let g:haskell_enable_pattern_synonyms = 1
-let g:haskell_indent_disable = 1 " in favor of other flavor
+" let g:haskell_indent_disable = 0 " in favor of other flavor
 
 augroup interoMaps
   au!
@@ -244,10 +247,9 @@ let g:syntastic_auto_loc_list = 1
 
 let g:elm_syntastic_show_warnings = 1
 
-let g:haskell_indent_disable = 1 " disables vim-haskell indent in favor of hindent
-let g:hindent_on_save = 1
-let g:hindent_indent_size = 2
-let g:hindent_line_length = 80
+" let g:hindent_on_save = 1
+" let g:hindent_indent_size = 2
+" let g:hindent_line_length = 80
 
 " javascript
 let g:jsx_ext_required = 0

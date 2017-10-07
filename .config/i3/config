@@ -57,8 +57,8 @@ bindsym Mod4+L exec amixer set Master 5%+
 
 # This is where we execute shizz
 bindsym $mod+d exec rofi -show run
-bindsym $mod+Return exec alacritty
-bindsym $mod+g exec google-chrome-stable
+bindsym $mod+Return exec konsole
+bindsym $mod+g exec firefox-developer
 # bindsym $mod+Ctrl+l exec i3lock -dtfi $HOME/Pictures/bg.jpg
 bindsym $mod+Ctrl+p exec scrot -u
 bindsym $mod+Shift+p exec scrot -s

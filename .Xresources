@@ -54,7 +54,7 @@
 *.color21:      base06
 
 ! ROFI
-rofi.font:          Hack 16
+rofi.font:          Hasklig 16
 rofi.color-enabled: true
 rofi.color-window:  base02, base0B, base08
 rofi.color-normal:  base00, base03, base02, base0B, base00
