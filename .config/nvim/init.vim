@@ -18,22 +18,25 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     call dein#add('/home/initiumdoeslinux/.nvim/bundles/./repos/github.com/Shougo/dein.vim')
 
     " Add or remove your plugins here:
-    call dein#add('neomake/neomake')
     call dein#add('Shougo/deoplete.nvim')
     call dein#add('eagletmt/neco-ghc')
     call dein#add('scrooloose/nerdtree')
-    call dein#add('ervandew/supertab')
-    " call dein#add('junegunn/fzf', { 'build': './install', 'merged': 0 })
     call dein#add('jiangmiao/auto-pairs')
     call dein#add('justinmk/vim-syntax-extra')
     call dein#add('tpope/vim-surround')
-    call dein#add('vim-syntastic/syntastic')
     call dein#add('mattn/webapi-vim')
     call dein#add('davidhalter/jedi-vim')
     call dein#add('Shougo/vimproc.vim', {'build': 'make'})
 
-		" LSP
+		" docs
+		call dein#add('Shougo/echodoc.vim')
+
+		" Lint
+		call dein#add('w0rp/ale')
 		call dein#add('autozimu/LanguageClient-neovim')
+
+		" airline
+		call dein#add('vim-airline/vim-airline')
 
 		" Git - vim magit
 		call dein#add('jreybert/vimagit')
@@ -44,16 +47,12 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     " EditorConfig
     call dein#add('editorconfig/editorconfig-vim')
 
-		" Folding
-		call dein#add('pseewald/vim-anyfold')
-
-    " call dein#add('morhetz/gruvbox')
-    " call dein#add('chriskempson/base16-vim')
+		" Theme
     call dein#add('dkasak/gruvbox') " better haskell / purescript support
 
 		" Scala
-		call dein#add('derekwyatt/vim-scala')
-		call dein#add('ensime/ensime-vim')
+		" call dein#add('derekwyatt/vim-scala')
+		" call dein#add('ensime/ensime-vim')
 
 		" Markdown
 		call dein#add('godlygeek/tabular')
@@ -62,23 +61,9 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
     " Elm
     call dein#add('ElmCast/elm-vim')
 
-    " Elixir
-    call dein#add('elixir-lang/vim-elixir')
-    call dein#add('slashmili/alchemist.vim')
-    
-    " Coconut
-    call dein#add('manicmaniac/coconut.vim')
-    
     " Haskell
     call dein#add('neovimhaskell/haskell-vim')
-    " call dein#add('itchyny/vim-haskell-indent')
-    " call dein#add('alx741/vim-hindent')
-    " call dein#add('eagletmt/ghcmod-vim')
-    call dein#add('parsonsmatt/intero-neovim')
-
-    " Rust
-    call dein#add('sebastianmarkow/deoplete-rust')
-    call dein#add('rust-lang/rust.vim')
+    " call dein#add('parsonsmatt/intero-neovim')
 
     " JavaScript
     call dein#add('mxw/vim-jsx')
@@ -256,3 +241,11 @@ au FileType scala nnoremap <silent> <leader>r :EnRename<CR>
 au FileType scala nnoremap <silent> <leader>t :EnType<CR>
 au FileType scala nnoremap <silent> <leader>i :EnDocBrowse<CR>
 autocmd BufWritePost *.scala silent :EnTypeCheck
+
+" LanguageClient
+let g:LanguageClient_serverCommands = {}
+let g:LanguageClient_autoStart = 1
+
+nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+nnoremap <silent> <F6> :call LanguageClient_textDocument_rename()<CR>

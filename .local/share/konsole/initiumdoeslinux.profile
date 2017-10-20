@@ -1,6 +1,6 @@
 [Appearance]
 ColorScheme=gruvbox_dark
-Font=Hasklig,16,-1,5,50,0,0,0,0,0,Regular
+Font=Hasklig,13,-1,5,50,0,0,0,0,0
 LineSpacing=5
 
 [Cursor Options]
