@@ -249,3 +249,6 @@ autocmd BufWritePost *.scala silent :EnTypeCheck
 " nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
 " nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
 " nnoremap <silent> <F6> :call LanguageClient_textDocument_rename()<CR>
+
+" sbt-ctags
+set tags=./tags,tags,../tags
