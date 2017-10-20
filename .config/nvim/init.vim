@@ -243,9 +243,9 @@ au FileType scala nnoremap <silent> <leader>i :EnDocBrowse<CR>
 autocmd BufWritePost *.scala silent :EnTypeCheck
 
 " LanguageClient
-let g:LanguageClient_serverCommands = {}
-let g:LanguageClient_autoStart = 1
+" let g:LanguageClient_serverCommands = {}
+" let g:LanguageClient_autoStart = 0
 
-nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
-nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
-nnoremap <silent> <F6> :call LanguageClient_textDocument_rename()<CR>
+" nnoremap <silent> K :call LanguageClient_textDocument_hover()<CR>
+" nnoremap <silent> gd :call LanguageClient_textDocument_definition()<CR>
+" nnoremap <silent> <F6> :call LanguageClient_textDocument_rename()<CR>
