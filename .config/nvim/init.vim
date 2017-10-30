@@ -40,6 +40,7 @@ if dein#load_state('/home/initiumdoeslinux/.nvim/bundles/.')
   call dein#add('eagletmt/neco-ghc') " haskell autocomplete
   call dein#add('mxw/vim-jsx') " jsx syntax
   call dein#add('pangloss/vim-javascript') " js syntax
+  call dein#add('ensime/ensime-vim') " I don't like intellij
 
   call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
 
@@ -176,3 +177,10 @@ augroup interoMaps
 augroup END
 
 let g:jsx_ext_required = 0 " enable jsx syntax for js files
+
+" Type checking for scala via ensime
+autocmd BufWritePost *.scala silent :EnTypeCheck
+" type inspection
+nnoremap <localleader>t :EnType<CR>
+" documentation at cursor
+nnoremap <localleader>d :EnDocBrowse<CR>
