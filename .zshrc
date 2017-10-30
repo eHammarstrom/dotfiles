@@ -12,6 +12,7 @@ alias scrns="scrot -s | mv *_scrot.png ~/Pictures/scrns"
 alias pglogin="sudo -u postgres -i"
 alias open="xdg-open"
 alias java="TERM=xterm-color java"
+alias sbt="TERM=xterm-color sbt"
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
