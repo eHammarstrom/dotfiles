@@ -35,8 +35,6 @@ Plug 'luochen1990/rainbow' " rainbow parens
 Plug 'rakr/vim-one'
 Plug 'dkasak/gruvbox' " better haskell / purescript support
 
-Plug 'Shougo/vimshell', { 'rev': '3787e5' }
-
 call plug#end()
 
 syntax enable
