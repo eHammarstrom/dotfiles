@@ -1,62 +1,47 @@
-"dein Scripts-----------------------------
-if &compatible
-  set nocompatible               " Be iMproved
-endif
+call plug#begin('~/.config/nvim/plugged')
 
-" Required:
-set runtimepath+=/Users/ehammarstrom/.nvim/bundles/repos/github.com/Shougo/dein.vim
+Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+Plug 'neomake/neomake'
+Plug 'sbdchd/neoformat'
+Plug 'bronson/vim-trailing-whitespace'
+Plug 'scrooloose/nerdtree'
+Plug 'vim-airline/vim-airline'
+Plug 'jiangmiao/auto-pairs'
+Plug 'tpope/vim-surround'
+Plug 'jreybert/vimagit'
+Plug 'airblade/vim-gitgutter'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'editorconfig/editorconfig-vim' " conform to the norm
+Plug 'godlygeek/tabular' " :Tabularize REGEX
+Plug 'plasticboy/vim-markdown'
 
-" Required:
-if dein#load_state('/Users/ehammarstrom/.nvim/bundles/.')
-  call dein#begin('/Users/ehammarstrom/.nvim/bundles/.')
-  " Required:
-  call dein#add('/Users/ehammarstrom/.nvim/bundles/repos/github.com/Shougo/dein.vim')
+" Haskell
+Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
+Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
 
-  call dein#add('Shougo/deoplete.nvim')
-  call dein#add('neomake/neomake')
-  call dein#add('scrooloose/nerdtree')
-  call dein#add('vim-airline/vim-airline')
-  call dein#add('jiangmiao/auto-pairs') " pairing ()
-  call dein#add('justinmk/vim-syntax-extra') " better C syntax HL
-  call dein#add('tpope/vim-surround') " S surround insert
-  call dein#add('Shougo/vimproc.vim', {'build': 'make'})
-  call dein#add('luochen1990/rainbow') " rainbow parens
-  call dein#add('Shougo/echodoc.vim') " print func signatures
-  call dein#add('jreybert/vimagit') " magit
-  call dein#add('airblade/vim-gitgutter') " annotate git diff by line number
-  call dein#add('ctrlpvim/ctrlp.vim') " fuzzy fuzz
-  call dein#add('editorconfig/editorconfig-vim') " conform with the norm
-  call dein#add('dkasak/gruvbox') " better haskell / purescript support
-  call dein#add('derekwyatt/vim-scala') " syntax
-  call dein#add('godlygeek/tabular') " align stuff :Tabularize REGEX
-  call dein#add('plasticboy/vim-markdown')
+" JS
+Plug 'moll/vim-node', { 'for': 'javascript' }
+Plug 'mxw/vim-jsx', { 'for': 'javascript' }
+Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
+Plug 'othree/yajs.vim', { 'for': 'javascript' }
 
-  call dein#add('neovimhaskell/haskell-vim') " syntax & indent
-  call dein#add('parsonsmatt/intero-neovim') " intero for vim
-  call dein#add('eagletmt/neco-ghc') " haskell autocomplete
+" Scala
+Plug 'derekwyatt/vim-scala'
 
-  call dein#add('mxw/vim-jsx') " jsx syntax
-  call dein#add('pangloss/vim-javascript') " js syntax
+" Color
+Plug 'pbrisbin/vim-syntax-shakespeare' " Haskell template syntax
+Plug 'justinmk/vim-syntax-extra' " better C syntax HL
+Plug 'luochen1990/rainbow' " rainbow parens
+Plug 'rakr/vim-one'
+Plug 'dkasak/gruvbox' " better haskell / purescript support
 
-  call dein#add('rakr/vim-one')
+Plug 'Shougo/vimshell', { 'rev': '3787e5' }
 
-  call dein#add('Shougo/vimshell', { 'rev': '3787e5' })
+call plug#end()
 
-  " Required:
-  call dein#end()
-  call dein#save_state()
-endif
-
-" Required:
 syntax enable
 filetype plugin indent on
 
-" If you want to install not installed plugins on startup.
-if dein#check_install()
-  call dein#install()
-endif
-
-"End dein Scripts-------------------------
 let mapleader = ","
 
 set langmenu=en_US
