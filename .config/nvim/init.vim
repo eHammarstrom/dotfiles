@@ -14,16 +14,21 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim' " conform to the norm
 Plug 'godlygeek/tabular' " :Tabularize REGEX
 Plug 'plasticboy/vim-markdown'
+Plug 'sbdchd/neoformat'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 " JS
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'prettier/vim-prettier', {
+      \ 'do': 'npm install',
+      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 " Scala
 Plug 'derekwyatt/vim-scala'
@@ -46,12 +51,14 @@ set langmenu=en_US
 let $LANG = 'en_US'
 
 " Tab handling
-map <silent><Leader>q :tabp<CR>
-map <silent><Leader>w :tabn<CR>
+map <silent><Leader> q :tabp<CR>
+map <silent><Leader> w :tabn<CR>
 
 " Editing
-nmap <S-Enter> O<Esc>
+nmap <S-CR> O<Esc>
 nmap <CR> o<Esc>
+
+noremap <S-k> i<CR><Esc>
 
 " Motions
 nnoremap H ^
@@ -60,16 +67,16 @@ vnoremap H ^
 vnoremap L g_
 
 " Window switching
-map <silent> <C-l> :wincmd l<CR>
-map <silent> <C-h> :wincmd h<CR>
-map <silent> <C-j> :wincmd j<CR>
-map <silent> <C-k> :wincmd k<CR>
+map <silent><C-l> :wincmd l<CR>
+map <silent><C-h> :wincmd h<CR>
+map <silent><C-j> :wincmd j<CR>
+map <silent><C-k> :wincmd k<CR>
 
 " Window resizing
-map <silent> <C-left> :vertical res +2<CR>
-map <silent> <C-right> :vertical res -2<CR>
-map <silent> <C-up> :res -2<CR>
-map <silent> <C-down> :res +2<CR>
+noremap <silent><left> :vertical res +1<CR>
+noremap <silent><right> :vertical res -1<CR>
+noremap <silent><up> :res -1<CR>
+noremap <silent><down> :res +1<CR>
 
 set clipboard=unnamedplus " use system clipboard
 
@@ -111,7 +118,7 @@ call deoplete#enable()
 
 " NERD TREE
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
-map <F2> :NERDTreeToggle<CR>
+map <S-f> :NERDTreeToggle<CR>
 map <F3> :NERDTreeFind<CR>
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
@@ -160,3 +167,4 @@ augroup interoMaps
 augroup END
 
 let g:jsx_ext_required = 0 " enable jsx syntax for js files
+autocmd BufWritePre *.js Neoformat
