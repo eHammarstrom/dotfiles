@@ -22,8 +22,6 @@ Plug 'w0rp/ale'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-" Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
-" Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 " JS
 Plug 'moll/vim-node', { 'for': 'javascript' }
@@ -133,14 +131,6 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:vim_markdown_folding_disabled = 1
 
 " haskell
-" let g:haskell_classic_highlighting = 1
-" let g:haskell_enable_arrowsyntax = 1
-" let g:haskell_enable_typeroles = 1
-" let g:haskell_enable_pattern_synonyms = 1
-
-" let g:haskellmode_completion_ghc = 0 " Disable haskell-vim omnifunc
-" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
-
 au FileType haskell nnoremap <leader>lf :call LanguageClient_textDocument_formatting()<CR>
 
 let g:LanguageClient_autoStart = 1
