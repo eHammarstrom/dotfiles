@@ -1,5 +1,5 @@
 alias vim="nvim"
-alias pip="pip3"
+# alias pip="pip3"
 alias python="python3"
 alias gs="git status"
 

@@ -1,7 +1,7 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 Plug 'sbdchd/neoformat'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
@@ -14,21 +14,22 @@ Plug 'ctrlpvim/ctrlp.vim'
 Plug 'editorconfig/editorconfig-vim' " conform to the norm
 Plug 'godlygeek/tabular' " :Tabularize REGEX
 Plug 'plasticboy/vim-markdown'
-Plug 'sbdchd/neoformat'
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': './install.sh'
+    \ }
+Plug 'w0rp/ale'
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
-Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
-Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
+" Plug 'Twinside/vim-hoogle', { 'for': 'haskell' }
+" Plug 'parsonsmatt/intero-neovim', { 'for': 'haskell' }
 
 " JS
 Plug 'moll/vim-node', { 'for': 'javascript' }
 Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
 Plug 'othree/yajs.vim', { 'for': 'javascript' }
-Plug 'prettier/vim-prettier', {
-      \ 'do': 'npm install',
-      \ 'for': ['javascript', 'typescript', 'css', 'less', 'scss'] }
 
 " Scala
 Plug 'derekwyatt/vim-scala'
@@ -41,6 +42,7 @@ Plug 'rakr/vim-one'
 Plug 'dkasak/gruvbox' " better haskell / purescript support
 
 call plug#end()
+call deoplete#enable()
 
 syntax enable
 filetype plugin indent on
@@ -105,7 +107,7 @@ set shiftwidth=2
 set colorcolumn=120
 
 " linux c kernel style
-au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80 
+au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " THEME
 set termguicolors
@@ -131,40 +133,36 @@ let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standar
 let g:vim_markdown_folding_disabled = 1
 
 " haskell
-let g:haskell_classic_highlighting = 1
-let g:haskell_enable_arrowsyntax = 1
-let g:haskell_enable_typeroles = 1
-let g:haskell_enable_pattern_synonyms = 1
+" let g:haskell_classic_highlighting = 1
+" let g:haskell_enable_arrowsyntax = 1
+" let g:haskell_enable_typeroles = 1
+" let g:haskell_enable_pattern_synonyms = 1
 
-let g:haskellmode_completion_ghc = 0 " Disable haskell-vim omnifunc
-autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+" let g:haskellmode_completion_ghc = 0 " Disable haskell-vim omnifunc
+" autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
 
-augroup interoMaps
-  au!
-  " Maps for intero. Restrict to Haskell buffers so the bindings don't collide.
+au FileType haskell nnoremap <leader>lf :call LanguageClient_textDocument_formatting()<CR>
 
-  " Open intero/GHCi split horizontally
-  au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-  " Open intero/GHCi split vertically
-  au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>H
-  au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+let g:LanguageClient_autoStart = 1
+let g:LanguageClient_serverCommands = {
+    \ 'haskell': ['hie', '--lsp'],
+    \ }
 
-  " Automatically reload on save
-  au BufWritePost *.hs InteroReload
-
-  " Load individual modules
-  au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-  au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
-
-  " Type-related information
-  " Heads up! These next two differ from the rest.
-  au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-  au FileType haskell map <silent> <leader>T <Plug>InteroType
-  au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-
-  " Navigation
-  au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
-augroup END
+if 0
+  augroup interoMaps
+    au!
+    au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
+    au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>
+    au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
+    au BufWritePost *.hs InteroReload
+    au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
+    au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
+    au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
+    au FileType haskell map <silent> <leader>T <Plug>InteroType
+    au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
+    au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
+  augroup END
+endif
 
 let g:jsx_ext_required = 0 " enable jsx syntax for js files
 autocmd BufWritePre *.js Neoformat
