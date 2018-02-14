@@ -32,6 +32,10 @@ Plug 'othree/yajs.vim', { 'for': 'javascript' }
 " Scala
 Plug 'derekwyatt/vim-scala'
 
+
+" C#
+Plug 'OmniSharp/omnisharp-vim'
+
 " Color
 Plug 'pbrisbin/vim-syntax-shakespeare' " Haskell template syntax
 Plug 'justinmk/vim-syntax-extra' " better C syntax HL
@@ -137,22 +141,6 @@ let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
     \ 'haskell': ['hie', '--lsp'],
     \ }
-
-if 0
-  augroup interoMaps
-    au!
-    au FileType haskell nnoremap <silent> <leader>io :InteroOpen<CR>
-    au FileType haskell nnoremap <silent> <leader>iov :InteroOpen<CR><C-W>
-    au FileType haskell nnoremap <silent> <leader>ih :InteroHide<CR>
-    au BufWritePost *.hs InteroReload
-    au FileType haskell nnoremap <silent> <leader>il :InteroLoadCurrentModule<CR>
-    au FileType haskell nnoremap <silent> <leader>if :InteroLoadCurrentFile<CR>
-    au FileType haskell map <silent> <leader>t <Plug>InteroGenericType
-    au FileType haskell map <silent> <leader>T <Plug>InteroType
-    au FileType haskell nnoremap <silent> <leader>it :InteroTypeInsert<CR>
-    au FileType haskell nnoremap <silent> <leader>jd :InteroGoToDef<CR>
-  augroup END
-endif
 
 let g:jsx_ext_required = 0 " enable jsx syntax for js files
 autocmd BufWritePre *.js Neoformat
