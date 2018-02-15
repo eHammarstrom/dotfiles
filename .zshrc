@@ -2,6 +2,7 @@ alias vim="nvim"
 # alias pip="pip3"
 alias python="python3"
 alias gs="git status"
+alias omnisharp="mono /Users/ehammarstrom/DevApps/omnisharp.http-osx/omnisharp/OmniSharp.exe -p 2000"
 
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/ehammarstrom/.oh-my-zsh

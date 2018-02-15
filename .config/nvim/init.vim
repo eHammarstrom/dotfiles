@@ -2,6 +2,7 @@ call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 " Plug 'neomake/neomake'
+Plug 'tpope/vim-dispatch'
 Plug 'sbdchd/neoformat'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
@@ -15,10 +16,11 @@ Plug 'editorconfig/editorconfig-vim' " conform to the norm
 Plug 'godlygeek/tabular' " :Tabularize REGEX
 Plug 'plasticboy/vim-markdown'
 Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': './install.sh'
-    \ }
+      \ 'branch': 'next',
+      \ 'do': './install.sh'
+      \ }
 Plug 'w0rp/ale'
+Plug 'vim-syntastic/syntastic', { 'for': 'cs' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
@@ -35,6 +37,7 @@ Plug 'derekwyatt/vim-scala'
 
 " C#
 Plug 'OmniSharp/omnisharp-vim'
+Plug 'OrangeT/vim-csharp'
 
 " Color
 Plug 'pbrisbin/vim-syntax-shakespeare' " Haskell template syntax
@@ -139,8 +142,36 @@ au FileType haskell nnoremap <leader>lf :call LanguageClient_textDocument_format
 
 let g:LanguageClient_autoStart = 1
 let g:LanguageClient_serverCommands = {
-    \ 'haskell': ['hie', '--lsp'],
-    \ }
+      \ 'haskell': ['hie', '--lsp'],
+      \ }
 
 let g:jsx_ext_required = 0 " enable jsx syntax for js files
 autocmd BufWritePre *.js Neoformat
+
+" Deoplete
+" let g:deoplete#sources.cs = ['omni', 'file', 'buffer', 'ultisnips']
+" let g:deoplete#omni#input_patterns.cs = ['\w*']
+" let g:deoplete#enable_smart_case = 1
+
+" C#
+let g:OmniSharp_server_type = 'roslyn'
+" let g:OmniSharp_server_path = '/Users/ehammarstrom/DevApps/omnisharp.http-osx'
+autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
+autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
+
+" ALE
+let g:ale_pattern_options = {
+      \   '.*\.cs$': {'ale_enabled': 0},
+      \}
+
+" syntastic
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_cs_checkers = ['code_checker']
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 1
+
