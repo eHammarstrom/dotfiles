@@ -1,5 +1,6 @@
 eval "$(pyenv init -)"
 
+alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs.sh"
 alias vim="nvim"
 alias gs="git status"
 alias omnisharp="mono /Users/ehammarstrom/DevApps/omnisharp.http-osx/omnisharp/OmniSharp.exe -p 2000"

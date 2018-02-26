@@ -49,7 +49,7 @@
    dotspacemacs-themes '(alect-dark)
    dotspacemacs-colorize-cursor-according-to-state t
    dotspacemacs-default-font '("Hasklig"
-                               :size 14
+                               :size 16
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
