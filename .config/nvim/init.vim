@@ -1,7 +1,6 @@
 call plug#begin('~/.config/nvim/plugged')
 
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-" Plug 'neomake/neomake'
 Plug 'tpope/vim-dispatch'
 Plug 'sbdchd/neoformat'
 Plug 'bronson/vim-trailing-whitespace'
@@ -20,24 +19,16 @@ Plug 'autozimu/LanguageClient-neovim', {
       \ 'do': './install.sh'
       \ }
 Plug 'w0rp/ale'
-Plug 'vim-syntastic/syntastic', { 'for': 'cs' }
 
 " Haskell
 Plug 'neovimhaskell/haskell-vim', { 'for': 'haskell' }
 
 " JS
-Plug 'moll/vim-node', { 'for': 'javascript' }
-Plug 'mxw/vim-jsx', { 'for': 'javascript' }
 Plug 'pangloss/vim-javascript', { 'for': 'javascript' }
-Plug 'othree/yajs.vim', { 'for': 'javascript' }
+Plug 'maxmellon/vim-jsx-pretty', { 'for': 'javascript' }
 
 " Scala
 Plug 'derekwyatt/vim-scala'
-
-
-" C#
-Plug 'OmniSharp/omnisharp-vim'
-Plug 'OrangeT/vim-csharp'
 
 " Color
 Plug 'pbrisbin/vim-syntax-shakespeare' " Haskell template syntax
@@ -45,6 +36,7 @@ Plug 'justinmk/vim-syntax-extra' " better C syntax HL
 Plug 'luochen1990/rainbow' " rainbow parens
 Plug 'rakr/vim-one'
 Plug 'dkasak/gruvbox' " better haskell / purescript support
+Plug 'nightsense/stellarized'
 
 call plug#end()
 call deoplete#enable()
@@ -118,7 +110,7 @@ au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn
 set termguicolors
 set t_Co=256
 set background=dark
-colorscheme one
+colorscheme stellarized_dark
 
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
@@ -145,31 +137,8 @@ let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie', '--lsp'],
       \ }
 
-let g:jsx_ext_required = 0 " enable jsx syntax for js files
 autocmd BufWritePre *.js Neoformat
 
-" Deoplete
-" let g:deoplete#sources.cs = ['omni', 'file', 'buffer', 'ultisnips']
-" let g:deoplete#omni#input_patterns.cs = ['\w*']
-" let g:deoplete#enable_smart_case = 1
-
-" C#
-let g:OmniSharp_server_type = 'roslyn'
-" let g:OmniSharp_server_path = '/Users/ehammarstrom/DevApps/omnisharp.http-osx'
-autocmd BufEnter,TextChanged,InsertLeave *.cs SyntasticCheck
-autocmd FileType cs setlocal omnifunc=OmniSharp#Complete
-
-" ALE
-let g:ale_pattern_options = {
-      \   '.*\.cs$': {'ale_enabled': 0},
-      \}
-
-" syntastic
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_cs_checkers = ['code_checker']
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
