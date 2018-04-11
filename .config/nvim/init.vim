@@ -59,6 +59,10 @@ nmap <CR> o<Esc>
 
 noremap <S-k> i<CR><Esc>
 
+noremap <C-a> :Tabularize<space>/
+
+noremap <silent><Leader> f :Neoformat<CR>
+
 " Motions
 nnoremap H ^
 nnoremap L $
@@ -110,7 +114,7 @@ au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn
 set termguicolors
 set t_Co=256
 set background=dark
-colorscheme stellarized_dark
+colorscheme gruvbox
 
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
@@ -137,7 +141,13 @@ let g:LanguageClient_serverCommands = {
       \ 'haskell': ['hie', '--lsp'],
       \ }
 
-autocmd BufWritePre *.js Neoformat
+
+" javascript
+let g:ale_fixers = {
+\   'javascript': ['eslint'],
+\}
+let g:ale_fix_on_save = 1
+
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
