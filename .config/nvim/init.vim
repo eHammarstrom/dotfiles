@@ -5,7 +5,7 @@ Plug 'tpope/vim-dispatch'
 Plug 'sbdchd/neoformat'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'scrooloose/nerdtree'
-Plug 'vim-airline/vim-airline'
+Plug 'itchyny/lightline.vim'
 Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'jreybert/vimagit'
@@ -37,6 +37,8 @@ Plug 'luochen1990/rainbow' " rainbow parens
 Plug 'rakr/vim-one'
 Plug 'dkasak/gruvbox' " better haskell / purescript support
 Plug 'nightsense/stellarized'
+Plug 'yuttie/inkstained-vim' " inkstained
+Plug 'NLKNguyen/papercolor-theme' " PaperColor
 
 call plug#end()
 call deoplete#enable()
@@ -44,10 +46,10 @@ call deoplete#enable()
 syntax enable
 filetype plugin indent on
 
-let mapleader = ","
+let mapleader=","
 
 set langmenu=en_US
-let $LANG = 'en_US'
+let $LANG='en_US'
 
 " Tab handling
 map <silent><Leader> q :tabp<CR>
@@ -65,15 +67,40 @@ noremap <silent><Leader> f :Neoformat<CR>
 
 " Motions
 nnoremap H ^
-nnoremap L $
+nnoremap E $
 vnoremap H ^
-vnoremap L g_
+vnoremap E g_
 
 " Window switching
-map <silent><C-l> :wincmd l<CR>
+map <silent><C-s> :wincmd l<CR>
 map <silent><C-h> :wincmd h<CR>
-map <silent><C-j> :wincmd j<CR>
-map <silent><C-k> :wincmd k<CR>
+map <silent><C-t> :wincmd j<CR>
+map <silent><C-n> :wincmd k<CR>
+
+noremap <C-u> <C-b>
+noremap <C-e> <C-f>
+
+" Dvorak remap (https://gist.github.com/agnoster/640210)
+" 1 - Movement keys htns -> hjkl
+"   (gj and gk move by visual lines, if the line is wrapped for instance)
+noremap h h
+noremap t gj
+noremap n gk
+noremap s l
+" 2 - replace functions we remapped away
+"   S goes to bottom of Screen
+noremap S L
+"   j/J Jerk and replace a character/line
+noremap j s
+noremap J S
+"   k/K Keep searching through regex matches
+noremap k n
+noremap K N
+"   l/L Looks forward/backward to a
+noremap l t
+noremap L T
+"   T   puts lines Together
+noremap T J
 
 " Window resizing
 noremap <silent><left> :vertical res +1<CR>
@@ -113,8 +140,17 @@ au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn
 " THEME
 set termguicolors
 set t_Co=256
-set background=dark
-colorscheme gruvbox
+set background=light
+colorscheme PaperColor
+
+let g:lightline = {
+      \ 'colorscheme': 'PaperColor',
+      \ 'component': {
+      \   'readonly': '%{&readonly?"":""}',
+      \ },
+      \ 'separator':    { 'left': '', 'right': '' },
+      \ 'subseparator': { 'left': '', 'right': '' },
+      \ }
 
 """"""""""" here follows plugin specific settings
 call deoplete#enable()
