@@ -4,7 +4,14 @@ alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs.sh"
 alias vim="nvim"
 alias vi="nvim"
 alias gs="git status"
+alias gco="git checkout"
+alias gct="git commit"
+alias gdf="git diff"
+alias gad="git add"
+alias gp="git push"
 alias omnisharp="mono /Users/ehammarstrom/DevApps/omnisharp.http-osx/omnisharp/OmniSharp.exe -p 2000"
+
+fpath+=~/.zfunc
 
 export PYENV_ROOT=$(pyenv root)
 
