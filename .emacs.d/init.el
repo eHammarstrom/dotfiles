@@ -16,10 +16,15 @@
 
 ; packages
 (use-package evil)
+(use-package evil-surround)
 (use-package labburn-theme)
+(use-package company
+  :bind (("<tab>" . company-complete)))
 
-; configuration
+; evil configuration
 (evil-mode 1)
+(global-evil-surround-mode 1)
+(global-company-mode t)
 
 (define-key evil-normal-state-map (kbd "H")   'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "S")   'evil-end-of-line)
@@ -31,8 +36,31 @@
 (global-set-key (kbd "C-\\") 'split-window-horizontally)
 (global-set-key (kbd "C-\-") 'split-window-vertically)
 
-(evil-define-key 'visual evil-surround-mode-map "s" 'evil-substitute)
-(evil-define-key 'visual evil-surround-mode-map "S" 'evil-surround-region)
+(define-key evil-visual-state-map "s" 'evil-substitute)
+(define-key evil-visual-state-map "S" 'evil-surround-region)
+(define-key evil-visual-state-map "h" 'evil-backward-char)
+(define-key evil-visual-state-map "t" 'evil-next-line)
+(define-key evil-visual-state-map "n" 'evil-previous-line)
+(define-key evil-visual-state-map "s" 'evil-forward-char)
+
+(define-key evil-normal-state-map (kbd "h") 'backward-char)
+(define-key evil-normal-state-map (kbd "t") 'evil-next-line)
+(define-key evil-normal-state-map (kbd "n") 'previous-line)
+(define-key evil-normal-state-map (kbd "s") 'forward-char)
+(define-key evil-normal-state-map (kbd "<return>") 'evil-insert-newline-below)
+(define-key evil-normal-state-map (kbd "S-<return>") 'evil-insert-newline-above)
+; (define-key evil-normal-state-map "k" 'kill-line)
+; (define-key evil-normal-state-map
+;  "K" #'(lambda () (interactive)
+          ; "kill from point to the beginning of the line"
+          ; (kill-line 0)))
+; (define-key evil-normal-state-map "t" 'join-line)
+(define-key evil-normal-state-map
+  "T" #'(lambda () (interactive)
+          "join this line at the end of the line below"
+          (join-line 1)))
+
+; configuration
 
 (global-set-key (kbd "C-a")  'align-regexp)
 
