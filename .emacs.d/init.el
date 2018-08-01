@@ -20,51 +20,70 @@
 (use-package labburn-theme)
 (use-package company
   :bind (("<tab>" . company-complete)))
+(use-package racket-mode)
+(use-package helm)
 
 ; evil configuration
 (evil-mode 1)
 (global-evil-surround-mode 1)
 (global-company-mode t)
+(helm-mode 1)
 
-(define-key evil-normal-state-map (kbd "H")   'evil-first-non-blank)
-(define-key evil-normal-state-map (kbd "S")   'evil-end-of-line)
+(global-set-key (kbd "C-SPC")			'helm-M-x)
+(global-set-key (kbd "C-a")			'align-regexp)
 
-(global-set-key (kbd "C-n")  'evil-window-up)
-(global-set-key (kbd "C-t")  'evil-window-down)
-(global-set-key (kbd "C-h")  'evil-window-left)
-(global-set-key (kbd "C-s")  'evil-window-right)
-(global-set-key (kbd "C-\\") 'split-window-horizontally)
-(global-set-key (kbd "C-\-") 'split-window-vertically)
+(define-key evil-normal-state-map (kbd "H")	'evil-first-non-blank)
+(define-key evil-normal-state-map (kbd "S")	'evil-end-of-line)
 
-(define-key evil-visual-state-map "s" 'evil-substitute)
-(define-key evil-visual-state-map "S" 'evil-surround-region)
-(define-key evil-visual-state-map "h" 'evil-backward-char)
-(define-key evil-visual-state-map "t" 'evil-next-line)
-(define-key evil-visual-state-map "n" 'evil-previous-line)
-(define-key evil-visual-state-map "s" 'evil-forward-char)
+(define-key evil-insert-state-map (kbd "C-c")	'evil-force-normal-state)
 
-(define-key evil-normal-state-map (kbd "h") 'backward-char)
-(define-key evil-normal-state-map (kbd "t") 'evil-next-line)
-(define-key evil-normal-state-map (kbd "n") 'previous-line)
-(define-key evil-normal-state-map (kbd "s") 'forward-char)
-(define-key evil-normal-state-map (kbd "<return>") 'evil-insert-newline-below)
-(define-key evil-normal-state-map (kbd "S-<return>") 'evil-insert-newline-above)
-; (define-key evil-normal-state-map "k" 'kill-line)
-; (define-key evil-normal-state-map
-;  "K" #'(lambda () (interactive)
-          ; "kill from point to the beginning of the line"
-          ; (kill-line 0)))
-; (define-key evil-normal-state-map "t" 'join-line)
+(define-key evil-motion-state-map (kbd "C-e")
+  (lambda () (interactive) (evil-scroll-down 0)))
+(define-key evil-motion-state-map (kbd "C-u")
+  (lambda () (interactive) (evil-scroll-up 0)))
+(define-key evil-normal-state-map (kbd "C-p")	'helm-mini)
+
+(global-set-key (kbd "C-S-N")			'evil-window-up)
+
+(global-set-key (kbd "C-S-N")			'evil-window-up)
+(global-set-key (kbd "C-S-T")			'evil-window-down)
+(global-set-key (kbd "C-S-H")			'evil-window-left)
+(global-set-key (kbd "C-S-S")			'evil-window-right)
+(global-set-key (kbd "C-\\")			'split-window-horizontally)
+(global-set-key (kbd "C-\-")			'split-window-vertically)
+
+(define-key evil-visual-state-map "s"		'evil-substitute)
+(define-key evil-visual-state-map "S"		'evil-surround-region)
+(define-key evil-visual-state-map "h"		'evil-backward-char)
+(define-key evil-visual-state-map "t"		'evil-next-line)
+(define-key evil-visual-state-map "n"		'evil-previous-line)
+(define-key evil-visual-state-map "s"		'evil-forward-char)
+
+(define-key evil-normal-state-map (kbd "h")	'backward-char)
+(define-key evil-normal-state-map (kbd "t")	'evil-next-line)
+(define-key evil-normal-state-map (kbd "n")	'previous-line)
+(define-key evil-normal-state-map (kbd "s")	'forward-char)
+
+(define-key evil-normal-state-map (kbd "<return>")
+  (lambda () (interactive)
+    (evil-open-below 1)
+    (evil-force-normal-state)
+    (evil-previous-line 1)))
+
+(define-key evil-normal-state-map (kbd "S-<return>")
+  (lambda () (interactive)
+    (evil-open-above 1)
+    (evil-force-normal-state)
+    (evil-next-line 1)))
+
 (define-key evil-normal-state-map
   "T" #'(lambda () (interactive)
           "join this line at the end of the line below"
           (join-line 1)))
 
-; configuration
-
-(global-set-key (kbd "C-a")  'align-regexp)
-
 (setq visible-bell 1)
 (setq inhibit-startup-screen t)
+(setq jit-lock-defer-time 0)
+(setq fast-but-imprecise-scrolling t)
 
-(set-face-attribute 'default t :font "Hasklig-16")
+(set-frame-font "Hasklig-16" nil t)
