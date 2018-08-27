@@ -3,9 +3,9 @@
       (bootstrap-version 4))
   (unless (file-exists-p bootstrap-file)
     (with-current-buffer
-        (url-retrieve-synchronously
-         "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-         'silent 'inhibit-cookies)
+	(url-retrieve-synchronously
+	 "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
+	 'silent 'inhibit-cookies)
       (goto-char (point-max))
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
@@ -14,7 +14,7 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-; packages
+					; packages
 (use-package evil)
 (use-package evil-surround)
 (use-package labburn-theme)
@@ -22,15 +22,29 @@
   :bind (("<tab>" . company-complete)))
 (use-package racket-mode)
 (use-package helm)
+(use-package lsp-mode)
+(use-package lsp-ui)
+(use-package lsp-haskell)
+(use-package helm-ls-git)
+(use-package which-key)
 
-; evil configuration
+; enable all things
 (evil-mode 1)
 (global-evil-surround-mode 1)
 (global-company-mode t)
 (helm-mode 1)
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+(which-key-mode)
+
+(add-hook 'lsp-mode-hook 'lsp-ui-mode)
+(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
+(add-hook 'haskell-mode-hook 'flycheck-mode)
 
 (global-set-key (kbd "C-SPC")			'helm-M-x)
 (global-set-key (kbd "C-a")			'align-regexp)
+
+(define-key evil-motion-state-map (kbd "C-f")   'helm-ls-git-ls)
 
 (define-key evil-normal-state-map (kbd "H")	'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "S")	'evil-end-of-line)
@@ -42,8 +56,6 @@
 (define-key evil-motion-state-map (kbd "C-u")
   (lambda () (interactive) (evil-scroll-up 0)))
 (define-key evil-normal-state-map (kbd "C-p")	'helm-mini)
-
-(global-set-key (kbd "C-S-N")			'evil-window-up)
 
 (global-set-key (kbd "C-S-N")			'evil-window-up)
 (global-set-key (kbd "C-S-T")			'evil-window-down)
@@ -86,4 +98,8 @@
 (setq jit-lock-defer-time 0)
 (setq fast-but-imprecise-scrolling t)
 
+(setq scroll-conservatively 10)
+(setq scroll-margin 7)
+
 (set-frame-font "Hasklig-16" nil t)
+(tool-bar-mode -1)
