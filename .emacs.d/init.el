@@ -18,15 +18,14 @@
 (use-package evil)
 (use-package evil-surround)
 (use-package labburn-theme)
-(use-package company
-  :bind (("<tab>" . company-complete)))
+(use-package company)
 (use-package racket-mode)
 (use-package helm)
-(use-package lsp-mode)
-(use-package lsp-ui)
-(use-package lsp-haskell)
 (use-package helm-ls-git)
 (use-package which-key)
+(use-package haskell-mode)
+(use-package intero)
+(use-package editorconfig)
 
 ; enable all things
 (evil-mode 1)
@@ -36,19 +35,29 @@
 (setq display-line-numbers-type 'relative)
 (global-display-line-numbers-mode t)
 (which-key-mode)
+(intero-global-mode 1)
+(editorconfig-mode 1)
+; (add-hook 'haskell-mode-hook 'intero-mode)
 
-(add-hook 'lsp-mode-hook 'lsp-ui-mode)
-(add-hook 'haskell-mode-hook #'lsp-haskell-enable)
-(add-hook 'haskell-mode-hook 'flycheck-mode)
+(setq haskell-stylish-on-save t)
+(setq tab-width 2)
 
 (global-set-key (kbd "C-SPC")			'helm-M-x)
 (global-set-key (kbd "C-a")			'align-regexp)
 
-(define-key evil-motion-state-map (kbd "C-f")   'helm-ls-git-ls)
+(define-key evil-motion-state-map (kbd "l") 'evil-find-char-to)
+(define-key evil-motion-state-map (kbd "L") 'evil-find-char-to-backward)
+(define-key evil-motion-state-map (kbd "k") 'evil-search-next)
+(define-key evil-motion-state-map (kbd "K") 'evil-search-previous)
+
+(define-key evil-visual-state-map (kbd "L")	'evil-surround-region)
+(define-key evil-visual-state-map (kbd "H")	'evil-first-non-blank)
+(define-key evil-visual-state-map (kbd "S")	'evil-end-of-line)
 
 (define-key evil-normal-state-map (kbd "H")	'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "S")	'evil-end-of-line)
 
+(define-key evil-motion-state-map (kbd "C-f")   'helm-ls-git-ls)
 (define-key evil-insert-state-map (kbd "C-c")	'evil-force-normal-state)
 
 (define-key evil-motion-state-map (kbd "C-e")
@@ -61,11 +70,11 @@
 (global-set-key (kbd "C-S-T")			'evil-window-down)
 (global-set-key (kbd "C-S-H")			'evil-window-left)
 (global-set-key (kbd "C-S-S")			'evil-window-right)
-(global-set-key (kbd "C-\\")			'split-window-horizontally)
+(global-set-key (kbd "C-\/")			'split-window-horizontally)
 (global-set-key (kbd "C-\-")			'split-window-vertically)
 
-(define-key evil-visual-state-map "s"		'evil-substitute)
-(define-key evil-visual-state-map "S"		'evil-surround-region)
+; (define-key evil-visual-state-map "s"		'evil-substitute)
+; (define-key evil-visual-state-map "S"		'evil-surround-region)
 (define-key evil-visual-state-map "h"		'evil-backward-char)
 (define-key evil-visual-state-map "t"		'evil-next-line)
 (define-key evil-visual-state-map "n"		'evil-previous-line)
@@ -103,3 +112,4 @@
 
 (set-frame-font "Hasklig-16" nil t)
 (tool-bar-mode -1)
+(setq tab-always-indent 'complete)
