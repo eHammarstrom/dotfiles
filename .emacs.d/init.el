@@ -41,6 +41,8 @@
 
 (setq haskell-stylish-on-save t)
 (setq tab-width 2)
+(setq c-default-style "linux"
+      c-basic-offset 8)
 
 (global-set-key (kbd "C-SPC")			'helm-M-x)
 (global-set-key (kbd "C-a")			'align-regexp)
@@ -70,8 +72,9 @@
 (global-set-key (kbd "C-S-T")			'evil-window-down)
 (global-set-key (kbd "C-S-H")			'evil-window-left)
 (global-set-key (kbd "C-S-S")			'evil-window-right)
-(global-set-key (kbd "C-\/")			'split-window-horizontally)
-(global-set-key (kbd "C-\-")			'split-window-vertically)
+
+(define-key evil-normal-state-map (kbd "C-|")	'split-window-horizontally)
+(define-key evil-normal-state-map (kbd "C-\-")	'split-window-vertically)
 
 ; (define-key evil-visual-state-map "s"		'evil-substitute)
 ; (define-key evil-visual-state-map "S"		'evil-surround-region)
