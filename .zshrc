@@ -1,6 +1,5 @@
 eval "$(pyenv init -)"
 
-alias emacs="/Applications/Emacs.app/Contents/MacOS/Emacs.sh"
 alias vim="nvim"
 alias vi="nvim"
 alias gs="git status"
