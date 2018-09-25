@@ -44,6 +44,11 @@
 (setq c-default-style "linux"
       c-basic-offset 8)
 
+(defun my-c++-mode-hook ()
+  (setq c-basic-offset 8)
+  (c-set-offset 'substatement-open 0))
+(add-hook 'c++-mode-hook 'my-c++-mode-hook)
+
 (global-set-key (kbd "C-SPC")			'helm-M-x)
 (global-set-key (kbd "C-a")			'align-regexp)
 
@@ -59,8 +64,9 @@
 (define-key evil-normal-state-map (kbd "H")	'evil-first-non-blank)
 (define-key evil-normal-state-map (kbd "S")	'evil-end-of-line)
 
-(define-key evil-motion-state-map (kbd "C-f")   'helm-ls-git-ls)
-(define-key evil-insert-state-map (kbd "C-c")	'evil-force-normal-state)
+(define-key evil-motion-state-map (kbd "C-f") 'helm-ls-git-ls)
+
+(define-key evil-insert-state-map (kbd "C-i")	'evil-normal-state)
 
 (define-key evil-motion-state-map (kbd "C-e")
   (lambda () (interactive) (evil-scroll-down 0)))
