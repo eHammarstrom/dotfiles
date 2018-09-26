@@ -10,6 +10,7 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+(setq package-enable-at-startup nil)
 (package-initialize)
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
@@ -17,7 +18,6 @@
 					; packages
 (use-package evil)
 (use-package evil-surround)
-(use-package labburn-theme)
 (use-package company)
 (use-package racket-mode)
 (use-package helm)
@@ -26,6 +26,7 @@
 (use-package haskell-mode)
 (use-package intero)
 (use-package editorconfig)
+(use-package alect-themes)
 
 ; enable all things
 (evil-mode 1)
@@ -119,6 +120,7 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Hasklig-16" nil t)
+(set-frame-font "Hasklig-14" nil t)
 (tool-bar-mode -1)
 (setq tab-always-indent 'complete)
+(load-theme 'alect-black t)
