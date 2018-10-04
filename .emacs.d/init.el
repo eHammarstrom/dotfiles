@@ -19,14 +19,22 @@
 (use-package evil)
 (use-package evil-surround)
 (use-package company)
-(use-package racket-mode)
 (use-package helm)
 (use-package helm-ls-git)
 (use-package which-key)
+(use-package editorconfig)
+
+; language specific
+(use-package racket-mode)
 (use-package haskell-mode)
 (use-package intero)
-(use-package editorconfig)
+(use-package glsl-mode)
+
+
+; themes
 (use-package alect-themes)
+(use-package railscasts-theme)
+(load-theme 'railscasts t)
 
 ; enable all things
 (evil-mode 1)
@@ -38,20 +46,37 @@
 (which-key-mode)
 (intero-global-mode 1)
 (editorconfig-mode 1)
-; (add-hook 'haskell-mode-hook 'intero-mode)
 
-(setq haskell-stylish-on-save t)
+; setup general
 (setq tab-width 2)
+
+; setup haskell
+(setq haskell-stylish-on-save t)
+
+; setup c
 (setq c-default-style "linux"
       c-basic-offset 8)
 
+; setup c++
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 8)
   (c-set-offset 'substatement-open 0))
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-(global-set-key (kbd "C-SPC")			'helm-M-x)
-(global-set-key (kbd "C-a")			'align-regexp)
+; setup glsl
+(autoload 'glsl-mode "glsl-mode" nil t)
+(add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
+(add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
+
+;
+; all the keybinds
+;
+(global-set-key (kbd "C-SPC")	'helm-M-x)
+(global-set-key (kbd "C-a")	'align-regexp)
+
+(define-key evil-normal-state-map (kbd "C-/") 'helm-imenu)
 
 (define-key evil-motion-state-map (kbd "l") 'evil-find-char-to)
 (define-key evil-motion-state-map (kbd "L") 'evil-find-char-to-backward)
@@ -112,6 +137,7 @@
           "join this line at the end of the line below"
           (join-line 1)))
 
+; editor settings follow
 (setq visible-bell 1)
 (setq inhibit-startup-screen t)
 (setq jit-lock-defer-time 0)
@@ -120,7 +146,20 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Hasklig-14" nil t)
+(set-frame-font "Hasklig-12" nil t)
 (tool-bar-mode -1)
 (setq tab-always-indent 'complete)
-(load-theme 'alect-black t)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+	 (quote
+		("7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" "43cf3d1a792bfc1fb1965c36561327c8b59ac76760eeec621ce24b74136ec751" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
