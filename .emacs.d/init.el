@@ -15,7 +15,7 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-					; packages
+; packages
 (use-package evil)
 (use-package evil-surround)
 (use-package company)
@@ -32,9 +32,8 @@
 
 
 ; themes
-(use-package alect-themes)
-(use-package railscasts-theme)
-(load-theme 'railscasts t)
+(use-package solarized-theme)
+(load-theme 'solarized-light t)
 
 ; enable all things
 (evil-mode 1)
@@ -146,20 +145,6 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Hasklig-12" nil t)
+(set-frame-font "Fira Code Light-12" nil t)
 (tool-bar-mode -1)
 (setq tab-always-indent 'complete)
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes
-	 (quote
-		("7356632cebc6a11a87bc5fcffaa49bae528026a78637acd03cae57c091afd9b9" "43cf3d1a792bfc1fb1965c36561327c8b59ac76760eeec621ce24b74136ec751" default))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
