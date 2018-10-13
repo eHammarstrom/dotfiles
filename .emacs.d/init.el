@@ -51,9 +51,6 @@
 (editorconfig-mode 1)
 
 ; hook up rainbow delimiters
-(add-hook 'c++-mode-hook	'rainbow-delimiters-mode)
-(add-hook 'c-mode-hook		'rainbow-delimiters-mode)
-(add-hook 'haskell-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook	'rainbow-delimiters-mode)
 
