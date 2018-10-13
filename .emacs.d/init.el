@@ -23,6 +23,7 @@
 (use-package helm-ls-git)
 (use-package which-key)
 (use-package editorconfig)
+(use-package rainbow-delimiters)
 
 ; language specific
 (use-package racket-mode)
@@ -32,8 +33,11 @@
 
 
 ; themes
-(use-package solarized-theme)
-(load-theme 'solarized-light t)
+; (use-package solarized-theme)
+; (setq solarized-use-less-bold t)
+; (use-package abyss-theme)
+(use-package cyberpunk-theme)
+(load-theme 'cyberpunk t)
 
 ; enable all things
 (evil-mode 1)
@@ -45,6 +49,13 @@
 (which-key-mode)
 (intero-global-mode 1)
 (editorconfig-mode 1)
+
+; hook up rainbow delimiters
+(add-hook 'c++-mode-hook	'rainbow-delimiters-mode)
+(add-hook 'c-mode-hook		'rainbow-delimiters-mode)
+(add-hook 'haskell-mode-hook	'rainbow-delimiters-mode)
+(add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
+(add-hook 'racket-mode-hook	'rainbow-delimiters-mode)
 
 ; setup general
 (setq tab-width 2)
@@ -145,6 +156,6 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Fira Code Light-12" nil t)
+(set-frame-font "Fira Code-12" nil t)
 (tool-bar-mode -1)
 (setq tab-always-indent 'complete)
