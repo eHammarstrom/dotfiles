@@ -156,6 +156,6 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Fira Code-12" nil t)
+(set-frame-font "Fira Mono-12" nil t)
 (tool-bar-mode -1)
 
