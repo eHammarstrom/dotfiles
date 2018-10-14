@@ -102,6 +102,7 @@
 (define-key evil-motion-state-map (kbd "C-f") 'helm-ls-git-ls)
 
 (define-key evil-insert-state-map (kbd "C-i")	'evil-normal-state)
+(define-key evil-insert-state-map (kbd "<tab>")	'tab-to-tab-stop)
 
 (define-key evil-motion-state-map (kbd "C-e")
   (lambda () (interactive) (evil-scroll-down 0)))
@@ -157,5 +158,4 @@
 
 (set-frame-font "Fira Code-12" nil t)
 (tool-bar-mode -1)
-; (setq tab-always-indent 'complete)
 
