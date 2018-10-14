@@ -80,6 +80,8 @@
 ;
 ; all the keybinds
 ;
+
+
 (global-set-key (kbd "C-SPC")	'helm-M-x)
 (global-set-key (kbd "C-a")	'align-regexp)
 
@@ -155,4 +157,5 @@
 
 (set-frame-font "Fira Code-12" nil t)
 (tool-bar-mode -1)
-(setq tab-always-indent 'complete)
+; (setq tab-always-indent 'complete)
+
