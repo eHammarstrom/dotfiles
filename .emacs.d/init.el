@@ -31,6 +31,8 @@
 (use-package intero)
 (use-package glsl-mode)
 
+; for fun
+(use-package elcord)
 
 ; themes
 ; (use-package solarized-theme)
@@ -49,6 +51,7 @@
 (which-key-mode)
 (intero-global-mode 1)
 (editorconfig-mode 1)
+(elcord-mode)
 
 ; hook up rainbow delimiters
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
@@ -56,6 +59,7 @@
 
 ; setup general
 (setq tab-width 2)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 ; setup haskell
 (setq haskell-stylish-on-save t)
@@ -156,6 +160,5 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Fira Mono-12" nil t)
+(set-frame-font "Fira Mono-14" nil t)
 (tool-bar-mode -1)
-
