@@ -15,33 +15,35 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-; packages
+					; packages
 (use-package evil)
 (use-package evil-surround)
 (use-package company)
+(use-package company-irony)
 (use-package helm)
 (use-package helm-ls-git)
 (use-package which-key)
 (use-package editorconfig)
 (use-package rainbow-delimiters)
 
-; language specific
+					; language specific
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package intero)
 (use-package glsl-mode)
+(use-package irony) ;; C/CPP/OBJC
 
-; for fun
+					; for fun
 (use-package elcord)
 
-; themes
-; (use-package solarized-theme)
-; (setq solarized-use-less-bold t)
-; (use-package abyss-theme)
+					; themes
+					; (use-package solarized-theme)
+					; (setq solarized-use-less-bold t)
+					; (use-package abyss-theme)
 (use-package cyberpunk-theme)
 (load-theme 'cyberpunk t)
 
-; enable all things
+					; enable all things
 (evil-mode 1)
 (global-evil-surround-mode 1)
 (global-company-mode t)
@@ -53,43 +55,53 @@
 (editorconfig-mode 1)
 (elcord-mode)
 
-; hook up rainbow delimiters
+					; C/CPP/OBJC irony mode
+(eval-after-load 'company
+  '(add-to-list 'company-backends 'company-irony))
+(add-hook 'c++-mode-hook 'irony-mode)
+(add-hook 'c-mode-hook 'irony-mode)
+(add-hook 'objc-mode-hook 'irony-mode)
+(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+
+					; hook up rainbow delimiters
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook	'rainbow-delimiters-mode)
 
-; setup general
+					; setup general
 (setq tab-width 2)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-; setup haskell
+					; setup haskell
 (setq haskell-stylish-on-save t)
 
-; setup c
+					; setup c
 (setq c-default-style "linux"
       c-basic-offset 8)
 
-; setup c++
+					; setup c++
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 8)
   (c-set-offset 'substatement-open 0))
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-; setup glsl
+					; setup glsl
 (autoload 'glsl-mode "glsl-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
 
-;
-; all the keybinds
-;
+					;
+					; all the keybinds
+					;
 
 
 (global-set-key (kbd "C-SPC")	'helm-M-x)
 (global-set-key (kbd "C-a")	'align-regexp)
 
 (define-key evil-normal-state-map (kbd "C-/") 'helm-imenu)
+
+(define-key evil-insert-state-map (kbd "<backtab>") 'company-complete-common-or-cycle)
 
 (define-key evil-motion-state-map (kbd "l") 'evil-find-char-to)
 (define-key evil-motion-state-map (kbd "L") 'evil-find-char-to-backward)
@@ -122,8 +134,8 @@
 (define-key evil-normal-state-map (kbd "C-|")	'split-window-horizontally)
 (define-key evil-normal-state-map (kbd "C-\-")	'split-window-vertically)
 
-; (define-key evil-visual-state-map "s"		'evil-substitute)
-; (define-key evil-visual-state-map "S"		'evil-surround-region)
+					; (define-key evil-visual-state-map "s"		'evil-substitute)
+					; (define-key evil-visual-state-map "S"		'evil-surround-region)
 (define-key evil-visual-state-map "h"		'evil-backward-char)
 (define-key evil-visual-state-map "t"		'evil-next-line)
 (define-key evil-visual-state-map "n"		'evil-previous-line)
@@ -148,10 +160,10 @@
 
 (define-key evil-normal-state-map
   "T" #'(lambda () (interactive)
-          "join this line at the end of the line below"
-          (join-line 1)))
+	  "join this line at the end of the line below"
+	  (join-line 1)))
 
-; editor settings follow
+					; editor settings follow
 (setq visible-bell 1)
 (setq inhibit-startup-screen t)
 (setq jit-lock-defer-time 0)
@@ -160,5 +172,43 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Fira Mono-14" nil t)
+(set-frame-font "Fira Mono-12" nil t)
 (tool-bar-mode -1)
+
+
+;; LLVM Style Guide from llvm/utils/emacs/emacs.el
+
+;; ease of access
+(defun llvm-style ()
+  (interactive)
+  (c-set-style "llvm.org"))
+
+(defun llvm-lineup-statement (langelem)
+  (let ((in-assign (c-lineup-assignments langelem)))
+    (if (not in-assign)
+	'++
+      (aset in-assign 0
+	    (+ (aref in-assign 0)
+	       (* 2 c-basic-offset)))
+      in-assign)))
+
+;; Add a cc-mode style for editing LLVM C and C++ code
+(c-add-style "llvm.org"
+	     '("gnu"
+	       (fill-column . 80)
+	       (c++-indent-level . 2)
+	       (c-basic-offset . 2)
+	       (indent-tabs-mode . nil)
+	       (c-offsets-alist . ((arglist-intro . ++)
+				   (innamespace . 0)
+				   (member-init-intro . ++)
+				   (statement-cont . llvm-lineup-statement)))))
+
+;; Files with "llvm" in their names will automatically be set to the
+;; llvm.org coding style.
+(add-hook 'c-mode-common-hook
+	  (function
+	   (lambda nil
+	     (if (string-match "llvm" buffer-file-name)
+		 (progn
+		   (c-set-style "llvm.org"))))))
