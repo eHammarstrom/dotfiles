@@ -19,19 +19,25 @@
 (use-package evil)
 (use-package evil-surround)
 (use-package company)
-(use-package company-irony)
 (use-package helm)
 (use-package helm-ls-git)
 (use-package which-key)
 (use-package editorconfig)
 (use-package rainbow-delimiters)
+(use-package lsp-mode)
+(use-package company-lsp)
 
 					; language specific
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package intero)
 (use-package glsl-mode)
-(use-package irony) ;; C/CPP/OBJC
+(use-package lsp-clangd
+  :hook
+  ((c-mode . lsp-clangd-c-enable)
+   (c++-mode . lsp-clangd-c++-enable)
+   (objc-mode . lsp-clangd-objc-enable)))
+
 
 					; for fun
 (use-package elcord)
@@ -55,13 +61,9 @@
 (editorconfig-mode 1)
 (elcord-mode)
 
-					; C/CPP/OBJC irony mode
-(eval-after-load 'company
-  '(add-to-list 'company-backends 'company-irony))
-(add-hook 'c++-mode-hook 'irony-mode)
-(add-hook 'c-mode-hook 'irony-mode)
-(add-hook 'objc-mode-hook 'irony-mode)
-(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+					; add LSP to company autocomplete
+(push 'company-lsp company-backends)
+
 
 					; hook up rainbow delimiters
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
