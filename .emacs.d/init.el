@@ -15,7 +15,7 @@
 (straight-use-package 'use-package)
 (setq straight-use-package-by-default t)
 
-					; packages
+;; packages
 (use-package evil)
 (use-package evil-surround)
 (use-package company)
@@ -25,13 +25,19 @@
 (use-package editorconfig)
 (use-package rainbow-delimiters)
 (use-package lsp-mode)
+(use-package lsp-ui
+  :init
+  (add-hook 'c-mode			#'lsp-ui-mode)
+  (add-hook 'c++-mode		#'lsp-ui-mode)
+  (add-hook 'objc-mode	#'lsp-ui-mode))
 (use-package company-lsp)
 
-					; language specific
+;; language specific
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package intero)
 (use-package glsl-mode)
+(use-package clang-format)
 (use-package lsp-clangd
   :hook
   ((c-mode . lsp-clangd-c-enable)
@@ -39,64 +45,63 @@
    (objc-mode . lsp-clangd-objc-enable)))
 
 
-					; for fun
+;; for fun
 (use-package elcord)
 
-					; themes
-					; (use-package solarized-theme)
-					; (setq solarized-use-less-bold t)
-					; (use-package abyss-theme)
+;; themes
+;; (use-package solarized-theme)
+;; (setq solarized-use-less-bold t)
+;; (use-package abyss-theme)
 (use-package cyberpunk-theme)
 (load-theme 'cyberpunk t)
 
-					; enable all things
+;; enable all things
 (evil-mode 1)
 (global-evil-surround-mode 1)
 (global-company-mode t)
 (helm-mode 1)
-(setq display-line-numbers-type 'relative)
-(global-display-line-numbers-mode t)
 (which-key-mode)
 (intero-global-mode 1)
 (editorconfig-mode 1)
 (elcord-mode)
 
-					; add LSP to company autocomplete
+;; add LSP to company autocomplete
 (push 'company-lsp company-backends)
 
 
-					; hook up rainbow delimiters
+;; hook up rainbow delimiters
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook	'rainbow-delimiters-mode)
 
-					; setup general
-(setq tab-width 2)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
 
-					; setup haskell
+;; setup haskell
 (setq haskell-stylish-on-save t)
 
-					; setup c
+;; setup c
 (setq c-default-style "linux"
       c-basic-offset 8)
 
-					; setup c++
+;; setup c++
+(setq clang-format-style-option "llvm")
+
 (defun my-c++-mode-hook ()
   (setq c-basic-offset 8)
   (c-set-offset 'substatement-open 0))
 (add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
-					; setup glsl
+;; setup glsl
 (autoload 'glsl-mode "glsl-mode" nil t)
 (add-to-list 'auto-mode-alist '("\\.glsl\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.vert\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.frag\\'" . glsl-mode))
 (add-to-list 'auto-mode-alist '("\\.geom\\'" . glsl-mode))
 
-					;
-					; all the keybinds
-					;
+;;
+;; all the keybinds
+;;
 
+;; clang-fmt
+(global-set-key (kbd "C-c f") 'clang-format-buffer)
 
 (global-set-key (kbd "C-SPC")	'helm-M-x)
 (global-set-key (kbd "C-a")	'align-regexp)
@@ -136,8 +141,6 @@
 (define-key evil-normal-state-map (kbd "C-|")	'split-window-horizontally)
 (define-key evil-normal-state-map (kbd "C-\-")	'split-window-vertically)
 
-					; (define-key evil-visual-state-map "s"		'evil-substitute)
-					; (define-key evil-visual-state-map "S"		'evil-surround-region)
 (define-key evil-visual-state-map "h"		'evil-backward-char)
 (define-key evil-visual-state-map "t"		'evil-next-line)
 (define-key evil-visual-state-map "n"		'evil-previous-line)
@@ -165,7 +168,7 @@
 	  "join this line at the end of the line below"
 	  (join-line 1)))
 
-					; editor settings follow
+;; editor settings follow
 (setq visible-bell 1)
 (setq inhibit-startup-screen t)
 (setq jit-lock-defer-time 0)
@@ -174,7 +177,7 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Fira Mono-12" nil t)
+(set-frame-font "Fira Mono-11" nil t)
 (tool-bar-mode -1)
 
 
@@ -214,3 +217,13 @@
 	     (if (string-match "llvm" buffer-file-name)
 		 (progn
 		   (c-set-style "llvm.org"))))))
+
+;; setup general
+(setq display-line-numbers-type 'relative)
+(global-display-line-numbers-mode t)
+(setq tab-width 2)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
+(scroll-bar-mode -1)
+
+(split-window-horizontally)
