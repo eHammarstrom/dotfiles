@@ -55,6 +55,13 @@
 (use-package cyberpunk-theme)
 (load-theme 'cyberpunk t)
 
+;; smooth scroll
+(use-package smooth-scroll
+	:config
+	(smooth-scroll-mode 1)
+	(setq smooth-scroll/vscroll-step-size 2)
+	)
+
 ;; enable all things
 (evil-mode 1)
 (global-evil-surround-mode 1)
