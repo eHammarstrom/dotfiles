@@ -33,6 +33,8 @@
 (use-package company-lsp)
 
 ;; language specific
+(use-package tuareg) ;; OCaml
+(use-package merlin) ;; OCaml
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package intero)
