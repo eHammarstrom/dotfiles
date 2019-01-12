@@ -1,7 +1,6 @@
 # Config setup
 
-## irony
+## clangd
 
-set `LD_LIBRARY_PATH` to point to dir where `libclang.so` is contained, e.g. `export LD_LIBRARY_PATH=/opt/llvm/release_70/lib:$LD_LIBRARY_PATH`
+`-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` [see](https://github.com/Sarcasm/irony-mode#compilation-database).
 
-don't forget to build compilation databases e.g. add `-DCMAKE_EXPORT_COMPILE_COMMANDS=ON` to `cmake`, read more [here](https://github.com/Sarcasm/irony-mode#compilation-database).
