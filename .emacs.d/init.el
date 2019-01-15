@@ -45,6 +45,7 @@
   ((c-mode . lsp-clangd-c-enable)
    (c++-mode . lsp-clangd-c++-enable)
    (objc-mode . lsp-clangd-objc-enable)))
+(use-package nix-mode)
 
 
 ;; for fun
@@ -235,4 +236,4 @@
 
 (scroll-bar-mode -1)
 
-(split-window-horizontally)
+;; (split-window-horizontally)
