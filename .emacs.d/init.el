@@ -187,9 +187,11 @@
 (setq scroll-conservatively 10)
 (setq scroll-margin 7)
 
-(set-frame-font "Hack-12" nil t)
-(tool-bar-mode -1)
-
+(add-to-list 'after-make-frame-functions
+	     (lambda (frame)
+	       (select-frame frame)
+	       (set-frame-font "Hack-12" nil t)
+	       (tool-bar-mode -1)))
 
 ;; LLVM Style Guide from llvm/utils/emacs/emacs.el
 
