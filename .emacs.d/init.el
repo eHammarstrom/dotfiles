@@ -37,7 +37,17 @@
 (use-package merlin) ;; OCaml
 (use-package racket-mode)
 (use-package haskell-mode)
-(use-package intero)
+(use-package dante
+  :ensure t
+  :after haskell-mode
+  :commands 'dante-mode
+  :init
+  (add-hook 'haskell-mode-hook 'dante-mode)
+
+  (add-hook 'haskell-mode-hook 'flycheck-mode)
+  ;; OR:
+  ;; (add-hook 'haskell-mode-hook 'flymake-mode)
+  )
 (use-package glsl-mode)
 (use-package clang-format)
 (use-package lsp-clangd
@@ -49,7 +59,7 @@
 
 
 ;; for fun
-(use-package elcord)
+					; (use-package elcord)
 
 ;; themes
 ;; (use-package solarized-theme)
@@ -60,10 +70,14 @@
 
 ;; smooth scroll
 (use-package smooth-scroll
-	:config
-	(smooth-scroll-mode 1)
-	(setq smooth-scroll/vscroll-step-size 2)
-	)
+  :config
+  (smooth-scroll-mode 1)
+  (setq smooth-scroll/vscroll-step-size 2)
+  )
+
+;; load external configs
+(add-to-list 'load-path "~/.emacs.d/extras")
+					; (require 'iosevka)
 
 ;; enable all things
 (evil-mode 1)
@@ -71,9 +85,8 @@
 (global-company-mode t)
 (helm-mode 1)
 (which-key-mode)
-(intero-global-mode 1)
 (editorconfig-mode 1)
-(elcord-mode)
+					; (elcord-mode)
 
 ;; add LSP to company autocomplete
 (push 'company-lsp company-backends)
@@ -190,7 +203,14 @@
 (add-to-list 'after-make-frame-functions
 	     (lambda (frame)
 	       (select-frame frame)
-	       (set-frame-font "Hack-12" nil t)
+
+	       (push
+		'("lambda"  . ?λ) prettify-symbols-alist)
+
+	       (global-prettify-symbols-mode +1)
+	       (setq prettify-symbols-unprettify-at-point t)
+	       ;; thematic configs
+	       (set-frame-font "iosevka-13" nil t)
 	       (tool-bar-mode -1)))
 
 ;; LLVM Style Guide from llvm/utils/emacs/emacs.el
@@ -239,3 +259,15 @@
 (scroll-bar-mode -1)
 
 ;; (split-window-horizontally)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(safe-local-variable-values (quote ((dante-repl-command-line "nd" "build" "1")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#d3d3d3" :background "#000000")))))
