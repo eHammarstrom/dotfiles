@@ -25,11 +25,6 @@
 (use-package editorconfig)
 (use-package rainbow-delimiters)
 (use-package lsp-mode)
-(use-package lsp-ui
-  :init
-  (add-hook 'c-mode			#'lsp-ui-mode)
-  (add-hook 'c++-mode		#'lsp-ui-mode)
-  (add-hook 'objc-mode	#'lsp-ui-mode))
 (use-package company-lsp)
 
 ;; language specific
@@ -96,7 +91,6 @@
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
 (add-hook 'racket-mode-hook	'rainbow-delimiters-mode)
 
-
 ;; setup haskell
 (setq haskell-stylish-on-save t)
 
@@ -122,9 +116,6 @@
 ;;
 ;; all the keybinds
 ;;
-
-;; clang-fmt
-(global-set-key (kbd "C-c f") 'clang-format-buffer)
 
 (global-set-key (kbd "C-SPC")	'helm-M-x)
 (global-set-key (kbd "C-a")	'align-regexp)
