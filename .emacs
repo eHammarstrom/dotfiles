@@ -30,6 +30,7 @@
 ;; language specific
 (use-package tuareg) ;; OCaml
 (use-package merlin) ;; OCaml
+(use-package rust-mode)
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package dante
@@ -86,6 +87,8 @@
 ;; add LSP to company autocomplete
 (push 'company-lsp company-backends)
 
+;; hook up lsp to rust
+(add-hook 'rust-mode-hook #'lsp)
 
 ;; hook up rainbow delimiters
 (add-hook 'emacs-lisp-mode-hook	'rainbow-delimiters-mode)
