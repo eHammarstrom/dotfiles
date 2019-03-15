@@ -76,10 +76,9 @@ bindsym $mod+Shift+t move down
 bindsym $mod+Shift+n move up
 bindsym $mod+Shift+s move right
 
-# Pulse Audio controls
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume @DEFAULT_SINK@ -5% #decrease sound volume
-bindsym XF86AudioMute exec --no-startup-id pactl set-sink-mute @DEFAULT_SINK@ toggle # mute sound
+bindsym XF86AudioRaiseVolume exec "amixer -q sset Master,0 2+ unmute"
+bindsym XF86AudioLowerVolume exec "amixer -q sset Master,0 2- unmute"
+bindsym XF86AudioMute exec "amixer -q sset Master,0 toggle"
 
 # Media player controls
 bindsym XF86AudioPlay exec playerctl play
@@ -106,7 +105,7 @@ bindsym $mod+t layout tabbed
 bindsym $mod+s layout toggle split
 
 # toggle tiling / floating
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+f floating toggle
 
 # change focus between tiling / floating windows
 bindsym $mod+space focus mode_toggle
