@@ -204,7 +204,7 @@
 	       (global-prettify-symbols-mode +1)
 	       (setq prettify-symbols-unprettify-at-point t)
 	       ;; thematic configs
-	       (set-frame-font "iosevka-13" nil t)
+	       (set-frame-font "iosevka-14" nil t)
 	       (tool-bar-mode -1)))
 
 ;; LLVM Style Guide from llvm/utils/emacs/emacs.el
