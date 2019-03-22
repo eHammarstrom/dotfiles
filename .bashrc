@@ -153,4 +153,5 @@ alias gdf="git diff"
 alias scrsnip="scrot -s ~/screenshots/%b%d::%H%M%S.png"
 alias scr="scrot ~/screenshots/%b%d::%H%M%S.png"
 alias op="xdg-open"
-alias ls="lsd --icon-theme unicode"
+
+export PATH=$PATH:$HOME/.cargo/bin

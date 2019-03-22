@@ -1,3 +1,5 @@
+exec --no-startup-id /usr/bin/redshift -c /home/estrom/.config/redshift/redshift.conf
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
