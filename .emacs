@@ -33,17 +33,6 @@
 (use-package rust-mode)
 (use-package racket-mode)
 (use-package haskell-mode)
-(use-package dante
-  :ensure t
-  :after haskell-mode
-  :commands 'dante-mode
-  :init
-  (add-hook 'haskell-mode-hook 'dante-mode)
-
-  (add-hook 'haskell-mode-hook 'flycheck-mode)
-  ;; OR:
-  ;; (add-hook 'haskell-mode-hook 'flymake-mode)
-  )
 (use-package glsl-mode)
 (use-package clang-format)
 (use-package lsp-clangd
@@ -58,11 +47,17 @@
 					; (use-package elcord)
 
 ;; themes
-;; (use-package solarized-theme)
-;; (setq solarized-use-less-bold t)
-;; (use-package abyss-theme)
-(use-package cyberpunk-theme)
-(load-theme 'cyberpunk t)
+(use-package base16-theme)
+(load-theme 'base16-atlas t)
+
+;; Set the cursor color based on the evil state
+(defvar my/base16-colors base16-atlas-colors)
+(setq evil-emacs-state-cursor   `(,(plist-get my/base16-colors :base0D) box)
+      evil-insert-state-cursor  `(,(plist-get my/base16-colors :base0D) bar)
+      evil-motion-state-cursor  `(,(plist-get my/base16-colors :base0E) box)
+      evil-normal-state-cursor  `(,(plist-get my/base16-colors :base0B) box)
+      evil-replace-state-cursor `(,(plist-get my/base16-colors :base08) bar)
+      evil-visual-state-cursor  `(,(plist-get my/base16-colors :base09) box))
 
 ;; smooth scroll
 (use-package smooth-scroll
@@ -251,17 +246,17 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 
 (scroll-bar-mode -1)
-
-;; (split-window-horizontally)
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(safe-local-variable-values (quote ((dante-repl-command-line "nd" "build" "1")))))
+ '(custom-safe-themes
+   (quote
+    ("819d24b9aba8fcb446aecfb59f87d1817a6d3eb07de7fdec67743ef32194438b" "f5f3a6fb685fe5e1587bafd07db3bf25a0655f3ddc579ed9d331b6b19827ea46" "542e6fee85eea8e47243a5647358c344111aa9c04510394720a3108803c8ddd1" "ffac21ab88a0f4603969a24b96993bd73a13fe0989db7ed76d94c305891fad64" "45a8b89e995faa5c69aa79920acff5d7cb14978fbf140cdd53621b09d782edcf" "41eb3fe4c6b80c7ad156a8c52e9dd6093e8856c7bbf2b92cc3a4108ceb385087" "fc7fd2530b82a722ceb5b211f9e732d15ad41d5306c011253a0ba43aaf93dccc" "3e34e9bf818cf6301fcabae2005bba8e61b1caba97d95509c8da78cff5f2ec8e" "cabc32838ccceea97404f6fcb7ce791c6e38491fd19baa0fcfb336dcc5f6e23c" "1d079355c721b517fdc9891f0fda927fe3f87288f2e6cc3b8566655a64ca5453" "b3bcf1b12ef2a7606c7697d71b934ca0bdd495d52f901e73ce008c4c9825a3aa" "34ed3e2fa4a1cb2ce7400c7f1a6c8f12931d8021435bad841fdc1192bd1cc7da" "760ce657e710a77bcf6df51d97e51aae2ee7db1fba21bbad07aab0fa0f42f834" default))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 89)) (:foreground "#d3d3d3" :background "#000000")))))
+ )
