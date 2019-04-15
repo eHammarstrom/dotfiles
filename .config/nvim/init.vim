@@ -18,7 +18,8 @@ Plug 'autozimu/LanguageClient-neovim', {
     \ 'branch': 'next',
     \ 'do': 'bash install.sh',
     \ }
-Plug 'junegunn/fzf'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'chriskempson/base16-vim'
 
@@ -28,6 +29,8 @@ syntax enable
 filetype plugin indent on
 
 """""" bindings
+
+let mapleader = ','
 
 " editing
 nmap <BS> O<down><Esc>
@@ -126,8 +129,14 @@ let g:LanguageClient_serverCommands = {
     \ }
 
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
-" Or map each action separately
 nnoremap <silent> K :call LanguageClient#textDocument_hover()<CR>
 nnoremap <silent> gd :call LanguageClient#textDocument_definition()<CR>
 nnoremap <silent> <F2> :call LanguageClient#textDocument_rename()<CR>
+
+" fzf
+let g:fzf_nvim_statusline = 0
+
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <C-p> :Buffers<CR>
+
 
