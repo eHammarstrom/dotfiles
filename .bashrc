@@ -153,5 +153,8 @@ alias gdf="git diff"
 alias scrsnip="scrot -s ~/screenshots/%b%d::%H%M%S.png"
 alias scr="scrot ~/screenshots/%b%d::%H%M%S.png"
 alias op="xdg-open"
+alias vi="nvim"
+alias vim="nvim"
+alias virc="nvim ~/.config/nvim/init.vim"
 
 export PATH=$PATH:$HOME/.cargo/bin

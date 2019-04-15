@@ -205,6 +205,10 @@
 ;; LLVM Style Guide from llvm/utils/emacs/emacs.el
 
 ;; ease of access
+(defun linux-style ()
+  (interactive)
+  (c-set-style "linux"))
+
 (defun llvm-style ()
   (interactive)
   (c-set-style "llvm.org"))
