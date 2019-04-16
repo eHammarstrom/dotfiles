@@ -33,6 +33,8 @@ filetype plugin indent on
 
 let mapleader = ','
 
+map <silent><leader>t :terminal<CR>
+
 " editing
 nmap <BS> O<down><Esc>
 nmap <CR> o<Esc><n><Esc>
@@ -123,8 +125,18 @@ colorscheme base16-default-dark
 """""" plugin settings
 
 " ale
+
+" ale is getting deoplete integration soon
+" call deoplete#enable()
+
+" try to open preview window at bottom
+set splitbelow
+" set hidden
+
+let g:ale_completion_max_suggestions = 10
 let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 1
+let g:ale_cursor_detail = 1
 
 let g:ale_linters = {
 \   'rust': ['rls', 'rustc', 'cargo'],
@@ -137,7 +149,6 @@ let g:ale_fixers = {
 \}
 
 " lsp client
-" set hidden
 " let g:LanguageClient_windowLogMessageLevel = "Error"
 " let g:LanguageClient_serverCommands = {
     " \ 'rust': ['/usr/bin/rustup', 'run', 'stable', 'rls'],
@@ -149,5 +160,3 @@ let g:fzf_nvim_statusline = 0
 
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <C-p> :Buffers<CR>
-
-
