@@ -158,3 +158,5 @@ alias vim="nvim"
 alias virc="nvim ~/.config/nvim/init.vim"
 
 export PATH=$PATH:$HOME/.cargo/bin
+
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
