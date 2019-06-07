@@ -2,6 +2,8 @@ exec --no-startup-id /usr/bin/redshift -c /home/estrom/.config/redshift/redshift
 
 exec --no-startup-id /usr/bin/timedatectl set-ntp 1 --adjust-system-clock
 
+exec --no-startup-id /usr/bin/jack_control start
+
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
 set $mod Mod4
 
@@ -205,6 +207,8 @@ for_window [class="Skype"] floating enable border normal
 for_window [class="Timeset-gui"] floating enable border normal
 for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Xfburn"] floating enable
+for_window [class="Cadence"] floating enable border normal
+for_window [class="Guitarix"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus

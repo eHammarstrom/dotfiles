@@ -37,7 +37,7 @@ map <silent><leader>t :terminal<CR>
 
 " editing
 nmap <BS> O<down><Esc>
-nmap <CR> o<Esc><n><Esc>
+nmap <CR> o<Esc>
 
 " motions
 nnoremap H ^
@@ -108,6 +108,7 @@ set history=10000
 set scrolloff=10
 
 set complete=.,w,b,u,U,d,k,t
+set completeopt=menu,menuone,noselect,noinsert
 set tags=./tags,tags,../tags
 
 " global tabstuff, personal preference
@@ -159,6 +160,7 @@ let g:ale_fixers = {
 
 " fzf
 let g:fzf_nvim_statusline = 0
+let $FZF_DEFAULT_COMMAND = 'rg --files'
 
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <C-p> :Buffers<CR>
