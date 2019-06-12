@@ -43,7 +43,7 @@ case ${TERM} in
 		;;
 esac
 
-use_color=true
+use_color=false
 
 # Set colorful PS1 only on colorful terminals.
 # dircolors --print-database uses its own built-in database
@@ -141,23 +141,4 @@ ex ()
 # better yaourt colors
 export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1;41;5:votes=1;44:dsc=0:other=1;35"
 
-
-alias ls="ls --color=auto"
-alias ema="emacsclient -c"
-alias emat="emacsclient -t"
-alias gs="git status"
-alias gp="git push"
-alias gct="git commit"
-alias gad="git add"
-alias gdf="git diff"
-alias scrsnip="scrot -s ~/screenshots/%b%d::%H%M%S.png"
-alias scr="scrot ~/screenshots/%b%d::%H%M%S.png"
-alias op="xdg-open"
-alias vi="nvim"
-alias vim="nvim"
-alias virc="nvim ~/.config/nvim/init.vim"
-
-export PATH=$PATH:$HOME/.cargo/bin
-export PATH=$PATH:$HOME/.local/bin
-
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+source ~/.ehconf

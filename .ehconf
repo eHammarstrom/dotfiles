@@ -1,0 +1,35 @@
+#
+# extends ~/.bashrc
+#
+
+# general
+alias ls="ls --color=none"
+
+# git
+alias gs="git status"
+alias gp="git push"
+alias gct="git commit"
+alias gco="git checkout"
+alias gad="git add"
+alias gdf="git diff"
+
+# tmux
+alias tat="tmux attach-session -t"
+alias tac="tmux attach-session -c"
+alias tls="tmux ls"
+
+# emacs
+alias ema="emacsclient -c"
+alias emat="emacsclient -t"
+
+# nvim
+alias vi="nvim"
+alias vim="nvim"
+alias virc="nvim ~/.config/nvim/init.vim"
+
+# PATHs
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
