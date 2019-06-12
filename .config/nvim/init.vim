@@ -11,7 +11,7 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace'
-Plug 'jiangmiao/auto-pairs'
+" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 "Plug 'autozimu/LanguageClient-neovim', {
@@ -21,7 +21,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 " Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-Plug 'chriskempson/base16-vim'
+Plug 'rakr/vim-two-firewatch'
 Plug 'w0rp/ale'
 
 call plug#end()
@@ -120,8 +120,9 @@ au FileType c,h setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolu
 " THEME
 set termguicolors
 set t_Co=256
-set background=dark
-colorscheme base16-default-dark
+set background=light
+let g:two_firewatch_italics=1
+colorscheme two-firewatch
 
 """""" plugin settings
 
