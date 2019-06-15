@@ -1,5 +1,12 @@
 eval "$(pyenv init -)"
 
+
+alias home="ssh ehammarstrom@31.208.64.89"
+alias make="make -j3"
+alias dic_ssh="ssh dic14eh2@login.student.lth.se"
+alias dic_sftp="sftp dic14eh2@login.student.lth.se"
+alias rrr="./run.sh"
+alias ccc="./compile.sh"
 alias vim="nvim"
 alias vi="nvim"
 alias gs="git status"
@@ -14,8 +21,15 @@ fpath+=~/.zfunc
 
 export PYENV_ROOT=$(pyenv root)
 
+export PATH=/usr/local/bin:$PATH
+export PATH=/opt/llvm/7/bin:$PATH
+
+export CLASSPATH=/opt/jlib/*:$CLASSPATH
+
 # Path to your oh-my-zsh installation.
 export ZSH=/Users/ehammarstrom/.oh-my-zsh
+
+export LD_LIBRARY_PATH=/opt/llvm/7/lib:$LD_LIBRARY_PATH
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -105,3 +119,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+export PATH="/usr/local/opt/llvm/bin:$PATH"
+
+# opam configuration
+test -r /Users/ehammarstrom/.opam/opam-init/init.zsh && . /Users/ehammarstrom/.opam/opam-init/init.zsh > /dev/null 2> /dev/null || true

@@ -48,7 +48,7 @@
 
 
 ;; for fun
-(use-package elcord)
+; (use-package elcord)
 
 ;; themes
 ;; (use-package solarized-theme)
@@ -72,7 +72,7 @@
 (which-key-mode)
 (intero-global-mode 1)
 (editorconfig-mode 1)
-(elcord-mode)
+; (elcord-mode)
 
 ;; add LSP to company autocomplete
 (push 'company-lsp company-backends)
@@ -235,4 +235,7 @@
 
 (scroll-bar-mode -1)
 
-(split-window-horizontally)
+; (split-window-horizontally)
+;; ## added by OPAM user-setup for emacs / base ## 56ab50dc8996d2bb95e7856a6eddb17b ## you can edit, but keep this line
+(require 'opam-user-setup "~/.emacs.d/opam-user-setup.el")
+;; ## end of OPAM user-setup addition for emacs / base ## keep this line
