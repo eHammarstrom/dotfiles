@@ -11,18 +11,12 @@ endif
 call plug#begin('~/.local/share/nvim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace'
-" Plug 'jiangmiao/auto-pairs'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-"Plug 'autozimu/LanguageClient-neovim', {
-    "\ 'branch': 'next',
-    "\ 'do': 'bash install.sh',
-    "\ }
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-" Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
 Plug 'rakr/vim-two-firewatch'
-Plug 'w0rp/ale'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 call plug#end()
 
@@ -106,7 +100,6 @@ set incsearch
 set mouse=a
 set history=10000
 set scrolloff=10
-
 set complete=.,w,b,u,U,d,k,t
 set completeopt=menu,menuone,noselect,noinsert
 set tags=./tags,tags,../tags
@@ -126,42 +119,43 @@ colorscheme two-firewatch
 
 """""" plugin settings
 
-" ale
-
-" ale is getting deoplete integration soon
-" call deoplete#enable()
-
-" try to open preview window at bottom
-set splitbelow
-" set hidden
-
-let g:ale_completion_max_suggestions = 10
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
-" let g:ale_cursor_detail = 1
-
-let g:ale_linters = {
-\   'rust': ['rls', 'rustc', 'cargo'],
-\   'c': ['clangd', 'clang', 'gcc'],
-\   'python': ['pyls'],
-\}
-
-let g:ale_fixers = {
-\   '*': ['trim_whitespace'],
-\   'c': ['clang-format'],
-\   'rust': ['rustfmt'],
-\}
-
-" lsp client
-" let g:LanguageClient_windowLogMessageLevel = "Error"
-" let g:LanguageClient_serverCommands = {
-    " \ 'rust': ['/usr/bin/rustup', 'run', 'stable', 'rls'],
-    " \ 'python': ['/usr/local/bin/pyls'],
-    " \ }
-
 " fzf
 let g:fzf_nvim_statusline = 0
 let $FZF_DEFAULT_COMMAND = 'rg --files'
 
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <C-p> :Buffers<CR>
+
+" coc.nvim config
+" trigger completion
+inoremap <silent><expr> <c-space> coc#refresh()
+" confirm completion
+inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
+" show docs
+nnoremap <silent> K :call <SID>show_documentation()<CR>
+
+" Use `:Format` to format current buffer
+command! -nargs=0 Format :call CocAction('format')
+" use `:OrganizeImport` for organize import of current buffer
+command! -nargs=0 OrganizeImport :call CocAction('runCommand', 'editor.action.organizeImport')
+
+" highlight symbol under cursor on CursorHold
+autocmd CursorHold * silent call CocActionAsync('highlight')
+
+autocmd BufNewFile,BufRead *.rs CocEnable
+
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
+
+function! s:show_documentation()
+  if (index(['vim','help'], &filetype) >= 0)
+    execute 'h '.expand('<cword>')
+  else
+    call CocAction('doHover')
+  endif
+endfunction
