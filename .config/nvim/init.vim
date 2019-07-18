@@ -16,7 +16,7 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rakr/vim-two-firewatch'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'w0rp/ale'
 
 call plug#end()
 
@@ -103,6 +103,13 @@ set scrolloff=10
 set complete=.,w,b,u,U,d,k,t
 set completeopt=menu,menuone,noselect,noinsert
 set tags=./tags,tags,../tags
+" set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set signcolumn=yes
 
 " global tabstuff, personal preference
 set autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=80
@@ -126,36 +133,22 @@ let $FZF_DEFAULT_COMMAND = 'rg --files'
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <C-p> :Buffers<CR>
 
-" coc.nvim config
-" trigger completion
-inoremap <silent><expr> <c-space> coc#refresh()
-" confirm completion
-inoremap <expr> <cr> pumvisible() ? "\<C-y>" : "\<C-g>u\<CR>"
-" show docs
-nnoremap <silent> K :call <SID>show_documentation()<CR>
 
-" Use `:Format` to format current buffer
-command! -nargs=0 Format :call CocAction('format')
-" use `:OrganizeImport` for organize import of current buffer
-command! -nargs=0 OrganizeImport :call CocAction('runCommand', 'editor.action.organizeImport')
+" ALE
 
-" highlight symbol under cursor on CursorHold
-autocmd CursorHold * silent call CocActionAsync('highlight')
+let g:ale_completion_max_suggestions = 100
+let g:ale_completion_enabled = 1
+let g:ale_fix_on_save = 1
 
-autocmd BufNewFile,BufRead *.rs CocEnable
+let g:ale_linters = {
+\   'rust': ['rls'],
+\   'c': ['clangd'],
+\   'python': ['pyls'],
+\}
 
-set hidden
-set nobackup
-set nowritebackup
-set cmdheight=2
-set updatetime=300
-set shortmess+=c
-set signcolumn=yes
+let g:ale_fixers = {
+\   '*': ['trim_whitespace'],
+\   'c': ['clang-format'],
+\   'rust': ['rustfmt'],
+\}
 
-function! s:show_documentation()
-  if (index(['vim','help'], &filetype) >= 0)
-    execute 'h '.expand('<cword>')
-  else
-    call CocAction('doHover')
-  endif
-endfunction
