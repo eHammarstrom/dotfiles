@@ -106,7 +106,7 @@ set tags=./tags,tags,../tags
 " set hidden
 set nobackup
 set nowritebackup
-set cmdheight=2
+set cmdheight=3
 set updatetime=300
 set shortmess+=c
 set signcolumn=yes

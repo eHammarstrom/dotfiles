@@ -144,3 +144,10 @@ export YAOURT_COLORS="nb=1:pkg=1:ver=1;32:lver=1;45:installed=1;42:grp=1;34:od=1
 export TERM="screen-256color"
 
 source ~/.ehconf
+
+# ~/.bashrc
+ps1() {
+    PS1="$(contrail -e $? --config $HOME/contrail/config.toml) "
+}
+
+PROMPT_COMMAND="ps1; $PROMPT_COMMAND"
