@@ -161,13 +161,13 @@ function mr_cool() {
     local GITCHANGES=""
     if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
         GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
-        GITBRANCH="  $GITBRANCH "
+        GITBRANCH="  $GITBRANCH"
         GITBRANCHCOL="\[\e[37;42m\]"
 
         GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
 
         if [ $GITCHANGES -eq 0 ]; then
-            GITCHANGES=""
+            GITCHANGES="  "
         else
             GITCHANGES=" +$GITCHANGES  "
         fi
