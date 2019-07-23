@@ -155,16 +155,22 @@ function mr_cool() {
     local PROMPT="λ\[\e[0m\] "
     local PROMPTCOL="\[\e[00;34m\]"
 
-    local GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
+    # if we're in a git repo, add git stats
+    local GITBRANCH=""
     local GITBRANCHCOL=""
+    local GITCHANGES=""
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
+        GITBRANCH="  $GITBRANCH "
+        GITBRANCHCOL="\[\e[37;42m\]"
 
-    local GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
-    local GITCHANGESCOL="\[\e[37;42m\]"
+        GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
 
-    if [ $GITCHANGES -eq 0 ]; then
-        GITCHANGES=""
-    else
-        GITCHANGES="+$GITCHANGES"
+        if [ $GITCHANGES -eq 0 ]; then
+            GITCHANGES=""
+        else
+            GITCHANGES=" +$GITCHANGES  "
+        fi
     fi
 
     if [ $RETVAL -ne 0 ]; then
@@ -174,7 +180,7 @@ function mr_cool() {
     export PS1="\\
 $RETVALCOL  $RETVAL  \\
 $TAILCOL  $TAIL  \\
-$GITCHANGESCOL  $GITBRANCH $GITCHANGES  \\
+$GITBRANCHCOL$GITBRANCH$GITCHANGES\\
 \n$PROMPTCOL$PROMPT"
 }
 
