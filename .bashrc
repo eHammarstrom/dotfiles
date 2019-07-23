@@ -145,9 +145,9 @@ export TERM="screen-256color"
 
 source ~/.ehconf
 
-function best_prompt() {
+function mr_cool() {
     local RETVAL=$(echo $?)
-    local RETCOL="\[\e[37;42m\]"
+    local RETVALCOL="\[\e[37;42m\]"
 
     local TAIL="$(pwd)"
     local TAILCOL="\[\e[37;44m\]"
@@ -155,12 +155,28 @@ function best_prompt() {
     local PROMPT="λ\[\e[0m\] "
     local PROMPTCOL="\[\e[00;34m\]"
 
-    if [ $RETVAL -ne 0 ]; then
-        RETCOL="\[\e[37;41m\]"
+    local GITBRANCH=$(git branch | sed 's/^..//' | tr a-z A-Z)
+    local GITBRANCHCOL=""
+
+    local GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
+    local GITCHANGESCOL="\[\e[37;42m\]"
+
+    if [ $GITCHANGES -eq 0 ]; then
+        GITCHANGES=""
+    else
+        GITCHANGES="+$GITCHANGES"
     fi
 
-    export PS1="$RETCOL  $RETVAL  $TAILCOL  $TAIL  \n$PROMPTCOL$PROMPT"
+    if [ $RETVAL -ne 0 ]; then
+        RETVALCOL="\[\e[37;41m\]"
+    fi
+
+    export PS1="\\
+$RETVALCOL  $RETVAL  \\
+$TAILCOL  $TAIL  \\
+$GITCHANGESCOL  $GITBRANCH $GITCHANGES  \\
+\n$PROMPTCOL$PROMPT"
 }
 
-PROMPT_COMMAND=best_prompt
+PROMPT_COMMAND=mr_cool
 
