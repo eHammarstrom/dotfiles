@@ -145,9 +145,22 @@ export TERM="screen-256color"
 
 source ~/.ehconf
 
-# ~/.bashrc
-ps1() {
-    PS1="$(contrail -e $? --config $HOME/contrail/config.toml) "
+function best_prompt() {
+    local RETVAL=$(echo $?)
+    local RETCOL="\[\e[37;42m\]"
+
+    local TAIL="$(pwd)"
+    local TAILCOL="\[\e[37;44m\]"
+
+    local PROMPT="λ\[\e[0m\] "
+    local PROMPTCOL="\[\e[00;34m\]"
+
+    if [ $RETVAL -ne 0 ]; then
+        RETCOL="\[\e[37;41m\]"
+    fi
+
+    export PS1="$RETCOL  $RETVAL  $TAILCOL  $TAIL  \n$PROMPTCOL$PROMPT"
 }
 
-PROMPT_COMMAND="ps1; $PROMPT_COMMAND"
+PROMPT_COMMAND=best_prompt
+
