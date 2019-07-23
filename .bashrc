@@ -155,7 +155,7 @@ function mr_cool() {
     local PROMPT="λ\[\e[0m\] "
     local PROMPTCOL="\[\e[00;34m\]"
 
-    local GITBRANCH=$(git branch | sed 's/^..//' | tr a-z A-Z)
+    local GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
     local GITBRANCHCOL=""
 
     local GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
