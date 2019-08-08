@@ -141,11 +141,11 @@ nnoremap <silent> <C-p> :Buffers<CR>
 
 let g:ale_completion_max_suggestions = 100
 let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 1
+let g:ale_fix_on_save = 0
 
 let g:ale_linters = {
 \   'rust': ['rls'],
-\   'c': ['clangd'],
+\   'c': ['cquery'],
 \   'python': ['pyls'],
 \}
 

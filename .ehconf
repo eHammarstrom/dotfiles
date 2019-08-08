@@ -5,6 +5,9 @@
 # general
 alias ls="ls --color=none"
 
+# arduino
+alias incl-avr="cd /usr/avr/include"
+
 # git
 alias gs="git status"
 alias gp="git push"
@@ -34,6 +37,8 @@ alias kittyrc="nvim ~/.config/kitty/kitty.conf"
 # PATHs
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
+
+export EDITOR=/usr/bin/nvim
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
