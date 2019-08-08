@@ -114,8 +114,11 @@ set signcolumn=yes
 " global tabstuff, personal preference
 set autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=80
 
+au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
+
 " linux c kernel style
-au FileType c,h setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType header setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " THEME
 set termguicolors
