@@ -16,6 +16,8 @@ alias gco="git checkout"
 alias gad="git add"
 alias gdf="git diff"
 alias glog="git log"
+alias gres="git reset"
+alias gsta="git stash"
 
 # tmux
 alias tat="tmux attach-session -t"
