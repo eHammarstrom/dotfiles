@@ -3,7 +3,40 @@
 #
 
 # general
-alias ls="ls --color=none"
+alias ls="ls --color=none "
+alias lss="ls -1 "
+alias lsg="ls -1 | rg"
+
+# rg / wrg
+# use rg to search, wrg to replace
+wrg() {
+    usage="Usage: wrg MATCH REPLACEMENT"
+    example="\te.g. wrg FOO BAR == s/FOO/BAR/g"
+
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo $usage
+        echo -e $example
+        return 1
+    fi
+
+    files=$(rg "$1" --files-with-matches)
+
+    echo "Replace in:"
+    for f in $files; do
+        echo -e "\t$f"
+    done
+
+    echo ""
+
+    while true; do
+        read -p "Do you wish to replace (y/n)? " yn
+        case $yn in
+            [Yy]* ) rg "$1" --files-with-matches | xargs sed -i "s/$1/$2/g"; break;;
+            [Nn]* ) return 0;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
 
 # arduino
 alias incl-avr="cd /usr/avr/include"
