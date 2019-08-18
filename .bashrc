@@ -185,4 +185,4 @@ $GITBRANCHCOL$GITBRANCH$GITCHANGES\[\e[0m\]\\
 }
 
 PROMPT_COMMAND=mr_cool
-
+source /home/estrom/Projects/rust/alacritty/extra/completions/alacritty.bash

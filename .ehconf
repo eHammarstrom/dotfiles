@@ -50,6 +50,7 @@ alias gad="git add"
 alias gdf="git diff"
 alias glog="git log"
 alias gres="git reset"
+alias greb="git rebase -i"
 alias gsta="git stash"
 
 # tmux
