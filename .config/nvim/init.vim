@@ -16,7 +16,9 @@ Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'rakr/vim-two-firewatch'
+Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
+Plug 'luochen1990/rainbow'
 
 call plug#end()
 
@@ -119,11 +121,14 @@ au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
 " linux c kernel style
 au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 au FileType header setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType h setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+autocmd BufRead,BufNewFile *.h,*.c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " THEME
 set termguicolors
 set t_Co=256
 set background=light
+" colorscheme gruvbox
 let g:two_firewatch_italics=1
 colorscheme two-firewatch
 
@@ -136,6 +141,8 @@ let $FZF_DEFAULT_COMMAND = 'rg --files'
 nnoremap <silent> <C-f> :Files<CR>
 nnoremap <silent> <C-p> :Buffers<CR>
 
+" rainbow parens
+let g:rainbow_active = 1
 
 " ALE
 

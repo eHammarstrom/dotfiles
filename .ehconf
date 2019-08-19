@@ -6,6 +6,11 @@
 alias ls="ls --color=none "
 alias lss="ls -1 "
 alias lsg="ls -1 | rg"
+alias ma='make'
+alias mac='make clean'
+alias mai='make install'
+alias maw='make write'
+alias maf='make flash'
 
 # rg / wrg
 # use rg to search, wrg to replace
@@ -42,7 +47,7 @@ wrg() {
 alias incl-avr="cd /usr/avr/include"
 
 # git
-alias gs="git status"
+alias gg="git status"
 alias gp="git push"
 alias gct="git commit"
 alias gco="git checkout"
@@ -52,6 +57,7 @@ alias glog="git log"
 alias gres="git reset"
 alias greb="git rebase -i"
 alias gsta="git stash"
+alias greb="git rebase"
 
 # tmux
 alias tat="tmux attach-session -t"
