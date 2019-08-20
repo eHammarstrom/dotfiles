@@ -15,10 +15,13 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
-Plug 'rakr/vim-two-firewatch'
-Plug 'morhetz/gruvbox'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
+
+" Themes
+Plug 'chriskempson/base16-vim'
+Plug 'rakr/vim-two-firewatch'
+Plug 'morhetz/gruvbox'
 
 call plug#end()
 
@@ -127,10 +130,12 @@ autocmd BufRead,BufNewFile *.h,*.c setlocal autoindent noexpandtab tabstop=8 shi
 " THEME
 set termguicolors
 set t_Co=256
-set background=light
+set background=dark
 " colorscheme gruvbox
-let g:two_firewatch_italics=1
-colorscheme two-firewatch
+" let g:two_firewatch_italics=1
+" colorscheme two-firewatch
+" colorscheme base16-summerfruit-dark
+colorscheme base16-irblack
 
 """""" plugin settings
 
