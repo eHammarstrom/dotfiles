@@ -7,6 +7,7 @@ alias ls="ls --color=none "
 alias lss="ls -1 "
 alias lsg="ls -1 | rg"
 alias ma='make'
+alias mab='make build'
 alias mac='make clean'
 alias mai='make install'
 alias maw='make write'
