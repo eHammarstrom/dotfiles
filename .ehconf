@@ -6,12 +6,25 @@
 alias ls="ls --color=none "
 alias lss="ls -1 "
 alias lsg="ls -1 | rg"
+
+# C
 alias ma='make'
 alias mab='make build'
 alias mac='make clean'
+alias mab='make build'
 alias mai='make install'
 alias maw='make write'
 alias maf='make flash'
+alias mad='make disasm'
+alias mao='make open'
+
+# Rust
+alias carc='cargo check'
+alias carb='cargo build'
+alias carr='cargo run'
+alias cart='cargo test'
+# Allow prints
+alias cartp='cargo test -- --nocapture'
 
 # rg / wrg
 # use rg to search, wrg to replace
@@ -53,12 +66,14 @@ alias gp="git push"
 alias gct="git commit"
 alias gco="git checkout"
 alias gad="git add"
+alias gadd="git add ."
 alias gdf="git diff"
 alias glog="git log"
 alias gres="git reset"
 alias greb="git rebase -i"
 alias gsta="git stash"
 alias greb="git rebase"
+alias ggr="git grep"
 
 # tmux
 alias tat="tmux attach-session -t"

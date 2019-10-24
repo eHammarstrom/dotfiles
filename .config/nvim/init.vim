@@ -18,6 +18,9 @@ Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
 
+" LLVM IR syntax hl
+Plug 'rhysd/vim-llvm'
+
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'rakr/vim-two-firewatch'
@@ -118,6 +121,9 @@ set signcolumn=yes
 
 " global tabstuff, personal preference
 set autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=80
+au FileType tex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType latex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
 
