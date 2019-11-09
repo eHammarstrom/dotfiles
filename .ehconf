@@ -20,6 +20,7 @@ alias mao='make open'
 
 # Rust
 alias carc='cargo check'
+alias carcl='cargo clippy'
 alias carb='cargo build'
 alias carr='cargo run'
 alias cart='cargo test'
