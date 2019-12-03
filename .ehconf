@@ -65,6 +65,7 @@ alias incl-avr="cd /usr/avr/include"
 alias gg="git status"
 alias gp="git push"
 alias gct="git commit"
+alias gac="git commit -m 'less'"
 alias gco="git checkout"
 alias gad="git add"
 alias gadd="git add ."
@@ -75,6 +76,19 @@ alias greb="git rebase -i"
 alias gsta="git stash"
 alias greb="git rebase"
 alias ggr="git grep"
+
+reviewit() {
+    usage="Usage: reviewit COMMIT"
+    example="\te.g. reviewit HEAD~2"
+
+    if [ -z "$1" ]; then
+        echo $usage
+        echo -e $example
+        return 1
+    fi
+
+    git push upstream "$1":estrom-review "${@:2}"
+}
 
 shipit() {
     usage="Usage: shipit COMMIT"

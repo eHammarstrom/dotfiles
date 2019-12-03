@@ -21,10 +21,13 @@ Plug 'luochen1990/rainbow'
 " LLVM IR syntax hl
 Plug 'rhysd/vim-llvm'
 
+Plug 'sheerun/vim-polyglot'
+
 " Themes
 Plug 'chriskempson/base16-vim'
 Plug 'rakr/vim-two-firewatch'
 Plug 'morhetz/gruvbox'
+Plug 'joshdick/onedark.vim'
 
 call plug#end()
 
@@ -128,20 +131,21 @@ au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colo
 au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
 
 " linux c kernel style
-au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
-au FileType header setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
-au FileType h setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
-autocmd BufRead,BufNewFile *.h,*.c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+au FileType c,h,header setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
+
+"autocmd BufRead,BufNewFile *.h,*.c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+" asm
+au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " THEME
 set termguicolors
 set t_Co=256
 set background=dark
-" colorscheme gruvbox
+colorscheme onedark
 " let g:two_firewatch_italics=1
 " colorscheme two-firewatch
 " colorscheme base16-summerfruit-dark
-colorscheme base16-irblack
+" colorscheme base16-irblack
 
 """""" plugin settings
 
