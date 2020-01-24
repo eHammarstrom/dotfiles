@@ -38,8 +38,6 @@ filetype plugin indent on
 
 let mapleader = ','
 
-map <silent><leader>t :terminal<CR>
-
 " editing
 nmap <BS> O<down><Esc>
 nmap <CR> o<Esc>
@@ -60,6 +58,11 @@ map <silent><C-n> :wincmd k<CR>
 " C-f, C-b for full page jump
 noremap <C-u> <C-u>
 noremap <C-e> <C-d>
+
+" tag mania
+noremap <leader>t <C-]>
+set tags=tags;/
+
 
 " Dvorak remap (https://gist.github.com/agnoster/640210)
 " 1 - Movement keys htns -> hjkl
@@ -130,6 +133,12 @@ au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colo
 
 au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
 
+" All .h files are for C, not C++
+augroup project
+    autocmd!
+    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup END
+
 " linux c kernel style
 au FileType c,h,header setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
 
@@ -142,6 +151,7 @@ set termguicolors
 set t_Co=256
 set background=dark
 colorscheme onedark
+highlight ColorColumn ctermbg=0 guibg=black
 " let g:two_firewatch_italics=1
 " colorscheme two-firewatch
 " colorscheme base16-summerfruit-dark
