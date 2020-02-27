@@ -7,6 +7,9 @@ alias ls="ls --color=none "
 alias lss="ls -1 "
 alias lsg="ls -1 | rg"
 
+HISTSIZE=500000
+HISTFILESIZE=500000
+
 # C
 alias ma='make'
 alias mab='make build'
@@ -17,6 +20,14 @@ alias maw='make write'
 alias maf='make flash'
 alias mad='make disasm'
 alias mao='make open'
+
+attachUSB() {
+    if [ $# -ne 2 ];then
+        echo "Usage: ${FUNCNAME[0]} BAUDRATE TTY_DEVICE"
+        return 1
+    fi
+    picocom -b $1 /dev/tty$2
+}
 
 # Rust
 alias carc='cargo check'
