@@ -22,11 +22,11 @@ alias mad='make disasm'
 alias mao='make open'
 
 attachUSB() {
-    if [ $# -ne 2 ];then
-        echo "Usage: ${FUNCNAME[0]} BAUDRATE TTY_DEVICE"
+    if [ $# -ne 1 ];then
+        echo "Usage: ${FUNCNAME[0]} TTY_DEVICE"
         return 1
     fi
-    picocom -b $1 /dev/tty$2
+    picocom -b 115200 /dev/tty$1
 }
 
 # Rust
@@ -124,19 +124,14 @@ alias till="tmux kill-session -t"
 alias ema="emacsclient -c"
 alias emat="emacsclient -t"
 
-# nvim
-alias vi="nvim"
-alias vim="nvim"
-alias virc="nvim ~/.config/nvim/init.vim"
-
-# kitty
-alias kittyrc="nvim ~/.config/kitty/kitty.conf"
+#vim
+alias virc="vim ~/.vimrc"
 
 # PATHs
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
 
-export EDITOR=/usr/bin/nvim
+export EDITOR=/usr/bin/vim
 
 # fzf
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash

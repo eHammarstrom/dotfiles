@@ -1,27 +1,27 @@
-"""""" download plug.vim if not in path
-if empty(glob($HOME . "/.local/share/nvim/site/autoload/plug.vim"))
-	let cmd = 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
-				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-	execute "!" . cmd
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
-
-"""""" plugins
-call plug#begin('~/.local/share/nvim/plugged')
+call plug#begin('~/.vim/plugged')
 
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
+Plug 'itchyny/lightline.vim'
 
 " LLVM IR syntax hl
 Plug 'rhysd/vim-llvm'
 
 Plug 'sheerun/vim-polyglot'
+
+" golang
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
 " Themes
 Plug 'chriskempson/base16-vim'
@@ -62,7 +62,6 @@ noremap <C-e> <C-d>
 " tag mania
 noremap <leader>t <C-]>
 set tags=tags;/
-
 
 " Dvorak remap (https://gist.github.com/agnoster/640210)
 " 1 - Movement keys htns -> hjkl
@@ -131,20 +130,18 @@ au FileType tex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolu
 au FileType latex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
-au FileType python setlocal autoindent noexpandtab tabstop=4 shiftwidth=4
+au FileType python setlocal autoindent expandtab tabstop=4 shiftwidth=4
 
 " All .h files are for C, not C++
-augroup project
-    autocmd!
-    autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup C
+    au!
+    au BufRead,BufNewFile *.h,*.c set filetype=c
+    au BufRead,BufNewFile *.overlay set filetype=dts syntax=dts
+    " linux c kernel style
+    au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+    au FileType dts setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
+    au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 augroup END
-
-" linux c kernel style
-au FileType c,h,header setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
-
-"autocmd BufRead,BufNewFile *.h,*.c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
-" asm
-au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " THEME
 set termguicolors
@@ -152,10 +149,6 @@ set t_Co=256
 set background=dark
 colorscheme onedark
 highlight ColorColumn ctermbg=0 guibg=black
-" let g:two_firewatch_italics=1
-" colorscheme two-firewatch
-" colorscheme base16-summerfruit-dark
-" colorscheme base16-irblack
 
 """""" plugin settings
 
@@ -187,3 +180,5 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 
+" lightline
+set laststatus=2
