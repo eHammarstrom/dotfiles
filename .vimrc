@@ -20,6 +20,9 @@ Plug 'rhysd/vim-llvm'
 
 Plug 'sheerun/vim-polyglot'
 
+" rust
+Plug 'rust-lang/rust.vim'
+
 " golang
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 
