@@ -1,7 +1,7 @@
-# exec --no-startup-id /usr/bin/redshift -c /home/estrom/.config/redshift/redshift.conf
+exec --no-startup-id swaybg -i ~/Pictures/
 
 input * {
-    xkb_layout "us,dvorak"
+    xkb_layout "dvorak,us"
     xkb_options "ctrl:nocaps,grp:alt_space_toggle"
     natural_scroll enabled
     tap enabled
@@ -42,7 +42,7 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+w kill
 
 # start program launcher
-bindsym $mod+d exec --no-startup-id wofi --show=run
+bindsym $mod+d exec --no-startup-id rofi -show run
 
 # launch categorized menu
 bindsym $mod+z exec --no-startup-id morc_menu
@@ -63,11 +63,6 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-# bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
 bindsym $mod+p --release exec --no-startup-id scrot -s $HOME/Pictures/Screenshots/%y%b%d::%H%M%S.png
 
 focus_follows_mouse no

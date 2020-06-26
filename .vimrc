@@ -151,7 +151,9 @@ set termguicolors
 set t_Co=256
 set background=dark
 colorscheme onedark
-highlight ColorColumn ctermbg=0 guibg=black
+hi! ColorColumn ctermbg=NONE guibg=darkgrey
+hi! Normal ctermbg=NONE guibg=NONE
+hi! NonText ctermbg=NONE guibg=NONE
 
 """""" plugin settings
 

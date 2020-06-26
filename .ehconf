@@ -84,11 +84,18 @@ alias tac="tmux attach-session -c"
 alias tls="tmux ls"
 alias till="tmux kill-session -t"
 
-#vim
+# rcs
 alias virc="vim ~/.vimrc"
+alias firc="cd .mozilla/firefox/"
 
 # PATHs
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
 
 export EDITOR=/usr/bin/vim
+
+ss_dir=$HOME/Pictures/Screenshots
+if [ ! -d "${ss_dir}" ]; then
+    mkdir $ss_dir
+fi
+export XDG_PICTURES_DIR=$ss_dir
