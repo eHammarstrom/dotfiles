@@ -146,6 +146,12 @@ augroup C
     au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 augroup END
 
+" rust stuff
+augroup RUST
+    au!
+    au FileType rust nnoremap <buffer> <silent><leader>t :ALEGoToDefinition<CR>
+augroup END
+
 " THEME
 set termguicolors
 set t_Co=256
