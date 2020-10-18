@@ -109,7 +109,9 @@ set number
 " soft wrapping
 set wrap
 set linebreak
-set nolist
+
+set list
+set listchars=tab:>\ 
 
 set smartcase
 set incsearch
@@ -134,6 +136,7 @@ au FileType latex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorco
 au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 au FileType python setlocal autoindent expandtab tabstop=4 shiftwidth=4
+au FileType cpp setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " All .h files are for C, not C++
 augroup C
