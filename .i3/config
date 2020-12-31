@@ -69,7 +69,7 @@ bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
 bindsym XF86MonBrightnessDown exec brightnessctl set 5%-
 bindsym XF86MonBrightnessUp exec brightnessctl set +5%
 
-bindsym $mod+p --release exec --no-startup-id scrot -s $HOME/Pictures/Screenshots/%y%b%d::%H%M%S.png
+bindsym $mod+p exec grim -g "$(slurp -d)" - | wl-copy -t image/png
 
 focus_follows_mouse no
 
@@ -191,6 +191,7 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 
 # Open specific applications in floating mode
 for_window [title="alsamixer"] floating enable border pixel 1
+for_window [title="supergame"] floating enable border pixel 1
 for_window [class="calamares"] floating enable border normal
 for_window [class="Clipgrab"] floating enable
 for_window [class="Gnome-calculator"] floating enable

@@ -136,18 +136,21 @@ au FileType latex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorco
 au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 au FileType python setlocal autoindent expandtab tabstop=4 shiftwidth=4
-au FileType cpp setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 " All .h files are for C, not C++
 augroup C
     au!
-    au BufRead,BufNewFile *.h,*.c set filetype=c
+    au BufWritePost,BufRead,BufNewFile *.h,*.c set filetype=c
     au BufRead,BufNewFile *.overlay set filetype=dts syntax=dts
     " linux c kernel style
     au FileType c setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
     au FileType dts setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
     au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
+    au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 augroup END
+
+au FileType cpp setlocal autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=80
+au FileType cmake setlocal autoindent noexpandtab tabstop=2 shiftwidth=2
 
 " rust stuff
 augroup RUST
@@ -183,16 +186,24 @@ let g:ale_completion_enabled = 1
 let g:ale_fix_on_save = 0
 
 let g:ale_linters = {
-\   'rust': ['rls'],
-\   'c': ['cquery'],
+\   'rust': ['analyzer'],
+\   'c': ['clangd'],
+\   'cpp': [],
 \   'python': ['pyls'],
 \}
 
 let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
-\   'c': ['clang-format'],
+\   'c': [],
+\   'cpp': [],
 \   'rust': ['rustfmt'],
+\   'haskell': ['brittany'],
+\   'ocaml': ['ocamlformat'],
 \}
+
+let g:ale_ocaml_ols_executable = 'ocamllsp'
 
 " lightline
 set laststatus=2
+
+xnoremap <silent> <C-@> :w !wl-copy<CR><CR>

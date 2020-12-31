@@ -22,6 +22,8 @@ alias maf='make flash'
 alias mad='make disasm'
 alias mao='make open'
 
+alias gen_ctags='ctags -R . --exclude={build,build-*}'
+
 # Rust
 alias carc='cargo check'
 alias carcl='cargo clippy'
