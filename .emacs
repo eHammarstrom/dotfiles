@@ -28,20 +28,12 @@
 (use-package company-lsp)
 
 ;; language specific
-(use-package tuareg) ;; OCaml
-(use-package merlin) ;; OCaml
+(use-package tuareg)
+(use-package merlin)
 (use-package rust-mode)
 (use-package racket-mode)
 (use-package haskell-mode)
 (use-package glsl-mode)
-(use-package clang-format)
-(use-package lsp-clangd
-  :hook
-  ((c-mode . lsp-clangd-c-enable)
-   (c++-mode . lsp-clangd-c++-enable)
-   (objc-mode . lsp-clangd-objc-enable)))
-(use-package nix-mode)
-
 
 ;; for fun
 					; (use-package elcord)
@@ -95,14 +87,6 @@
 ;; setup c
 (setq c-default-style "linux"
       c-basic-offset 8)
-
-;; setup c++
-(setq clang-format-style-option "llvm")
-
-(defun my-c++-mode-hook ()
-  (setq c-basic-offset 8)
-  (c-set-offset 'substatement-open 0))
-(add-hook 'c++-mode-hook 'my-c++-mode-hook)
 
 ;; setup glsl
 (autoload 'glsl-mode "glsl-mode" nil t)

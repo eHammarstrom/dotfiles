@@ -158,6 +158,9 @@ augroup RUST
     au FileType rust nnoremap <buffer> <silent><leader>t :ALEGoToDefinition<CR>
 augroup END
 
+" haskell
+au FileType haskell setlocal autoindent expandtab tabstop=2 shiftwidth=2 colorcolumn=80
+
 " THEME
 set termguicolors
 set t_Co=256
@@ -190,7 +193,10 @@ let g:ale_linters = {
 \   'c': ['clangd'],
 \   'cpp': [],
 \   'python': ['pyls'],
+\   'haskell': ['hie'],
 \}
+
+let g:ale_haskell_hie_executable = 'haskell-language-server-wrapper'
 
 let g:ale_fixers = {
 \   '*': ['trim_whitespace'],
