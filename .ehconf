@@ -87,7 +87,7 @@ alias tls="tmux ls"
 alias till="tmux kill-session -t"
 
 # rcs
-alias virc="vim ~/.vimrc"
+alias virc="vim ~/.config/nvim/init.vim"
 alias firc="cd .mozilla/firefox/"
 
 # PATHs

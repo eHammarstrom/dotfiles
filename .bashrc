@@ -63,3 +63,5 @@ $GITBRANCHCOL$GITBRANCH$GITCHANGES\[\e[0m\]\\
 PROMPT_COMMAND=mr_cool
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+[ -f "/home/estrom/.ghcup/env" ] && source "/home/estrom/.ghcup/env" # ghcup-env
+eval $(opam env)
