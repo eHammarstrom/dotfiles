@@ -94,7 +94,7 @@ alias firc="cd .mozilla/firefox/"
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
 
-export EDITOR=/usr/bin/vim
+export EDITOR=/usr/bin/nvim
 
 ss_dir=$HOME/Pictures/Screenshots
 if [ ! -d "${ss_dir}" ]; then
