@@ -148,7 +148,7 @@ augroup C
     au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 augroup END
 
-au FileType cpp setlocal autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=80
+au FileType cpp setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80
 au FileType cmake setlocal autoindent noexpandtab tabstop=2 shiftwidth=2
 
 " rust stuff
