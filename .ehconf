@@ -1,0 +1,174 @@
+#
+# extends ~/.bashrc
+#
+
+# general
+alias ll="ls -lh"
+alias ls="ls --color=none"
+alias lss="ls -1"
+alias lsg="ls -1 | rg"
+alias lsize="ls -Slh | tac"
+alias fd="fdfind"
+
+# C
+alias ma='make'
+alias mab='make build'
+alias mac='make clean'
+alias mab='make build'
+alias mai='make install'
+alias maw='make write'
+alias maf='make flash'
+alias mad='make disasm'
+alias mao='make open'
+
+# Rust
+alias carc='cargo check'
+alias carcl='cargo clippy'
+alias carb='cargo build'
+alias carr='cargo run'
+alias cart='cargo test'
+# Allow prints
+alias cartp='cargo test -- --nocapture'
+
+# rg / wrg
+# use rg to search, wrg to replace
+wrg() {
+    usage="Usage: wrg MATCH REPLACEMENT"
+    example="\te.g. wrg FOO BAR == s/FOO/BAR/g"
+
+    if [ -z "$1" ] || [ -z "$2" ]; then
+        echo $usage
+        echo -e $example
+        return 1
+    fi
+
+    files=$(rg "$1" --files-with-matches)
+
+    echo "Replace in:"
+    for f in $files; do
+        echo -e "\t$f"
+    done
+
+    echo ""
+
+    while true; do
+        read -p "Do you wish to replace (y/n)? " yn
+        case $yn in
+            [Yy]* ) rg "$1" --files-with-matches | xargs sed -i "s/$1/$2/g"; break;;
+            [Nn]* ) return 0;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+# arduino
+alias incl-avr="cd /usr/avr/include"
+
+# git
+alias gg="git status"
+alias gct="git commit"
+alias gco="git checkout"
+alias gad="git add"
+alias gadd="git add ."
+alias gdf="git diff"
+alias glog="git log"
+alias gres="git reset"
+alias gsta="git stash"
+alias greb="git fetch && git rebase"
+alias ggr="git grep"
+
+reviewit() {
+    usage="Usage: reviewit COMMIT"
+    example="\te.g. reviewit HEAD~2"
+
+    if [ -z "$1" ]; then
+        echo $usage
+        echo -e $example
+        return 1
+    fi
+
+    git push upstream "$1":estrom-review "${@:2}"
+}
+
+shipit() {
+    usage="Usage: shipit COMMIT"
+    example="\te.g. shipit HEAD~2"
+
+    if [ -z "$1" ]; then
+        echo $usage
+        echo -e $example
+        return 1
+    fi
+
+    git push upstream "$1":master "${@:2}"
+}
+
+# tmux
+alias tat="tmux attach-session -t"
+alias tls="tmux ls"
+alias till="tmux kill-session -t"
+
+# emacs
+alias ema="emacsclient -c"
+alias emat="emacsclient -t"
+
+# nvim
+alias vi="nvim"
+alias vim="nvim"
+alias virc="nvim ~/.config/nvim/init.vim"
+
+# kitty
+alias kittyrc="nvim ~/.config/kitty/kitty.conf"
+
+. "$HOME/.cargo/env"
+
+# PATHs
+export PATH=$PATH:$HOME/.cargo/bin
+export PATH=$PATH:$HOME/.local/bin
+
+export EDITOR=/usr/bin/nvim
+export TERM=xterm-256color
+
+# fzf
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+
+function mr_cool() {
+    local RETVAL=$(echo $?)
+    local RETVALCOL="\[\e[37;42m\]"
+
+    local TAIL="$(pwd)"
+    local TAILCOL="\[\e[37;44m\]"
+
+    local PROMPT="λ\[\e[0m\] "
+    local PROMPTCOL="\[\e[00;34m\]"
+
+    # if we're in a git repo, add git stats
+    local GITBRANCH=""
+    local GITBRANCHCOL=""
+    local GITCHANGES=""
+    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
+        GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
+        GITBRANCH="  $GITBRANCH"
+        GITBRANCHCOL="\[\e[37;42m\]"
+
+        GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
+
+        if [ $GITCHANGES -eq 0 ]; then
+            GITCHANGES="  "
+        else
+            GITCHANGES=" +$GITCHANGES  "
+        fi
+    fi
+
+    if [ $RETVAL -ne 0 ]; then
+        RETVALCOL="\[\e[37;41m\]"
+    fi
+
+    export PS1="\\
+$RETVALCOL  $RETVAL  \\
+$TAILCOL  $TAIL  \\
+$GITBRANCHCOL$GITBRANCH$GITCHANGES\[\e[0m\]\\
+\n$PROMPTCOL$PROMPT"
+}
+
