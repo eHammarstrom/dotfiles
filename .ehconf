@@ -172,3 +172,4 @@ $GITBRANCHCOL$GITBRANCH$GITCHANGES\[\e[0m\]\\
 \n$PROMPTCOL$PROMPT"
 }
 
+alias keyboard_setup='setxkbmap -layout us,us -variant ,dvorak -option "grp:alt_space_toggle,ctrl:nocaps"'
