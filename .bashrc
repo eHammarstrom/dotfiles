@@ -121,3 +121,6 @@ fi
 PROMPT_COMMAND=mr_cool
 
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+export PATH=$PATH:/opt/cmake/bin
+export PATH=~/.local/bin:"$PATH"

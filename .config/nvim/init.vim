@@ -166,6 +166,8 @@ au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 " asm
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
+au FileType rust noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
+
 " THEME
 set termguicolors
 set t_Co=256
