@@ -174,6 +174,7 @@ set t_Co=256
 set background=dark
 colorscheme onedark
 highlight ColorColumn guibg=Black ctermbg=7
+set cursorline
 " let g:two_firewatch_italics=1
 " colorscheme two-firewatch
 " colorscheme base16-summerfruit-dark

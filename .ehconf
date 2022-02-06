@@ -3,8 +3,8 @@
 #
 
 # general
+alias ls="exa"
 alias ll="ls -lh"
-alias ls="ls --color=none"
 alias lss="ls -1"
 alias lsg="ls -1 | rg"
 alias lsize="ls -Slh | tac"
