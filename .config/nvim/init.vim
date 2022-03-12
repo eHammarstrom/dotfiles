@@ -32,7 +32,8 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 " Themes
 Plug 'joshdick/onedark.vim'
 
-" Plug 'Yggdroot/indentLine'
+" Interactive REPL for lisps
+Plug 'Olical/conjure'
 
 call plug#end()
 
@@ -207,6 +208,7 @@ let g:ale_linters = {
 \   'c': ['cquery'],
 \   'python': ['pyls'],
 \   'ocaml': ['ols'],
+\   'haskell': ['hls'],
 \}
 
 let g:ale_fixers = {
