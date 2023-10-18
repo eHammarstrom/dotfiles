@@ -10,6 +10,8 @@ endif
 """""" plugins
 call plug#begin('~/.local/share/nvim/plugged')
 
+Plug 'github/copilot.vim'
+
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
@@ -17,6 +19,9 @@ Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
+
+" zig
+Plug 'ziglang/zig.vim'
 
 " Jenkins syntax
 Plug 'martinda/Jenkinsfile-vim-syntax'
@@ -43,6 +48,7 @@ filetype plugin indent on
 """""" bindings
 
 let mapleader = ','
+let maplocalleader = ','
 
 " editing
 nmap <BS> O<down><Esc>
@@ -106,7 +112,7 @@ function TabToggle()
     set expandtab
   endif
 endfunction
-nmap <leader>e mz:execute TabToggle()<CR>'z
+nmap <leader>ww mz:execute TabToggle()<CR>'z
 
 """""" settings
 
@@ -168,6 +174,7 @@ au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 
 au FileType rust noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
+au FileType zig noremap <buffer><silent><leader>zz :make<CR>
 
 " THEME
 set termguicolors

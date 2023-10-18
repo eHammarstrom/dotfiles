@@ -9,6 +9,7 @@ alias lss="ls -1"
 alias lsg="ls -1 | rg"
 alias lsize="ls -Slh | tac"
 alias fd="fdfind"
+alias gr="grep -r"
 
 # C
 alias ma='make'
