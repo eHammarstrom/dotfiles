@@ -7,12 +7,12 @@ if empty(glob($HOME . "/.local/share/nvim/site/autoload/plug.vim"))
 endif
 
 call plug#begin('~/.local/share/nvim/plugged')
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 Plug 'github/copilot.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
 Plug 'ziglang/zig.vim'
@@ -153,13 +153,6 @@ set cursorline
 
 """""" plugin settings
 
-" fzf
-let g:fzf_nvim_statusline = 0
-let $FZF_DEFAULT_COMMAND = 'rg --files'
-
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <C-p> :Buffers<CR>
-
 " rainbow parens
 let g:rainbow_active = 1
 
@@ -179,3 +172,60 @@ let g:ale_fixers = {
 \   'rust': ['rustfmt'],
 \}
 let g:ale_ocaml_ols_executable = "ocamllsp"
+
+lua << EOF
+
+require("telescope").setup {
+    defaults = {
+        file_ignore_patterns = { "target/", "sdk/" },
+        prompt_prefix = "λ ",
+    },
+    pickers = {
+        find_files = {
+            no_ignore = true,
+        }
+    }
+}
+
+local builtin = require "telescope.builtin"
+local actions = require "telescope.actions"
+local action_set = require "telescope.actions.set"
+local action_init = require "telescope.actions.init"
+local action_state = require "telescope.actions.state"
+
+vim.keymap.set("n", "<C-f>", builtin.find_files, {})
+vim.keymap.set("n", "<C-p>", builtin.buffers, {})
+vim.keymap.set("n", "<C-g>", builtin.live_grep, {})
+--action_init.select_default = {
+--    pre = function(prompt_bufnr)
+--        action_state
+--            .get_current_history()
+--            :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr))
+--    end,
+--    action = function(prompt_bufnr)
+--        return action_set.select(prompt_bufnr, "tabedit")
+--    end,
+--}
+vim.keymap.set("n", "<leader>ht", function()
+        builtin.help_tags({
+            attach_mappings = function(prompt_bufnr)
+                action_set.select:replace(function(_, cmd)
+                  local selection = action_state.get_selected_entry()
+                  if selection == nil then
+                    utils.__warn_no_selection "builtin.help_tags"
+                    return
+                  end
+                  actions.close(prompt_bufnr)
+                  vim.cmd("tab help " .. selection.value)
+                end)
+            return true
+        end,
+        })
+    end, {})
+vim.keymap.set("n", "<leader>hm", function()
+        builtin.man_pages({ sections = { "ALL" } })
+    end, {})
+
+vim.g["conjure#mapping#doc_word"] = false
+
+EOF
