@@ -11,8 +11,10 @@ alias lsize="ls -Slh | tac"
 alias fd="fdfind"
 alias gr="grep -r"
 
+alias gr="grep -n -r"
+
 # C
-alias ma='make'
+alias ma='make -j'
 alias mab='make build'
 alias mac='make clean'
 alias mab='make build'
@@ -21,6 +23,9 @@ alias maw='make write'
 alias maf='make flash'
 alias mad='make disasm'
 alias mao='make open'
+alias mawl='maw && make log'
+
+alias gen_ctags="ctags -R --exclude=build-* --exclude=base/bootloader --exclude=build --exclude=test ."
 
 # Rust
 alias carc='cargo check'
@@ -127,7 +132,7 @@ alias kittyrc="nvim ~/.config/kitty/kitty.conf"
 export PATH=$PATH:$HOME/.cargo/bin
 export PATH=$PATH:$HOME/.local/bin
 
-export EDITOR=/usr/bin/nvim
+export EDITOR=nvim
 export TERM=xterm-256color
 
 # fzf

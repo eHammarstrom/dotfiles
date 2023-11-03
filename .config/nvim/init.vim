@@ -38,6 +38,9 @@ nmap <CR> o<Esc>
 " goto tag
 noremap <leader>t <C-]>
 
+" compile
+map <silent><leader>zz :make<CR>
+
 " motions
 nnoremap H ^
 nnoremap E $
@@ -130,6 +133,24 @@ set list
 
 set tags=./tags,tags;$HOME
 
+au FileType cmake,c,h,header setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
+let g:toggleC = 0
+function! GruggC()
+    if g:toggleC == 0
+        " grugg mode
+        set expandtab
+        set tabstop=2
+        set shiftwidth=2
+        let g:toggleC = 1
+    else
+        set noexpandtab
+        set tabstop=8
+        set shiftwidth=8
+        let g:toggleC = 0
+    endif
+endfunction
+nmap <leader>g mz:execute GruggC()<CR>'z
+
 " global tabstuff, personal preference
 set autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=120
 au FileType tex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
@@ -137,7 +158,14 @@ au FileType latex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorco
 au FileType plaintex setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 au FileType cmake setlocal autoindent expandtab tabstop=2 shiftwidth=2
 au FileType javascript setlocal autoindent noexpandtab tabstop=2 shiftwidth=2
-au FileType cmake,c,h,header setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=120
+
+augroup project
+  autocmd!
+  autocmd BufRead,BufNewFile *.h,*.c set filetype=c
+augroup END
+
+" au FileType cpp setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80,81,82
+" device tree style
 au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 au FileType rust noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
@@ -196,30 +224,14 @@ local action_state = require "telescope.actions.state"
 vim.keymap.set("n", "<C-f>", builtin.find_files, {})
 vim.keymap.set("n", "<C-p>", builtin.buffers, {})
 vim.keymap.set("n", "<C-g>", builtin.live_grep, {})
---action_init.select_default = {
---    pre = function(prompt_bufnr)
---        action_state
---            .get_current_history()
---            :append(action_state.get_current_line(), action_state.get_current_picker(prompt_bufnr))
---    end,
---    action = function(prompt_bufnr)
---        return action_set.select(prompt_bufnr, "tabedit")
---    end,
---}
 vim.keymap.set("n", "<leader>ht", function()
         builtin.help_tags({
-            attach_mappings = function(prompt_bufnr)
-                action_set.select:replace(function(_, cmd)
-                  local selection = action_state.get_selected_entry()
-                  if selection == nil then
-                    utils.__warn_no_selection "builtin.help_tags"
-                    return
-                  end
-                  actions.close(prompt_bufnr)
-                  vim.cmd("tab help " .. selection.value)
+            attach_mappings = function(prompt_bufnr, map)
+                map('i', '<cr>', function()
+                    require('telescope.actions').select_tab()
                 end)
-            return true
-        end,
+                return true
+            end,
         })
     end, {})
 vim.keymap.set("n", "<leader>hm", function()
