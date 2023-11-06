@@ -1,4 +1,4 @@
-"""""" download plug.vim if not in path
+""""" download plug.vim if not in path
 if empty(glob($HOME . "/.local/share/nvim/site/autoload/plug.vim"))
 	let cmd = 'curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs
 				\ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
@@ -207,11 +207,20 @@ require("telescope").setup {
     defaults = {
         file_ignore_patterns = { "target/", "sdk/" },
         prompt_prefix = "λ ",
+        ripgrep_arguments = {
+          'rg',
+          '--hidden',
+          '--no-heading',
+          '--with-filename',
+          '--line-number',
+          '--column',
+          '--smart-case'
+        },
     },
     pickers = {
         find_files = {
             no_ignore = true,
-        }
+        },
     }
 }
 
