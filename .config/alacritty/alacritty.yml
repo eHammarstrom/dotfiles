@@ -102,8 +102,7 @@ tabspaces: 8
 # Font configuration (changes require restart)
 font:
   normal:
-    family: "Hack"
-    style: "Regular"
+    family: "MesloLGM Nerd Font Mono"
 
   # Point size
   size: 13

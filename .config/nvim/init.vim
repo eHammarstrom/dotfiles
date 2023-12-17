@@ -15,13 +15,15 @@ Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
 Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
-Plug 'ziglang/zig.vim'
-Plug 'martinda/Jenkinsfile-vim-syntax'
-Plug 'rhysd/vim-llvm'
-Plug 'sheerun/vim-polyglot'
+" Plug 'ziglang/zig.vim'
+" Plug 'martinda/Jenkinsfile-vim-syntax'
+" Plug 'rhysd/vim-llvm'
+" Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'joshdick/onedark.vim'
 Plug 'Olical/conjure'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'nvim-neorg/neorg'
 call plug#end()
 
 syntax enable
@@ -169,6 +171,7 @@ augroup END
 au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
 au FileType rust noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
+au FileType zig noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
 au FileType zig noremap <buffer><silent><leader>zz :make<CR>
 
 " THEME
@@ -203,6 +206,13 @@ let g:ale_ocaml_ols_executable = "ocamllsp"
 
 lua << EOF
 
+local autocmd = vim.api.nvim_create_autocmd
+local builtin = require "telescope.builtin"
+local actions = require "telescope.actions"
+local action_set = require "telescope.actions.set"
+local action_init = require "telescope.actions.init"
+local action_state = require "telescope.actions.state"
+
 require("telescope").setup {
     defaults = {
         file_ignore_patterns = { "target/", "sdk/" },
@@ -224,12 +234,6 @@ require("telescope").setup {
     }
 }
 
-local builtin = require "telescope.builtin"
-local actions = require "telescope.actions"
-local action_set = require "telescope.actions.set"
-local action_init = require "telescope.actions.init"
-local action_state = require "telescope.actions.state"
-
 vim.keymap.set("n", "<C-f>", builtin.find_files, {})
 vim.keymap.set("n", "<C-p>", builtin.buffers, {})
 vim.keymap.set("n", "<C-g>", builtin.live_grep, {})
@@ -248,5 +252,37 @@ vim.keymap.set("n", "<leader>hm", function()
     end, {})
 
 vim.g["conjure#mapping#doc_word"] = false
+
+require("nvim-treesitter.configs").setup {
+    ensure_installed = "all",
+    sync_install = false,
+    auto_install = true,
+    highlight = {
+        enable = true,
+        additional_vim_regex_highlighting = false,
+    },
+}
+
+require("neorg").setup {
+    load = {
+        ["core.defaults"] = {}, -- Loads default behaviour
+        ["core.concealer"] = {}, -- Adds pretty icons to your documents
+        ["core.dirman"] = { -- Manages Neorg workspaces
+            config = {
+                workspaces = {
+                    todo = "~/notes/todo",
+                    ideas = "~/notes/ideas",
+                    zig = "~/notes/zig",
+                },
+                default_workspace = "todo",
+            },
+        },
+    },
+}
+
+autocmd("FileType", {
+    pattern = { "norg" },
+    command = "noremap <buffer><silent<leader>ncc :Neorg toggle-concealer<CR>",
+})
 
 EOF
