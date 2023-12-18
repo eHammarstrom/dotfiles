@@ -271,11 +271,11 @@ require("neorg").setup {
         ["core.dirman"] = { -- Manages Neorg workspaces
             config = {
                 workspaces = {
-                    todo = "~/notes/todo",
+                    brain = "~/notes/brain",
                     ideas = "~/notes/ideas",
                     zig = "~/notes/zig",
                 },
-                default_workspace = "todo",
+                default_workspace = "brain",
             },
         },
     },
