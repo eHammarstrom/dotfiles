@@ -220,6 +220,7 @@ require("telescope").setup {
         ripgrep_arguments = {
           'rg',
           '--hidden',
+          '--ignore-vcs',
           '--no-heading',
           '--with-filename',
           '--line-number',
