@@ -272,8 +272,6 @@ require("neorg").setup {
             config = {
                 workspaces = {
                     brain = "~/notes/brain",
-                    ideas = "~/notes/ideas",
-                    zig = "~/notes/zig",
                 },
                 default_workspace = "brain",
             },
