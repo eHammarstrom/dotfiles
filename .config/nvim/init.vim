@@ -166,8 +166,6 @@ augroup END
 " device tree style
 au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
-au FileType rust noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
-au FileType zig noremap <buffer><silent><leader>t :ALEGoToDefinition<CR>
 au FileType zig noremap <buffer><silent><leader>zz :make<CR>
 
 " THEME
@@ -263,28 +261,47 @@ autocmd("FileType", {
     command = "noremap <buffer><silent<leader>ncc :Neorg toggle-concealer<CR>",
 })
 
-
-function on_attach(client, bufnr)
+local lspconfig = require('lspconfig')
+lspconfig.clangd.setup {}
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Only bind autosave on write if the LSP is loaded
+    vim.api.nvim_create_autocmd("BufWritePre", {
+        buffer = buffer,
+        callback = function()
+            vim.lsp.buf.format { async = false }
+        end
+    })
     -- Enable completion triggered by <c-x><c-o>
-    vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+    vim.bo[ev.buf].omnifunc = 'v:lua.vim.lsp.omnifunc'
 
     -- Buffer local mappings.
     -- See `:help vim.lsp.*` for documentation on any of the below functions
-    local opts = { buffer = bufnr }
+    local opts = { buffer = ev.buf }
     vim.keymap.set('n', '<leader>T', vim.lsp.buf.declaration, opts)
     vim.keymap.set('n', '<leader>t', vim.lsp.buf.definition, opts)
-    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
     vim.keymap.set("n","<leader>re", vim.lsp.buf.rename, bufopts)
     vim.keymap.set("n","<leader>ca", vim.lsp.buf.code_action, bufopts)
-end
-
-local servers = { 'clangd', 'pyright' }
-for _, lsp in ipairs(servers) do
-    require('lspconfig')[lsp].setup({
-        on_attach = on_attach,
-        flags = { debounce_text_changes = 150, }
+    -- vim.keymap.set('n', '<leader>t', vim.lsp.buf.implementation, opts)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    -- vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+    -- vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    -- vim.keymap.set('n', '<space>wl', function()
+    --   print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
+    -- end, opts)
+    -- vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+    -- vim.keymap.set('n', '<space>rn', vim.lsp.buf.rename, opts)
+    -- vim.keymap.set({ 'n', 'v' }, '<space>ca', vim.lsp.buf.code_action, opts)
+    -- vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<leader>ff', function()
+        vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
 })
-end
 
 EOF
