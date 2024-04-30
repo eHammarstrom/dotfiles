@@ -13,17 +13,13 @@ Plug 'github/copilot.vim'
 Plug 'bronson/vim-trailing-whitespace'
 Plug 'tpope/vim-surround'
 Plug 'godlygeek/tabular'
-Plug 'w0rp/ale'
 Plug 'luochen1990/rainbow'
-" Plug 'ziglang/zig.vim'
-" Plug 'martinda/Jenkinsfile-vim-syntax'
-" Plug 'rhysd/vim-llvm'
-" Plug 'sheerun/vim-polyglot'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'joshdick/onedark.vim'
 Plug 'Olical/conjure'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-neorg/neorg'
+Plug 'neovim/nvim-lspconfig'
 call plug#end()
 
 syntax enable
@@ -187,23 +183,6 @@ set cursorline
 " rainbow parens
 let g:rainbow_active = 1
 
-" ALE
-let g:ale_completion_enabled = 1
-let g:ale_fix_on_save = 0
-let g:ale_linters = {
-\   'rust': ['rls'],
-\   'c': ['cquery'],
-\   'python': ['pyls'],
-\   'ocaml': ['ols'],
-\   'haskell': ['hls'],
-\}
-let g:ale_fixers = {
-\   '*': ['trim_whitespace'],
-\   'c': ['clang-format'],
-\   'rust': ['rustfmt'],
-\}
-let g:ale_ocaml_ols_executable = "ocamllsp"
-
 lua << EOF
 
 local autocmd = vim.api.nvim_create_autocmd
@@ -283,5 +262,29 @@ autocmd("FileType", {
     pattern = { "norg" },
     command = "noremap <buffer><silent<leader>ncc :Neorg toggle-concealer<CR>",
 })
+
+
+function on_attach(client, bufnr)
+    -- Enable completion triggered by <c-x><c-o>
+    vim.bo.omnifunc = 'v:lua.vim.lsp.omnifunc'
+
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = bufnr }
+    vim.keymap.set('n', '<leader>T', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', '<leader>t', vim.lsp.buf.definition, opts)
+    -- vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set("n","<leader>re", vim.lsp.buf.rename, bufopts)
+    vim.keymap.set("n","<leader>ca", vim.lsp.buf.code_action, bufopts)
+end
+
+local servers = { 'clangd', 'pyright' }
+for _, lsp in ipairs(servers) do
+    require('lspconfig')[lsp].setup({
+        on_attach = on_attach,
+        flags = { debounce_text_changes = 150, }
+})
+end
 
 EOF
