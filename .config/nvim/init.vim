@@ -19,7 +19,19 @@ Plug 'joshdick/onedark.vim'
 Plug 'Olical/conjure'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'nvim-neorg/neorg'
+" :SudaWrite to write with sudo
+Plug 'lambdalisue/suda.vim'
+
+" LSP start
 Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/nvim-cmp'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'L3MON4D3/LuaSnip'
+Plug 'saadparwaiz1/cmp_luasnip'
+" LSP end
+
 call plug#end()
 
 syntax enable
@@ -302,6 +314,70 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.lsp.buf.format { async = true }
     end, opts)
   end,
+})
+
+local cmp = require('cmp')
+
+cmp.setup({
+    -- Enable LSP completion
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer' },
+        { name = 'luasnip' },
+    },
+    completion = {
+        completeopt = 'menu,menuone,noselect',
+    },
+    mapping = {
+        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<CR>'] = cmp.mapping.confirm({
+            behavior = cmp.ConfirmBehavior.Insert,
+            select = true,
+        }),
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+})
+
+cmp.setup.buffer({
+    sources = {
+        { name = 'nvim_lsp' },
+        { name = 'path' },
+        { name = 'buffer' },
+    },
+})
+
+local keymap = {
+    ['<Tab>'] = cmp.mapping.complete(),
+}
+
+cmp.setup({
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    mapping = {
+        ['<C-CR>'] = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+        ['<C-n>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_next_item()
+            else
+                fallback()
+            end
+        end,
+        ['<C-p>'] = function(fallback)
+            if cmp.visible() then
+                cmp.select_prev_item()
+            else
+                fallback()
+            end
+        end,
+    },
 })
 
 EOF
