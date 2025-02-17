@@ -31,45 +31,20 @@ font xft:hack 14
 floating_modifier $mod
 
 # start a terminal
-# bindsym $mod+Return exec terminal
 bindsym $mod+Return exec alacritty
 
 # kill focused window
 bindsym $mod+w kill
 
-# start program launcher
+# start programs
 bindsym $mod+d exec --no-startup-id rofi -show combi
-
-################################################################################################
-## sound-section - DO NOT EDIT if you wish to automatically upgrade Alsa -> Pulseaudio later! ##
-################################################################################################
-
-exec --no-startup-id volumeicon
-bindsym $mod+Ctrl+m exec terminal -e 'alsamixer'
-#exec --no-startup-id pulseaudio
-#exec --no-startup-id pa-applet
-#bindsym $mod+Ctrl+m exec pavucontrol
-
-################################################################################################
+bindsym $mod+p exec /home/estrom/.i3/screenshot.sh
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"
 bindsym XF86MonBrightnessDown exec "xbacklight -dec 10; notify-send 'brightness down'"
 
-# Start Applications
-bindsym $mod+Ctrl+b exec terminal -e 'bmenu'
-# bindsym $mod+t exec --no-startup-id pkill compton
-bindsym $mod+Ctrl+t exec --no-startup-id compton -b
-bindsym $mod+Shift+d --release exec "killall dunst; exec notify-send 'restart dunst'"
-bindsym $mod+p --release exec /home/estrom/.i3/screenshot.sh
-
 focus_follows_mouse no
-
-# change focus
-#bindsym $mod+j focus left
-#bindsym $mod+k focus down
-#bindsym $mod+l focus up
-#bindsym $mod+semicolon focus right
 
 # alternatively, you can use the cursor keys:
 bindsym $mod+Left focus left
@@ -265,7 +240,8 @@ mode "resize" {
 }
 
 # Lock screen
-bindsym $mod+l exec --no-startup-id i3lock -c 333333
+# bindsym $mod+l exec --no-startup-id i3lock -c 333333
+bindsym $mod+l exec swaylock -c 333333
 
 # Autostart applications
 exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
