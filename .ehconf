@@ -122,6 +122,7 @@ alias emat="emacsclient -t"
 alias vi="nvim"
 alias vim="nvim"
 alias virc="nvim ~/.config/nvim/init.vim"
+alias visettings="nvim ~/.config/nvim/lua/settings.lua"
 
 # kitty
 alias kittyrc="nvim ~/.config/kitty/kitty.conf"
