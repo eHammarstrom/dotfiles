@@ -77,9 +77,6 @@ nmap <leader>ww mz:execute TabToggle()<CR>'z
 
 """""" settings
 
-" use system clipboard
-set clipboard=unnamedplus
-
 " use relative above & below cursor
 set relativenumber
 " show absolute at cursor
