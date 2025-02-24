@@ -6,6 +6,11 @@ input * {
         xkb_options "grp:alt_space_toggle,ctrl:nocaps"
 }
 
+input "type:touchpad" {
+        tap enabled
+        natural_scroll enabled
+}
+
 exec --no-startup-id /usr/bin/xset s off
 exec --no-startup-id /usr/bin/xset -dpms
 exec --no-startup-id /usr/bin/xset s noblank
