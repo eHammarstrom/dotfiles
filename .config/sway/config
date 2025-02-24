@@ -1,10 +1,16 @@
-# exec --no-startup-id /usr/bin/redshift -c /home/estrom/.config/redshift/redshift.conf
-#
+output * bg #5F9EA0 solid_color
+
+input * {
+        xkb_layout us,us
+        xkb_variant ,dvorak
+        xkb_options "grp:alt_space_toggle,ctrl:nocaps"
+}
+
 exec --no-startup-id /usr/bin/xset s off
 exec --no-startup-id /usr/bin/xset -dpms
 exec --no-startup-id /usr/bin/xset s noblank
 exec --no-startup-id /usr/bin/waybar
-
+exec --no-startup-id /usr/bin/nm-tray
 exec --no-startup-id /usr/bin/timedatectl set-ntp 1 --adjust-system-clock
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
@@ -148,6 +154,7 @@ for_window [class="gnome-calculator"] floating enable
 for_window [class="Pavucontrol"] floating enable
 for_window [class="Cadence"] floating enable border normal
 for_window [class="Guitarix"] floating enable border normal
+for_window [class="nm-tray"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
@@ -204,11 +211,3 @@ mode "resize" {
 
 # Lock screen
 bindsym $mod+l exec swaylock -c 333333
-
-# Theme colors
-# class                   border  backgr. text    indic.   child_border
-  client.focused          #556064 #556064 #80FFF9 #FDF6E3
-  client.focused_inactive #2F3D44 #2F3D44 #1ABC9C #454948
-  client.unfocused        #2F3D44 #2F3D44 #1ABC9C #454948
-  client.urgent           #CB4B16 #FDF6E3 #1ABC9C #268BD2
-  client.placeholder      #000000 #0c0c0c #ffffff #000000
