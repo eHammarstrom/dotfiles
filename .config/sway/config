@@ -153,13 +153,10 @@ bindsym $mod+Shift+8 move container to workspace $ws8; workspace $ws8
 bindsym $mod+Shift+9 move container to workspace $ws9; workspace $ws9
 
 # Open specific applications in floating mode
-for_window [title="alsamixer"] floating enable border pixel 1
-for_window [class="Gnome-calculator"] floating enable
-for_window [class="gnome-calculator"] floating enable
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Cadence"] floating enable border normal
-for_window [class="Guitarix"] floating enable border normal
-for_window [class="nm-tray"] floating enable border normal
+for_window [app_id="gnome-calculator"] floating enable
+for_window [app_id="qalculate-gtk"] floating enable
+for_window [app_id="pavucontrol"] floating enable
+for_window [app_id="nm-tray"] floating enable border normal
 
 # switch to workspace with urgent window automatically
 for_window [urgent=latest] focus
