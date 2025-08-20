@@ -11,7 +11,11 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
     { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'navarasu/onedark.nvim' },
-    { 'hrsh7th/nvim-cmp' }
+    { 'hrsh7th/nvim-cmp' },
+    { "github/copilot.vim" },
+    { "junegunn/tabularize" },
+    { "neovim/nvim-lspconfig" },
+    { "tpope/vim-surround" },
 })
 
 ---------- SETTINGS ----------
@@ -65,6 +69,9 @@ end, {})
 vim.g["conjure#mapping#doc_word"] = false
 
 vim.lsp.enable('clangd')
+vim.lsp.config('clangd', {
+    cmd = { "clangd", "--offset-encoding=utf-16" }
+})
 vim.lsp.enable('rust_analyzer')
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
