@@ -125,5 +125,8 @@ PROMPT_COMMAND=mr_cool
 export PATH=$PATH:/opt/cmake/bin
 export PATH=~/.local/bin:"$PATH"
 
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
 eval "$(pyenv init -)"
 eval "$(pyenv virtualenv-init -)"
