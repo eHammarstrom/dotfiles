@@ -11,11 +11,12 @@ input "type:touchpad" {
         natural_scroll enabled
 }
 
+exec systemctl --user import-environment
 exec --no-startup-id /usr/bin/xset s off
 exec --no-startup-id /usr/bin/xset -dpms
 exec --no-startup-id /usr/bin/xset s noblank
 exec --no-startup-id /usr/bin/waybar
-exec --no-startup-id /usr/bin/nm-tray
+exec --no-startup-id /usr/bin/nm-applet
 exec --no-startup-id /usr/bin/timedatectl set-ntp 1 --adjust-system-clock
 
 # Set mod key (Mod1=<Alt>, Mod4=<Super>)
@@ -49,6 +50,8 @@ bindsym $mod+w kill
 # start programs
 bindsym $mod+d exec --no-startup-id rofi -show combi
 bindsym $mod+p exec /home/estrom/.i3/screenshot.sh
+
+bindsym $mod+m exec pkill waybar || waybar
 
 # Screen brightness controls
 bindsym XF86MonBrightnessUp exec "xbacklight -inc 10; notify-send 'brightness up'"

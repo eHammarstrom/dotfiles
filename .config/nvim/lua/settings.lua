@@ -9,13 +9,43 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
-    { 'nvim-telescope/telescope.nvim', branch = '0.1.x', dependencies = { 'nvim-lua/plenary.nvim' } },
     { 'navarasu/onedark.nvim' },
     { 'hrsh7th/nvim-cmp' },
     { "github/copilot.vim" },
     { "junegunn/tabularize" },
     { "neovim/nvim-lspconfig" },
     { "tpope/vim-surround" },
+    { "bronson/vim-trailing-whitespace" },
+    {
+        "mason-org/mason.nvim",
+        cmd = "Mason",
+        config = function()
+            require("mason").setup()
+        end,
+    },
+    {
+        'nvim-telescope/telescope.nvim',
+        branch = '0.1.x',
+        dependencies = {
+            'nvim-lua/plenary.nvim',
+            'nvim-tree/nvim-web-devicons',
+        }
+    },
+    {
+        "lambdalisue/suda.vim",
+        cmd = { "SudaWrite", "SudaRead" },
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        dependencies = { "nvim-tree/nvim-web-devicons" },
+        config = function()
+            require("lualine").setup({
+                options = {
+                    theme = "auto",
+                },
+            })
+        end,
+    },
 })
 
 ---------- SETTINGS ----------
@@ -68,9 +98,16 @@ end, {})
 
 vim.g["conjure#mapping#doc_word"] = false
 
+-- vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, opts)
+-- vim.keymap.set('n', 'gD', require('telescope.builtin').lsp_declarations, opts)
+vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+
 vim.lsp.enable('clangd')
 vim.lsp.config('clangd', {
-    cmd = { "clangd", "--offset-encoding=utf-16" }
+    cmd = { "clangd", "--offset-encoding=utf-16" },
 })
 vim.lsp.enable('rust_analyzer')
 -- Use LspAttach autocommand to only map the following keys

@@ -10,4 +10,8 @@ else
     grim -g "$(slurp)" $OUTPUT
 fi
 
-xclip -i $OUTPUT -t image/png -selection clipboard
+if [ $XDG_SESSION_TYPE = "x11" ]; then
+    xclip -i $OUTPUT -t image/png -selection clipboard
+else
+    wl-copy < $OUTPUT
+fi

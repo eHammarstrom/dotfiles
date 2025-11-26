@@ -41,9 +41,6 @@ noremap h h
 noremap t gj
 noremap n gk
 noremap s l
-" 2 - replace functions we remapped away
-" S goes to bottom of Screen
-noremap S L
 " j/J Jerk and replace a character/line
 noremap j s
 noremap J S
@@ -137,7 +134,7 @@ augroup project
   autocmd BufRead,BufNewFile *.h,*.c set filetype=c
 augroup END
 
-" au FileType cpp setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=80,81,82
+au FileType cpp setlocal autoindent noexpandtab tabstop=4 shiftwidth=4 colorcolumn=120
 " device tree style
 au FileType dts setlocal autoindent noexpandtab tabstop=8 shiftwidth=8
 au FileType s,asm setlocal autoindent noexpandtab tabstop=8 shiftwidth=8 colorcolumn=80
