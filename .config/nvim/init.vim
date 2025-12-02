@@ -48,8 +48,8 @@ noremap J S
 noremap k n
 noremap K N
 " l/L Looks forward/backward to a
-noremap l t
-noremap L T
+" noremap l t
+" noremap L T
 " T  puts lines Together
 noremap T J
 

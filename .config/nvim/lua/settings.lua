@@ -25,7 +25,7 @@ require("lazy").setup({
     },
     {
         'nvim-telescope/telescope.nvim',
-        branch = '0.1.x',
+        version = '*',
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-tree/nvim-web-devicons',
@@ -98,10 +98,22 @@ end, {})
 
 vim.g["conjure#mapping#doc_word"] = false
 
--- vim.keymap.set('n', 'gd', require('telescope.builtin').lsp_definitions, opts)
--- vim.keymap.set('n', 'gD', require('telescope.builtin').lsp_declarations, opts)
+vim.keymap.set('n', 'll', function()
+    builtin.lsp_document_symbols({
+        symbols = { 'function', 'method', 'macro', 'struct', 'enum', 'class' },
+        -- previewer = false,
+        symbol_width = 50,
+        layout_config = {
+            width = 0.95,
+            height = 0.95,
+            preview_width = 0.5,
+        },
+    })
+end, opts)
+vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
+-- vim.keymap.set('n', 'gD', builtin.lsp_declarations, opts)
 vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
-vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+-- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 
