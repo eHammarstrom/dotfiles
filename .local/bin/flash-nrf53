@@ -21,7 +21,7 @@ while [[ $# -gt 0 ]]; do
         *)
             POSITIONAL+=("$1")
             shift
-            ;;
+            ;; 
     esac
 done
 
@@ -38,14 +38,8 @@ fi
 
 APP=$(realpath "$BUILD_DIR/merged.hex")
 NET=$(realpath "$BUILD_DIR/merged_CPUNET.hex")
+[[ -n "$PROV_DATA" ]] && PROV=$(realpath "$PROV_DATA") || PROV=""
 
-if [[ -n "$PROV_DATA" ]]; then
-    PROV=$(realpath "$PROV_DATA")
-else
-    PROV=""
-fi
-
-echo "=== nRF53 Flash Script (nrfutil) ==="
 echo "Application HEX  : $APP"
 echo "Network HEX      : $NET"
 [[ -n "$PROV" ]] && echo "Provisioning HEX : $PROV"
@@ -63,30 +57,16 @@ NET_OPTS="chip_erase_mode=ERASE_RANGES_TOUCHED_BY_FIRMWARE,verify=VERIFY_READ,re
 
 if [[ -n "$PROV" ]]; then
     echo "[3/6] Flashing provisioning data to application core"
-    nrfutil device program \
-        --firmware "$PROV" \
-        --core application \
-        --options "$APP_OPTS" \
-        $SERIAL_ARG
+    nrfutil device program --firmware "$PROV" --core application --options "$APP_OPTS" $SERIAL_ARG
 else
     echo "[3/6] No provisioning data supplied, skipping"
 fi
 
 echo "[4/6] Flashing application firmware"
-nrfutil device program \
-    --firmware "$APP" \
-    --core application \
-    --options "$APP_OPTS" \
-    $SERIAL_ARG
+nrfutil device program --firmware "$APP" --core application --options "$APP_OPTS" $SERIAL_ARG
 
 echo "[5/6] Flashing network firmware"
-nrfutil device program \
-    --firmware "$NET" \
-    --core network \
-    --options "$NET_OPTS" \
-    $SERIAL_ARG
+nrfutil device program --firmware "$NET" --core network --options "$NET_OPTS" $SERIAL_ARG
 
 echo "[6/6] Resetting nRF53"
 nrfutil device reset $SERIAL_ARG
-
-echo "=== Flash complete (nRF53) ==="
