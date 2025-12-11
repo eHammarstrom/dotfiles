@@ -1,0 +1,92 @@
+#!/bin/bash
+set -euo pipefail
+
+SCRIPT_DIR=$(cd "$(dirname "$0")" && pwd)
+
+SERIAL_ARG=""
+PROV_DATA=""
+POSITIONAL=()
+
+# Parse optional flags
+while [[ $# -gt 0 ]]; do
+    case "$1" in
+        --serial-number|-s)
+            if [[ -z "${2:-}" ]]; then
+                echo "Error: --serial-number requires a value"
+                exit 1
+            fi
+            SERIAL_ARG="--serial-number $2"
+            shift 2
+            ;;
+        *)
+            POSITIONAL+=("$1")
+            shift
+            ;;
+    esac
+done
+
+# Restore positional args
+set -- "${POSITIONAL[@]}"
+
+BUILD_DIR="${1:-}"
+PROV_DATA="${2:-}"  # OPTIONAL
+
+if [ -z "$BUILD_DIR" ]; then
+    echo "Usage: $0 [--serial-number <SN>] <build_dir> [provisioning_data]"
+    exit 1
+fi
+
+APP=$(realpath "$BUILD_DIR/merged.hex")
+NET=$(realpath "$BUILD_DIR/merged_CPUNET.hex")
+
+if [[ -n "$PROV_DATA" ]]; then
+    PROV=$(realpath "$PROV_DATA")
+else
+    PROV=""
+fi
+
+echo "=== nRF53 Flash Script (nrfutil) ==="
+echo "Application HEX  : $APP"
+echo "Network HEX      : $NET"
+[[ -n "$PROV" ]] && echo "Provisioning HEX : $PROV"
+[[ -n "$SERIAL_ARG" ]] && echo "Target Serial    : ${SERIAL_ARG#--serial-number }"
+echo
+
+echo "[1/6] Halting nRF53 application core"
+nrfutil device halt --core application $SERIAL_ARG
+
+echo "[2/6] Halting nRF53 network core"
+nrfutil device halt --core network $SERIAL_ARG
+
+APP_OPTS="chip_erase_mode=ERASE_RANGES_TOUCHED_BY_FIRMWARE,verify=VERIFY_READ,reset=RESET_NONE"
+NET_OPTS="chip_erase_mode=ERASE_RANGES_TOUCHED_BY_FIRMWARE,verify=VERIFY_READ,reset=RESET_NONE"
+
+if [[ -n "$PROV" ]]; then
+    echo "[3/6] Flashing provisioning data to application core"
+    nrfutil device program \
+        --firmware "$PROV" \
+        --core application \
+        --options "$APP_OPTS" \
+        $SERIAL_ARG
+else
+    echo "[3/6] No provisioning data supplied, skipping"
+fi
+
+echo "[4/6] Flashing application firmware"
+nrfutil device program \
+    --firmware "$APP" \
+    --core application \
+    --options "$APP_OPTS" \
+    $SERIAL_ARG
+
+echo "[5/6] Flashing network firmware"
+nrfutil device program \
+    --firmware "$NET" \
+    --core network \
+    --options "$NET_OPTS" \
+    $SERIAL_ARG
+
+echo "[6/6] Resetting nRF53"
+nrfutil device reset $SERIAL_ARG
+
+echo "=== Flash complete (nRF53) ==="
