@@ -1,4 +1,5 @@
 # general
+alias la="lazygit"
 alias ls="exa"
 alias ll="ls -lh"
 alias lss="ls -1"
