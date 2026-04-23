@@ -11,6 +11,12 @@ input "type:touchpad" {
         natural_scroll enabled
 }
 
+# Three-finger swipe to switch workspaces on the focused output.
+# Direction is inverted to match natural_scroll (filmstrip metaphor):
+# swipe right -> reveal workspace to the left (previous).
+bindgesture swipe:3:right workspace prev_on_output
+bindgesture swipe:3:left  workspace next_on_output
+
 exec systemctl --user import-environment
 exec --no-startup-id /usr/bin/xset s off
 exec --no-startup-id /usr/bin/xset -dpms
