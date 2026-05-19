@@ -6,6 +6,7 @@ alias lss="ls -1"
 alias lsg="ls -1 | rg"
 alias lsize="ls -Slh | tac"
 alias fd="fdfind"
+alias rgu="rg --unrestricted"
 
 alias gr="grep -n -r"
 
@@ -69,6 +70,7 @@ alias incl-avr="cd /usr/avr/include"
 # git
 alias gg="git status"
 alias gct="git commit"
+alias ga="git commit --amend"
 alias gco="git checkout"
 alias gad="git add"
 alias gadd="git add ."
@@ -141,43 +143,11 @@ export PATH=$PATH:$HOME/.local/bin
 export EDITOR=nvim
 export TERM=xterm-256color
 
-function mr_cool() {
-    local RETVAL=$(echo $?)
-    local RETVALCOL="\[\e[37;42m\]"
+alias keyboard_setup='setxkbmap -layout us,us -variant ,dvorak -option "grp:alt_space_toggle,ctrl:nocaps"'
 
-    local TAIL="$(pwd)"
-    local TAILCOL="\[\e[37;44m\]"
-
-    local PROMPT="λ\[\e[0m\] "
-    local PROMPTCOL="\[\e[00;34m\]"
-
-    # if we're in a git repo, add git stats
-    local GITBRANCH=""
-    local GITBRANCHCOL=""
-    local GITCHANGES=""
-    if [ $(git rev-parse --is-inside-work-tree 2> /dev/null) ]; then
-        GITBRANCH=$(git branch | grep "*" | sed 's/^..//' | tr a-z A-Z)
-        GITBRANCH="  $GITBRANCH"
-        GITBRANCHCOL="\[\e[37;42m\]"
-
-        GITCHANGES=$(git status -uno --short $(pwd) | wc -l)
-
-        if [ $GITCHANGES -eq 0 ]; then
-            GITCHANGES="  "
-        else
-            GITCHANGES=" +$GITCHANGES  "
-        fi
-    fi
-
-    if [ $RETVAL -ne 0 ]; then
-        RETVALCOL="\[\e[37;41m\]"
-    fi
-
-    export PS1="\\
-$RETVALCOL  $RETVAL  \\
-$TAILCOL  $TAIL  \\
-$GITBRANCHCOL$GITBRANCH$GITCHANGES\[\e[0m\]\\
-\n$PROMPTCOL$PROMPT"
+spill_tee() {
+     # program [arguments...] 2>&1 | tee outfile
+    "$@" 2>&1 | tee -a "$(date +%Y-%m-%d-%H-%M-%S).log"
 }
 
-alias keyboard_setup='setxkbmap -layout us,us -variant ,dvorak -option "grp:alt_space_toggle,ctrl:nocaps"'
+source .workconf
