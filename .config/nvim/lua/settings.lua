@@ -117,10 +117,11 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 
-vim.lsp.enable('clangd')
-vim.lsp.config('clangd', {
-    cmd = { "clangd", "--offset-encoding=utf-16" },
-})
+-- vim.lsp.enable('clangd')
+-- vim.lsp.config('clangd', {
+--    cmd = { "clangd", "--offset-encoding=utf-16" },
+-- })
+vim.lsp.enable('ccls')
 vim.lsp.enable('rust_analyzer')
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
