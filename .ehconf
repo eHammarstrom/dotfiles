@@ -150,4 +150,4 @@ spill_tee() {
     "$@" 2>&1 | tee -a "$(date +%Y-%m-%d-%H-%M-%S).log"
 }
 
-source .workconf
+source $HOME/.workconf
