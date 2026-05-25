@@ -46,6 +46,7 @@ require("lazy").setup({
             })
         end,
     },
+    { "lewis6991/gitsigns.nvim", },
 })
 
 ---------- SETTINGS ----------
@@ -116,6 +117,13 @@ vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
 -- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
 vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+
+require('gitsigns').setup{
+	on_attach = function(bufnr)
+		local gitsigns = require('gitsigns')
+		vim.keymap.set('n', '<leader>gb', gitsigns.blame, opts)
+	end
+}
 
 -- vim.lsp.enable('clangd')
 -- vim.lsp.config('clangd', {
