@@ -150,4 +150,13 @@ spill_tee() {
     "$@" 2>&1 | tee -a "$(date +%Y-%m-%d-%H-%M-%S).log"
 }
 
+symlink_workdir() {
+    sudo rm /workdir | true
+    sudo ln -s $PWD /workdir
+    buildFolder=$(ls -d "$PWD"/build*/ 2>/dev/null | fzf --prompt="Build folder: ")
+    compileCommands=$(find $buildFolder -iname "compile_commands.json" | fzf --prompt="Compilation database: ")
+    rm compile_commands.json | true
+    ln -s $compileCommands compile_commands.json
+}
+
 source $HOME/.workconf
