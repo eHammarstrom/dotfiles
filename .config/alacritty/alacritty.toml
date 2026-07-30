@@ -166,6 +166,11 @@ key = "Back"
 mods = "Alt"
 
 [[keyboard.bindings]]
+key = "Back"
+mods = "Control"
+chars = "\u0017"
+
+[[keyboard.bindings]]
 chars = "\u001B[2~"
 key = "Insert"
 
