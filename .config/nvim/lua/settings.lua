@@ -111,12 +111,6 @@ vim.keymap.set('n', 'll', function()
         },
     })
 end, opts)
-vim.keymap.set('n', 'gd', builtin.lsp_definitions, opts)
--- vim.keymap.set('n', 'gD', builtin.lsp_declarations, opts)
-vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
--- vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
-vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
 
 require('gitsigns').setup{
 	on_attach = function(bufnr)
@@ -130,6 +124,7 @@ require('gitsigns').setup{
 --    cmd = { "clangd", "--offset-encoding=utf-16" },
 -- })
 vim.lsp.enable('ccls')
+vim.lsp.enable('gopls')
 vim.lsp.enable('rust_analyzer')
 -- Use LspAttach autocommand to only map the following keys
 -- after the language server attaches to the current buffer
@@ -141,10 +136,12 @@ vim.api.nvim_create_autocmd('LspAttach', {
     -- See `:help vim.lsp.*` for documentation on any of the below functions
     local opts = { buffer = ev.buf }
     vim.keymap.set('n', '<leader>T', vim.lsp.buf.declaration, opts)
-    vim.keymap.set('n', '<leader>t', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', '<leader>t', builtin.lsp_definitions, opts)
     vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
-    vim.keymap.set("n","<leader>re", vim.lsp.buf.rename, bufopts)
-    vim.keymap.set("n","<leader>ca", vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', '<leader>re', vim.lsp.buf.rename, bufopts)
+    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set('n', 'gri', builtin.lsp_implementations, opts)
+    vim.keymap.set('n', 'grr', builtin.lsp_references, opts)
     vim.keymap.set('n', '<leader>ff', function()
       vim.lsp.buf.format { async = true }
     end, opts)

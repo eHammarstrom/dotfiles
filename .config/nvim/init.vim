@@ -119,7 +119,7 @@ function! GruggC()
         let g:toggleC = 0
     endif
 endfunction
-nmap <leader>g mz:execute GruggC()<CR>'z
+nmap <leader>gg mz:execute GruggC()<CR>'z
 
 " global tabstuff, personal preference
 set autoindent expandtab tabstop=4 shiftwidth=4 colorcolumn=120
